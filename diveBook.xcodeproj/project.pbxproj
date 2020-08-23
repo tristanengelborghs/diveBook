@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F123B24F26FC200666535 /* AppDelegate.swift */; };
 		2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F123D24F26FC200666535 /* SceneDelegate.swift */; };
-		2F4F124024F26FC200666535 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F123F24F26FC200666535 /* ViewController.swift */; };
+		2F4F124024F26FC200666535 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F123F24F26FC200666535 /* HomeViewController.swift */; };
 		2F4F124324F26FC200666535 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F124124F26FC200666535 /* Main.storyboard */; };
 		2F4F124524F26FC600666535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F124424F26FC600666535 /* Assets.xcassets */; };
 		2F4F124824F26FC600666535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F124624F26FC600666535 /* LaunchScreen.storyboard */; };
+		2F4F125524F2716500666535 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F125424F2716500666535 /* ExploreViewController.swift */; };
+		2F4F125724F2717900666535 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F125624F2717900666535 /* ProfileViewController.swift */; };
+		2F4F125924F2719700666535 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F125824F2719700666535 /* AlbumViewController.swift */; };
+		2F4F125B24F2722A00666535 /* AddDiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F125A24F2722A00666535 /* AddDiveViewController.swift */; };
+		2F4F126024F2727300666535 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F125F24F2727300666535 /* LoginViewController.swift */; };
+		2F4F126224F2728E00666535 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126124F2728E00666535 /* RegistrationViewController.swift */; };
+		2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126324F272E000666535 /* EditProfileViewController.swift */; };
+		2F4F126624F2730000666535 /* EditDiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126524F2730000666535 /* EditDiveViewController.swift */; };
+		2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126724F2731B00666535 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F4F123824F26FC200666535 /* diveBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diveBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4F123B24F26FC200666535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F4F123D24F26FC200666535 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2F4F123F24F26FC200666535 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2F4F123F24F26FC200666535 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2F4F124224F26FC200666535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F4F124424F26FC600666535 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F4F124724F26FC600666535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F4F124924F26FC600666535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F4F125424F2716500666535 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		2F4F125624F2717900666535 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2F4F125824F2719700666535 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		2F4F125A24F2722A00666535 /* AddDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDiveViewController.swift; sourceTree = "<group>"; };
+		2F4F125F24F2727300666535 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2F4F126124F2728E00666535 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		2F4F126324F272E000666535 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		2F4F126524F2730000666535 /* EditDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiveViewController.swift; sourceTree = "<group>"; };
+		2F4F126724F2731B00666535 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +74,88 @@
 		2F4F123A24F26FC200666535 /* diveBook */ = {
 			isa = PBXGroup;
 			children = (
-				2F4F123B24F26FC200666535 /* AppDelegate.swift */,
-				2F4F123D24F26FC200666535 /* SceneDelegate.swift */,
-				2F4F123F24F26FC200666535 /* ViewController.swift */,
-				2F4F124124F26FC200666535 /* Main.storyboard */,
-				2F4F124424F26FC600666535 /* Assets.xcassets */,
-				2F4F124624F26FC600666535 /* LaunchScreen.storyboard */,
+				2F4F125224F2707200666535 /* Resources */,
+				2F4F125124F2706800666535 /* Views */,
+				2F4F125024F2706000666535 /* Controllers */,
+				2F4F124F24F2704500666535 /* Modals */,
 				2F4F124924F26FC600666535 /* Info.plist */,
 			);
 			path = diveBook;
+			sourceTree = "<group>";
+		};
+		2F4F124F24F2704500666535 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		2F4F125024F2706000666535 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F125D24F2724B00666535 /* Other */,
+				2F4F125C24F2723100666535 /* Core Tabs */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2F4F125124F2706800666535 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F125324F270D600666535 /* Storyboards */,
+				2F4F124424F26FC600666535 /* Assets.xcassets */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2F4F125224F2707200666535 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F123B24F26FC200666535 /* AppDelegate.swift */,
+				2F4F123D24F26FC200666535 /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2F4F125324F270D600666535 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F124124F26FC200666535 /* Main.storyboard */,
+				2F4F124624F26FC600666535 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2F4F125C24F2723100666535 /* Core Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F123F24F26FC200666535 /* HomeViewController.swift */,
+				2F4F125424F2716500666535 /* ExploreViewController.swift */,
+				2F4F125A24F2722A00666535 /* AddDiveViewController.swift */,
+				2F4F125824F2719700666535 /* AlbumViewController.swift */,
+				2F4F125624F2717900666535 /* ProfileViewController.swift */,
+			);
+			path = "Core Tabs";
+			sourceTree = "<group>";
+		};
+		2F4F125D24F2724B00666535 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F125E24F2726200666535 /* Onboarding */,
+				2F4F126324F272E000666535 /* EditProfileViewController.swift */,
+				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
+				2F4F126724F2731B00666535 /* SettingsViewController.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		2F4F125E24F2726200666535 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F125F24F2727300666535 /* LoginViewController.swift */,
+				2F4F126124F2728E00666535 /* RegistrationViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +229,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F4F124024F26FC200666535 /* ViewController.swift in Sources */,
+				2F4F125924F2719700666535 /* AlbumViewController.swift in Sources */,
+				2F4F125B24F2722A00666535 /* AddDiveViewController.swift in Sources */,
+				2F4F125524F2716500666535 /* ExploreViewController.swift in Sources */,
+				2F4F126224F2728E00666535 /* RegistrationViewController.swift in Sources */,
+				2F4F124024F26FC200666535 /* HomeViewController.swift in Sources */,
+				2F4F126624F2730000666535 /* EditDiveViewController.swift in Sources */,
+				2F4F126024F2727300666535 /* LoginViewController.swift in Sources */,
+				2F4F125724F2717900666535 /* ProfileViewController.swift in Sources */,
 				2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */,
+				2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */,
 				2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */,
+				2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
