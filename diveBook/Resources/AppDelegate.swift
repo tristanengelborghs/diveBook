@@ -5,16 +5,20 @@
 //  Created by Tristan Engelborghs on 23/08/2020.
 //  Copyright © 2020 Tristan Engelborghs. All rights reserved.
 //
-
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        
         return true
     }
 

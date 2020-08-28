@@ -3,10 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F320BDE24F3F4D900BBEE13 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F320BDC24F3F4D800BBEE13 /* Utilities.swift */; };
+		2F320BDF24F3F4D900BBEE13 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F320BDD24F3F4D900BBEE13 /* Constants.swift */; };
+		2F320BE224F3F78800BBEE13 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F320BE124F3F78800BBEE13 /* FirstViewController.swift */; };
+		2F320BE424F418DC00BBEE13 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F320BE324F418DC00BBEE13 /* TabBarViewController.swift */; };
+		2F320BEB24F5456500BBEE13 /* UISlidingTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F320BEA24F5456500BBEE13 /* UISlidingTabController.swift */; };
+		2F320BED24F546D900BBEE13 /* SimpleItemViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F320BEC24F546D900BBEE13 /* SimpleItemViewControllerOne.swift */; };
+		2F320BEF24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F320BEE24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift */; };
+		2F33C73D24F695F700752B45 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33C73C24F695F700752B45 /* UIViewExtension.swift */; };
+		2F33C74024F69B0200752B45 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33C73F24F69B0200752B45 /* CustomTableViewCell.swift */; };
+		2F33C74224F69FBA00752B45 /* DiveInfoStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33C74124F69FBA00752B45 /* DiveInfoStruct.swift */; };
+		2F33C74424F911C400752B45 /* ShowDiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33C74324F911C400752B45 /* ShowDiveViewController.swift */; };
+		2F33C74924F9237100752B45 /* CirtifiedDiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33C74824F9237100752B45 /* CirtifiedDiveViewController.swift */; };
+		2F33C74B24F9237F00752B45 /* NormalDiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */; };
 		2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F123B24F26FC200666535 /* AppDelegate.swift */; };
 		2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F123D24F26FC200666535 /* SceneDelegate.swift */; };
 		2F4F124024F26FC200666535 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F123F24F26FC200666535 /* HomeViewController.swift */; };
@@ -22,9 +35,25 @@
 		2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126324F272E000666535 /* EditProfileViewController.swift */; };
 		2F4F126624F2730000666535 /* EditDiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126524F2730000666535 /* EditDiveViewController.swift */; };
 		2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126724F2731B00666535 /* SettingsViewController.swift */; };
+		2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F126924F283A200666535 /* GoogleService-Info.plist */; };
+		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
+		A64E4E9B132DA16FA9ED4111 /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F320BDC24F3F4D800BBEE13 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2F320BDD24F3F4D900BBEE13 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2F320BE124F3F78800BBEE13 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		2F320BE324F418DC00BBEE13 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		2F320BEA24F5456500BBEE13 /* UISlidingTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISlidingTabController.swift; sourceTree = "<group>"; };
+		2F320BEC24F546D900BBEE13 /* SimpleItemViewControllerOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleItemViewControllerOne.swift; sourceTree = "<group>"; };
+		2F320BEE24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleItemViewControllerTwo.swift; sourceTree = "<group>"; };
+		2F33C73C24F695F700752B45 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		2F33C73F24F69B0200752B45 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		2F33C74124F69FBA00752B45 /* DiveInfoStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveInfoStruct.swift; sourceTree = "<group>"; };
+		2F33C74324F911C400752B45 /* ShowDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDiveViewController.swift; sourceTree = "<group>"; };
+		2F33C74824F9237100752B45 /* CirtifiedDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirtifiedDiveViewController.swift; sourceTree = "<group>"; };
+		2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalDiveViewController.swift; sourceTree = "<group>"; };
 		2F4F123824F26FC200666535 /* diveBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diveBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4F123B24F26FC200666535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F4F123D24F26FC200666535 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +71,11 @@
 		2F4F126324F272E000666535 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		2F4F126524F2730000666535 /* EditDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiveViewController.swift; sourceTree = "<group>"; };
 		2F4F126724F2731B00666535 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		2F4F126924F283A200666535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
+		3F4286F5EE12AC30E69B6587 /* Pods-diveBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.release.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.release.xcconfig"; sourceTree = "<group>"; };
+		4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93D3EB210CC486592C6C209F /* Pods-diveBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.debug.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,17 +83,58 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64E4E9B132DA16FA9ED4111 /* Pods_diveBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F320BE024F3F50100BBEE13 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F127424F2C2EC00666535 /* GradientColor.swift */,
+				2F320BDD24F3F4D900BBEE13 /* Constants.swift */,
+				2F320BDC24F3F4D800BBEE13 /* Utilities.swift */,
+				2F33C73C24F695F700752B45 /* UIViewExtension.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2F320BE924F5453A00BBEE13 /* Sliders */ = {
+			isa = PBXGroup;
+			children = (
+				2F320BEA24F5456500BBEE13 /* UISlidingTabController.swift */,
+				2F320BEC24F546D900BBEE13 /* SimpleItemViewControllerOne.swift */,
+				2F320BEE24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift */,
+			);
+			path = Sliders;
+			sourceTree = "<group>";
+		};
+		2F33C73E24F69AE000752B45 /* custom cell */ = {
+			isa = PBXGroup;
+			children = (
+				2F33C73F24F69B0200752B45 /* CustomTableViewCell.swift */,
+			);
+			path = "custom cell";
+			sourceTree = "<group>";
+		};
+		2F33C74724F9234E00752B45 /* Add Dive */ = {
+			isa = PBXGroup;
+			children = (
+				2F33C74824F9237100752B45 /* CirtifiedDiveViewController.swift */,
+				2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */,
+			);
+			path = "Add Dive";
+			sourceTree = "<group>";
+		};
 		2F4F122F24F26FC200666535 = {
 			isa = PBXGroup;
 			children = (
 				2F4F123A24F26FC200666535 /* diveBook */,
 				2F4F123924F26FC200666535 /* Products */,
+				705F134E4C81E7A698A42A0F /* Pods */,
+				4B0428E9FB38303E57C0F9D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +161,7 @@
 		2F4F124F24F2704500666535 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
+				2F33C74124F69FBA00752B45 /* DiveInfoStruct.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -113,6 +189,8 @@
 			children = (
 				2F4F123B24F26FC200666535 /* AppDelegate.swift */,
 				2F4F123D24F26FC200666535 /* SceneDelegate.swift */,
+				2F4F126924F283A200666535 /* GoogleService-Info.plist */,
+				2F320BE024F3F50100BBEE13 /* Helpers */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -130,10 +208,13 @@
 			isa = PBXGroup;
 			children = (
 				2F4F123F24F26FC200666535 /* HomeViewController.swift */,
+				2F320BE924F5453A00BBEE13 /* Sliders */,
 				2F4F125424F2716500666535 /* ExploreViewController.swift */,
 				2F4F125A24F2722A00666535 /* AddDiveViewController.swift */,
+				2F33C74724F9234E00752B45 /* Add Dive */,
 				2F4F125824F2719700666535 /* AlbumViewController.swift */,
 				2F4F125624F2717900666535 /* ProfileViewController.swift */,
+				2F320BE324F418DC00BBEE13 /* TabBarViewController.swift */,
 			);
 			path = "Core Tabs";
 			sourceTree = "<group>";
@@ -141,10 +222,9 @@
 		2F4F125D24F2724B00666535 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2F33C73E24F69AE000752B45 /* custom cell */,
 				2F4F125E24F2726200666535 /* Onboarding */,
-				2F4F126324F272E000666535 /* EditProfileViewController.swift */,
-				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
-				2F4F126724F2731B00666535 /* SettingsViewController.swift */,
+				2F4F126B24F292D800666535 /* General */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -154,8 +234,37 @@
 			children = (
 				2F4F125F24F2727300666535 /* LoginViewController.swift */,
 				2F4F126124F2728E00666535 /* RegistrationViewController.swift */,
+				2F320BE124F3F78800BBEE13 /* FirstViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		2F4F126B24F292D800666535 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F126324F272E000666535 /* EditProfileViewController.swift */,
+				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
+				2F4F126724F2731B00666535 /* SettingsViewController.swift */,
+				2F33C74324F911C400752B45 /* ShowDiveViewController.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		4B0428E9FB38303E57C0F9D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		705F134E4C81E7A698A42A0F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93D3EB210CC486592C6C209F /* Pods-diveBook.debug.xcconfig */,
+				3F4286F5EE12AC30E69B6587 /* Pods-diveBook.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,9 +274,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F4F124C24F26FC600666535 /* Build configuration list for PBXNativeTarget "diveBook" */;
 			buildPhases = (
+				EF8884FD43220FB3A19E7D86 /* [CP] Check Pods Manifest.lock */,
 				2F4F123424F26FC200666535 /* Sources */,
 				2F4F123524F26FC200666535 /* Frameworks */,
 				2F4F123624F26FC200666535 /* Resources */,
+				9B5DE7470668971C82B37F36 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -218,11 +329,54 @@
 			files = (
 				2F4F124824F26FC600666535 /* LaunchScreen.storyboard in Resources */,
 				2F4F124524F26FC600666535 /* Assets.xcassets in Resources */,
+				2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */,
 				2F4F124324F26FC200666535 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9B5DE7470668971C82B37F36 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-diveBook/Pods-diveBook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-diveBook/Pods-diveBook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-diveBook/Pods-diveBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF8884FD43220FB3A19E7D86 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-diveBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2F4F123424F26FC200666535 /* Sources */ = {
@@ -230,14 +384,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F4F125924F2719700666535 /* AlbumViewController.swift in Sources */,
+				2F320BDF24F3F4D900BBEE13 /* Constants.swift in Sources */,
+				2F33C74024F69B0200752B45 /* CustomTableViewCell.swift in Sources */,
 				2F4F125B24F2722A00666535 /* AddDiveViewController.swift in Sources */,
+				2F320BE424F418DC00BBEE13 /* TabBarViewController.swift in Sources */,
+				2F33C74224F69FBA00752B45 /* DiveInfoStruct.swift in Sources */,
 				2F4F125524F2716500666535 /* ExploreViewController.swift in Sources */,
 				2F4F126224F2728E00666535 /* RegistrationViewController.swift in Sources */,
+				2F320BDE24F3F4D900BBEE13 /* Utilities.swift in Sources */,
 				2F4F124024F26FC200666535 /* HomeViewController.swift in Sources */,
 				2F4F126624F2730000666535 /* EditDiveViewController.swift in Sources */,
+				2F33C74B24F9237F00752B45 /* NormalDiveViewController.swift in Sources */,
+				2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */,
 				2F4F126024F2727300666535 /* LoginViewController.swift in Sources */,
 				2F4F125724F2717900666535 /* ProfileViewController.swift in Sources */,
 				2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */,
+				2F33C74424F911C400752B45 /* ShowDiveViewController.swift in Sources */,
+				2F320BE224F3F78800BBEE13 /* FirstViewController.swift in Sources */,
+				2F33C74924F9237100752B45 /* CirtifiedDiveViewController.swift in Sources */,
+				2F320BEF24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift in Sources */,
+				2F320BED24F546D900BBEE13 /* SimpleItemViewControllerOne.swift in Sources */,
+				2F33C73D24F695F700752B45 /* UIViewExtension.swift in Sources */,
+				2F320BEB24F5456500BBEE13 /* UISlidingTabController.swift in Sources */,
 				2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */,
 				2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */,
 				2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */,
@@ -382,6 +550,7 @@
 		};
 		2F4F124D24F26FC600666535 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93D3EB210CC486592C6C209F /* Pods-diveBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -400,6 +569,7 @@
 		};
 		2F4F124E24F26FC600666535 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F4286F5EE12AC30E69B6587 /* Pods-diveBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
