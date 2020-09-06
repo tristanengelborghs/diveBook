@@ -12,9 +12,11 @@ class HomeViewController: UIViewController {
 
     private let slidingTabController = UISimpleSlidingTabController()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
     }
     
     private func setupUI(){
@@ -40,6 +42,12 @@ class HomeViewController: UIViewController {
         slidingTabController.setCurrentPosition(position: 0) // default 0
         //slidingTabController.setStyle(style: .flexible) // default fixed
         slidingTabController.build() // build
+        
     }
+    
+    
+    
 }
+
+
 

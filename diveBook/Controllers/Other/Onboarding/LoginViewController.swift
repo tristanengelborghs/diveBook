@@ -39,8 +39,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         errorLabel.alpha = 0
         
         //style elements
-        Utilities.styleTextField(emailTextField)
-        Utilities.styleTextField(passwordTextField)
+        emailTextField.setBottomBorder(withColor: UIColor.black)
+        passwordTextField.setBottomBorder(withColor: UIColor.black)
         Utilities.styleFilledButton(loginButton)
         
     }

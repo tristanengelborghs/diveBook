@@ -12,6 +12,7 @@ import UIKit
 class SimpleItemViewControllerTwo: UIViewController{
     
      private let label = UILabel()
+     let backgroundColor = UIColor(red: 0.1, green: 0.11, blue: 0.11, alpha: 1.00)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class SimpleItemViewControllerTwo: UIViewController{
     
     private func setupUI(){
         // view
-        view.backgroundColor = .white
+        view.backgroundColor = backgroundColor
         view.addSubview(label)
         
         // label

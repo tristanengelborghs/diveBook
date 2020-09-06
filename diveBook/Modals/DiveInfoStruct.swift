@@ -13,3 +13,11 @@ struct DiveInfoStruct {
     var diveNr: Int
     var date: String
 }
+
+struct CardInfoStruct {
+    var Name: String
+    var ID: Int
+    var Organistation: String
+    var Date: String
+    var DiveClub: String
+}

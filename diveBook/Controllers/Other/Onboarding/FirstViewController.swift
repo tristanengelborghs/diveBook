@@ -27,8 +27,21 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpElements()
-        refresh()
+        DispatchQueue.main.async {
+            self.setUpElements()
+            self.refresh()
+        }
+    }
+    
+    func checkUser() {
+    if Auth.auth().currentUser != nil {
+        DispatchQueue.main.async {
+            let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController)
+
+            self.view.window?.rootViewController = homeViewController
+            self.view.window?.makeKeyAndVisible()
+        }
+    }
     }
 
     //Style elements

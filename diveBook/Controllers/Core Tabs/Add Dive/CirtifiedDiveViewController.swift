@@ -30,9 +30,9 @@ class CirtifiedDiveViewController: UIViewController {
     func setUpElements() {
         
         //style elements
-        Utilities.styleTextField(LocationTextField)
-        Utilities.styleTextField(DiveNrTextField)
-        Utilities.styleTextField(DateTextField)
+        LocationTextField.setBottomBorder(withColor: UIColor.black)
+        DiveNrTextField.setBottomBorder(withColor: UIColor.black)
+        DateTextField.setBottomBorder(withColor: UIColor.black)
     }
 
     

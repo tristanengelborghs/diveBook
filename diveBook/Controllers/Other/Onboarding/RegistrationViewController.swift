@@ -39,23 +39,37 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         refresh()
         setUpElements()
     }
     
     func setUpElements() {
-        
         //hide error label
         errorLabel.alpha = 0
         
         //style elements
-        Utilities.styleTextField(firstNameTextField)
-        Utilities.styleTextField(lastNameTextField)
-        Utilities.styleTextField(emailTextField)
-        Utilities.styleTextField(passwordTextField)
+        firstNameTextField.setBottomBorder(withColor: UIColor.black)
+        lastNameTextField.setBottomBorder(withColor: UIColor.black)
+        emailTextField.setBottomBorder(withColor: UIColor.black)
+        passwordTextField.setBottomBorder(withColor: UIColor.black)
         Utilities.styleFilledButton(signUpButton)
-    
+        
+        firstNameTextField.returnKeyType = .next
+        lastNameTextField.returnKeyType = .next
+        emailTextField.returnKeyType = .next
+        passwordTextField.returnKeyType = .continue
+        passwordTextField.leftViewMode = .always
+        passwordTextField.autocapitalizationType = .none
+        passwordTextField.autocorrectionType = .no
+        
+        print(firstNameTextField.frame.width)
+        
     }
+    
     
     //returns nil when ok and error message when not valid
     func validateFields() -> String? {
@@ -76,7 +90,6 @@ class RegistrationViewController: UIViewController {
             // Password isn't secure enough
             return "Please make sure your password is at least 8 characters, contains a special character and a number."
         }
-        
         return nil
     }
     
@@ -120,6 +133,20 @@ class RegistrationViewController: UIViewController {
                             }
                     }
                     
+                    db.collection("users").document("\(result!.user.uid)").collection("Cards").document("Primary").setData([
+                        "Organistation": "",
+                        "Name": "Add your license here",
+                        "Date": "",
+                        "ID": Int.self,
+                        "DiveClub": "",
+                        "Primary": true ]) { (error) in
+                            
+                            if error != nil {
+                                //there was an error
+                                self.showError("There was a problem saving user data")
+                            }
+                    }
+                    
                     //transition to the home screen
                     self.performSegue(withIdentifier: "toHome", sender: self)
                 }
@@ -135,5 +162,22 @@ class RegistrationViewController: UIViewController {
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstNameTextField {
+            lastNameTextField.becomeFirstResponder()
+        } else if textField == lastNameTextField {
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            signUpTapped(signUpButton)
+        }
+        
+        
+        return true
     }
 }

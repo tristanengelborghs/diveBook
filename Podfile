@@ -16,4 +16,6 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Storage'
 
+pod 'IQKeyboardManagerSwift'
+
 end

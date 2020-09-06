@@ -11,23 +11,6 @@ import UIKit
 
 class Utilities {
     
-    static func styleTextField(_ textfield:UITextField) {
-        
-        // Create the bottom line
-        let bottomLine = CALayer()
-        
-        bottomLine.frame = CGRect(x: 0, y: textfield.frame.height - 2, width: textfield.frame.width, height: 2)
-        
-        bottomLine.backgroundColor = UIColor.black.cgColor
-        
-        // Remove border on text field
-        textfield.borderStyle = .none
-        
-        // Add the line to the text field
-        textfield.layer.addSublayer(bottomLine)
-        
-    }
-    
     static func styleFilledButton(_ button:UIButton) {
         
         // Filled rounded corner style
@@ -51,4 +34,32 @@ class Utilities {
         return passwordTest.evaluate(with: password)
     }
     
+    static func requiredHeight(labelText:String) -> CGFloat {
+
+        let font = UIFont(name: "Avenir NEx", size: 17.0)
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: .max))
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.font = font
+        label.text = labelText
+        label.sizeToFit()
+        return label.frame.height
+
+    }
+    
+}
+
+extension UITextField
+{
+    func setBottomBorder(withColor color: UIColor)
+    {
+        self.borderStyle = UITextField.BorderStyle.none
+        self.backgroundColor = UIColor.clear
+        let width: CGFloat = 3.0
+
+        let borderLine = UIView(frame: CGRect(x: 0, y: self.frame.height - width, width: self.frame.width, height: width))
+        borderLine.backgroundColor = color
+        borderLine.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        self.addSubview(borderLine)
+    }
 }

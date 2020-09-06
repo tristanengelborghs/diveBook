@@ -14,7 +14,7 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        checkUser()
     }
     
     override func viewDidAppear(_ animated: Bool) {

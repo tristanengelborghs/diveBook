@@ -17,6 +17,4 @@ struct Constants {
         static let homeViewController = "homeVC"
         
     }
-    
-    
 }

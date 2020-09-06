@@ -37,6 +37,9 @@
 		2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126724F2731B00666535 /* SettingsViewController.swift */; };
 		2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F126924F283A200666535 /* GoogleService-Info.plist */; };
 		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
+		2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */; };
+		2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A9325017F9E0084B496 /* SplashViewController.swift */; };
+		2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A952502DCFD0084B496 /* FetchData.swift */; };
 		A64E4E9B132DA16FA9ED4111 /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +76,9 @@
 		2F4F126724F2731B00666535 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2F4F126924F283A200666535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
+		2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardsViewController.swift; sourceTree = "<group>"; };
+		2FE50A9325017F9E0084B496 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		2FE50A952502DCFD0084B496 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		3F4286F5EE12AC30E69B6587 /* Pods-diveBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.release.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.release.xcconfig"; sourceTree = "<group>"; };
 		4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D3EB210CC486592C6C209F /* Pods-diveBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.debug.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,18 +103,20 @@
 				2F320BDD24F3F4D900BBEE13 /* Constants.swift */,
 				2F320BDC24F3F4D800BBEE13 /* Utilities.swift */,
 				2F33C73C24F695F700752B45 /* UIViewExtension.swift */,
+				2FE50A952502DCFD0084B496 /* FetchData.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		2F320BE924F5453A00BBEE13 /* Sliders */ = {
+		2F320BE924F5453A00BBEE13 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				2F320BEA24F5456500BBEE13 /* UISlidingTabController.swift */,
-				2F320BEC24F546D900BBEE13 /* SimpleItemViewControllerOne.swift */,
-				2F320BEE24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift */,
+				2FE50A92250162E40084B496 /* Slide */,
+				2FE50A91250162880084B496 /* Show */,
+				2F33C73E24F69AE000752B45 /* custom cell */,
+				2F4F123F24F26FC200666535 /* HomeViewController.swift */,
 			);
-			path = Sliders;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		2F33C73E24F69AE000752B45 /* custom cell */ = {
@@ -122,6 +130,7 @@
 		2F33C74724F9234E00752B45 /* Add Dive */ = {
 			isa = PBXGroup;
 			children = (
+				2F4F125A24F2722A00666535 /* AddDiveViewController.swift */,
 				2F33C74824F9237100752B45 /* CirtifiedDiveViewController.swift */,
 				2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */,
 			);
@@ -207,14 +216,12 @@
 		2F4F125C24F2723100666535 /* Core Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				2F4F123F24F26FC200666535 /* HomeViewController.swift */,
-				2F320BE924F5453A00BBEE13 /* Sliders */,
-				2F4F125424F2716500666535 /* ExploreViewController.swift */,
-				2F4F125A24F2722A00666535 /* AddDiveViewController.swift */,
-				2F33C74724F9234E00752B45 /* Add Dive */,
-				2F4F125824F2719700666535 /* AlbumViewController.swift */,
-				2F4F125624F2717900666535 /* ProfileViewController.swift */,
 				2F320BE324F418DC00BBEE13 /* TabBarViewController.swift */,
+				2F320BE924F5453A00BBEE13 /* Home */,
+				2FE50A8624FC01D30084B496 /* Explore */,
+				2F33C74724F9234E00752B45 /* Add Dive */,
+				2FE50A8724FC01EF0084B496 /* Album */,
+				2FE50A8824FC020A0084B496 /* Profile */,
 			);
 			path = "Core Tabs";
 			sourceTree = "<group>";
@@ -222,9 +229,7 @@
 		2F4F125D24F2724B00666535 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				2F33C73E24F69AE000752B45 /* custom cell */,
 				2F4F125E24F2726200666535 /* Onboarding */,
-				2F4F126B24F292D800666535 /* General */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -235,19 +240,55 @@
 				2F4F125F24F2727300666535 /* LoginViewController.swift */,
 				2F4F126124F2728E00666535 /* RegistrationViewController.swift */,
 				2F320BE124F3F78800BBEE13 /* FirstViewController.swift */,
+				2FE50A9325017F9E0084B496 /* SplashViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		2F4F126B24F292D800666535 /* General */ = {
+		2FE50A8624FC01D30084B496 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				2F4F126324F272E000666535 /* EditProfileViewController.swift */,
-				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
-				2F4F126724F2731B00666535 /* SettingsViewController.swift */,
-				2F33C74324F911C400752B45 /* ShowDiveViewController.swift */,
+				2F4F125424F2716500666535 /* ExploreViewController.swift */,
 			);
-			path = General;
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		2FE50A8724FC01EF0084B496 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F125824F2719700666535 /* AlbumViewController.swift */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+		2FE50A8824FC020A0084B496 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F126724F2731B00666535 /* SettingsViewController.swift */,
+				2F4F126324F272E000666535 /* EditProfileViewController.swift */,
+				2F4F125624F2717900666535 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		2FE50A91250162880084B496 /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
+				2F33C74324F911C400752B45 /* ShowDiveViewController.swift */,
+				2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */,
+			);
+			path = Show;
+			sourceTree = "<group>";
+		};
+		2FE50A92250162E40084B496 /* Slide */ = {
+			isa = PBXGroup;
+			children = (
+				2F320BEA24F5456500BBEE13 /* UISlidingTabController.swift */,
+				2F320BEC24F546D900BBEE13 /* SimpleItemViewControllerOne.swift */,
+				2F320BEE24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift */,
+			);
+			path = Slide;
 			sourceTree = "<group>";
 		};
 		4B0428E9FB38303E57C0F9D2 /* Frameworks */ = {
@@ -385,6 +426,7 @@
 			files = (
 				2F4F125924F2719700666535 /* AlbumViewController.swift in Sources */,
 				2F320BDF24F3F4D900BBEE13 /* Constants.swift in Sources */,
+				2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */,
 				2F33C74024F69B0200752B45 /* CustomTableViewCell.swift in Sources */,
 				2F4F125B24F2722A00666535 /* AddDiveViewController.swift in Sources */,
 				2F320BE424F418DC00BBEE13 /* TabBarViewController.swift in Sources */,
@@ -401,12 +443,14 @@
 				2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */,
 				2F33C74424F911C400752B45 /* ShowDiveViewController.swift in Sources */,
 				2F320BE224F3F78800BBEE13 /* FirstViewController.swift in Sources */,
+				2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */,
 				2F33C74924F9237100752B45 /* CirtifiedDiveViewController.swift in Sources */,
 				2F320BEF24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift in Sources */,
 				2F320BED24F546D900BBEE13 /* SimpleItemViewControllerOne.swift in Sources */,
 				2F33C73D24F695F700752B45 /* UIViewExtension.swift in Sources */,
 				2F320BEB24F5456500BBEE13 /* UISlidingTabController.swift in Sources */,
 				2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */,
+				2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */,
 				2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */,
 				2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */,
 			);
