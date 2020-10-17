@@ -37,6 +37,8 @@
 		2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126724F2731B00666535 /* SettingsViewController.swift */; };
 		2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F126924F283A200666535 /* GoogleService-Info.plist */; };
 		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
+		2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */; };
+		2F63B352250CB35B00F4EEBD /* ShowCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */; };
 		2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */; };
 		2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A9325017F9E0084B496 /* SplashViewController.swift */; };
 		2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A952502DCFD0084B496 /* FetchData.swift */; };
@@ -76,6 +78,8 @@
 		2F4F126724F2731B00666535 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2F4F126924F283A200666535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
+		2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
+		2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardInfoViewController.swift; sourceTree = "<group>"; };
 		2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardsViewController.swift; sourceTree = "<group>"; };
 		2FE50A9325017F9E0084B496 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2FE50A952502DCFD0084B496 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				2F320BDC24F3F4D800BBEE13 /* Utilities.swift */,
 				2F33C73C24F695F700752B45 /* UIViewExtension.swift */,
 				2FE50A952502DCFD0084B496 /* FetchData.swift */,
+				2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
 				2F33C74324F911C400752B45 /* ShowDiveViewController.swift */,
 				2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */,
+				2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -438,6 +444,7 @@
 				2F4F126624F2730000666535 /* EditDiveViewController.swift in Sources */,
 				2F33C74B24F9237F00752B45 /* NormalDiveViewController.swift in Sources */,
 				2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */,
+				2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */,
 				2F4F126024F2727300666535 /* LoginViewController.swift in Sources */,
 				2F4F125724F2717900666535 /* ProfileViewController.swift in Sources */,
 				2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */,
@@ -449,6 +456,7 @@
 				2F320BED24F546D900BBEE13 /* SimpleItemViewControllerOne.swift in Sources */,
 				2F33C73D24F695F700752B45 /* UIViewExtension.swift in Sources */,
 				2F320BEB24F5456500BBEE13 /* UISlidingTabController.swift in Sources */,
+				2F63B352250CB35B00F4EEBD /* ShowCardInfoViewController.swift in Sources */,
 				2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */,
 				2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */,
 				2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */,
@@ -607,7 +615,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tristanengelborghs.diveBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -626,7 +634,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tristanengelborghs.diveBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

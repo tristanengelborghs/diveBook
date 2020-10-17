@@ -30,6 +30,7 @@ class UISimpleSlidingTabController: UIViewController {
     private var currentPosition = 0
     private var tabStyle = SlidingTabStyle.fixed
     private let heightHeader = 57
+    
   
     func addItem(item: UIViewController, title: String){
         items.append(item)
@@ -73,12 +74,12 @@ class UISimpleSlidingTabController: UIViewController {
     
     func build(){
         view.addSubview(collectionNamePage)
-            collectionNamePage.addSubview(nameLabel)
-            collectionNamePage.addSubview(imageButton)
-            collectionNamePage.addSubview(arrowButton)
         view.addSubview(collectionHeader)
         view.addSubview(horizontalBar)
         view.addSubview(collectionPage)
+            collectionNamePage.addSubview(nameLabel)
+            collectionNamePage.addSubview(imageButton)
+            collectionNamePage.addSubview(arrowButton)
     
         configureNamePage()
         configureMenuBar()
@@ -87,33 +88,41 @@ class UISimpleSlidingTabController: UIViewController {
     }
     
     func configureNamePage() {
+        let statusBarHeight: CGFloat
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        } else {
+            statusBarHeight = UIApplication.shared.statusBarFrame.height
+        }
+        print(statusBarHeight)
         collectionNamePage.translatesAutoresizingMaskIntoConstraints = false
-        collectionNamePage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        collectionNamePage.heightAnchor.constraint(equalToConstant: CGFloat(100)).isActive = true
+        collectionNamePage.topAnchor.constraint(equalTo: view.topAnchor, constant: statusBarHeight + 10).isActive = true
+        collectionNamePage.heightAnchor.constraint(equalToConstant: 40).isActive = true
         collectionNamePage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionNamePage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionNamePage.backgroundColor = backgroundColor
 
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55).isActive = true
-        nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: collectionNamePage.centerYAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: imageButton.trailingAnchor, constant: 20).isActive = true
         nameLabel.setTitle("Tristan Engelborghs", for: .normal)
-        nameLabel.titleLabel?.font =  UIFont(name: "Avenir Next", size: 18)
+        nameLabel.titleLabel?.font =  UIFont(name: "Avenir Next", size: 16)
         nameLabel.setTitleColor(.white, for: .normal)
         nameLabel.backgroundColor = backgroundColor
         nameLabel.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         imageButton.translatesAutoresizingMaskIntoConstraints = false
-        imageButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48).isActive = true
-        imageButton.trailingAnchor.constraint(equalTo: nameLabel.leadingAnchor, constant: -40).isActive = true
-        imageButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        imageButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        imageButton.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+        imageButton.centerYAnchor.constraint(equalTo: collectionNamePage.centerYAnchor).isActive = true
+        imageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        imageButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        imageButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        imageButton.frame = CGRect(x: 100, y: 100, width: 75, height: 75)
         imageButton.setImage(image, for: .normal)
         
         arrowButton.translatesAutoresizingMaskIntoConstraints = false
-        arrowButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 62).isActive = true
-        arrowButton.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 40).isActive = true
+        arrowButton.centerYAnchor.constraint(equalTo: collectionNamePage.centerYAnchor).isActive = true
+        arrowButton.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 20).isActive = true
         arrowButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         arrowButton.tintColor = .white
     }
@@ -141,7 +150,7 @@ class UISimpleSlidingTabController: UIViewController {
     
     func configurCollectionPage() {
         collectionPage.translatesAutoresizingMaskIntoConstraints = false
-        collectionPage.topAnchor.constraint(equalTo: collectionHeader.bottomAnchor).isActive = true
+        collectionPage.topAnchor.constraint(equalTo: horizontalBar.bottomAnchor).isActive = true
         collectionPage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionPage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionPage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -204,7 +213,7 @@ class UISimpleSlidingTabController: UIViewController {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
             label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            label.font = UIFont.init(name: "Avenir Next", size: 18)
+            label.font = UIFont.init(name: "Avenir Next", size: 16)
         }
     }
     
@@ -262,6 +271,18 @@ extension UISimpleSlidingTabController: UICollectionViewDataSource{
             
             return cell
         }
+        let statusBarHeight: CGFloat
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        } else {
+            statusBarHeight = UIApplication.shared.statusBarFrame.height
+        }
+        var constant: CGFloat = 13
+        
+        if (statusBarHeight > 21) {
+            constant = 25
+        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionPageIdentifier, for: indexPath)
         let vc = items[indexPath.row]
@@ -269,7 +290,7 @@ extension UISimpleSlidingTabController: UICollectionViewDataSource{
         cell.addSubview(vc.view)
         
         vc.view.translatesAutoresizingMaskIntoConstraints = false
-        vc.view.topAnchor.constraint(equalTo: cell.topAnchor, constant: 28).isActive = true
+        vc.view.topAnchor.constraint(equalTo: cell.topAnchor, constant: constant).isActive = true
         vc.view.leadingAnchor.constraint(equalTo: cell.leadingAnchor).isActive = true
         vc.view.trailingAnchor.constraint(equalTo: cell.trailingAnchor).isActive = true
         vc.view.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
@@ -305,3 +326,5 @@ enum SlidingTabStyle: String {
     case fixed
     case flexible
 }
+
+

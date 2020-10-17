@@ -10,8 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-
-var myIndex = DiveInfoStruct(location: "", diveNr: 0, date: "")
+var myIndex = DiveInfoStruct(location: "", diveNr: 0, date: "", diveTime: 0, startTime: "", depth: 0)
 
 class SimpleItemViewControllerOne: UIViewController{
     
@@ -33,7 +32,7 @@ class SimpleItemViewControllerOne: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showActivityIndicatory(uiView: self.view)
+        //showActivityIndicatory(uiView: self.view)
         FetchData.sharedInstance.fetchData { (Dives) in
             self.dives = Dives
             DispatchQueue.main.async {
@@ -49,8 +48,8 @@ class SimpleItemViewControllerOne: UIViewController{
     }
     
     func configureHeader() {
-        let labelHeight = Utilities.requiredHeight(labelText: "Logged Dives") + 60
-        let headerHeight = (((view.frame.size.width) - 60) * (4/10)) + labelHeight
+        let labelHeight = Utilities.requiredHeight(labelText: "Logged Dives") + 45
+        let headerHeight = (((view.frame.size.width) - 60) * (7/20)) + labelHeight
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: headerHeight))
         
         header.addSubview(headerCard)
@@ -62,6 +61,7 @@ class SimpleItemViewControllerOne: UIViewController{
         header.addSubview(arrowButton)
         header.addSubview(primaryLabel)
         
+        
         header.backgroundColor = backgroundColor
         tableView.tableHeaderView = header
         
@@ -71,38 +71,38 @@ class SimpleItemViewControllerOne: UIViewController{
         headerCard.layer.borderColor = UIColor.white.cgColor
         headerCard.translatesAutoresizingMaskIntoConstraints = false
         headerCard.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
-        headerCard.topAnchor.constraint(equalTo: header.topAnchor, constant: 30).isActive = true
+        headerCard.topAnchor.constraint(equalTo: header.topAnchor, constant: 20).isActive = true
         headerCard.widthAnchor.constraint(equalToConstant: (view.frame.size.width) - 60).isActive = true
-        headerCard.heightAnchor.constraint(equalTo: headerCard.widthAnchor, multiplier: 4/10).isActive = true
+        headerCard.heightAnchor.constraint(equalTo: headerCard.widthAnchor, multiplier: 7/20).isActive = true
         headerCard.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         organistationLabel.translatesAutoresizingMaskIntoConstraints = false
-        organistationLabel.font = UIFont.init(name: "AvenirNext-medium", size: 15)
-        organistationLabel.topAnchor.constraint(equalTo: headerCard.topAnchor, constant: 12).isActive = true
+        organistationLabel.font = UIFont.init(name: "AvenirNext-medium", size: 14)
+        organistationLabel.topAnchor.constraint(equalTo: headerCard.topAnchor, constant: 10).isActive = true
         organistationLabel.leadingAnchor.constraint(equalTo: headerCard.leadingAnchor, constant: 20).isActive = true
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.font = UIFont.init(name: "AvenirNext-medium", size: 15)
+        nameLabel.font = UIFont.init(name: "AvenirNext-medium", size: 14)
         nameLabel.topAnchor.constraint(equalTo: organistationLabel.bottomAnchor, constant: 0).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: headerCard.leadingAnchor, constant: 20).isActive = true
         
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.font = UIFont.init(name: "Avenir Next", size: 15)
+        dateLabel.font = UIFont.init(name: "Avenir Next", size: 14)
         dateLabel.bottomAnchor.constraint(equalTo: IDLabel.topAnchor).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: headerCard.leadingAnchor, constant: 20).isActive = true
         
         IDLabel.translatesAutoresizingMaskIntoConstraints = false
-        IDLabel.font = UIFont.init(name: "Avenir Next", size: 15)
-        IDLabel.bottomAnchor.constraint(equalTo: headerCard.bottomAnchor, constant: -12).isActive = true
+        IDLabel.font = UIFont.init(name: "Avenir Next", size: 14)
+        IDLabel.bottomAnchor.constraint(equalTo: headerCard.bottomAnchor, constant: -10).isActive = true
         IDLabel.leadingAnchor.constraint(equalTo: headerCard.leadingAnchor, constant: 20).isActive = true
         
         primaryLabel.translatesAutoresizingMaskIntoConstraints = false
-        primaryLabel.font = UIFont.init(name: "Avenir Next", size: 15)
+        primaryLabel.font = UIFont.init(name: "Avenir Next", size: 13)
         primaryLabel.topAnchor.constraint(equalTo: headerCard.topAnchor, constant: 12).isActive = true
         primaryLabel.trailingAnchor.constraint(equalTo: headerCard.trailingAnchor, constant: -20).isActive = true
         
         headerLabel.text = "Logged Dives"
-        headerLabel.font = UIFont.init(name: "Avenir Next", size: 17)
+        headerLabel.font = UIFont.init(name: "Avenir Next", size: 16)
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.topAnchor.constraint(equalTo: headerCard.bottomAnchor, constant: 20).isActive = true
         headerLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 30).isActive = true
@@ -113,11 +113,14 @@ class SimpleItemViewControllerOne: UIViewController{
         arrowButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         arrowButton.tintColor = .white
     }
-
+    
+    
     @objc func buttonAction(sender: UIButton!) {
-      print("Button tapped")
+        print("Button tapped")
         let vc = ShowCardsViewController()
-        self.present(vc, animated: true, completion: nil)
+           //vc.modalPresentationStyle = .fullScreen
+           //self.present(vc, animated: true, completion: nil)
+        show(vc, sender: self)
     }
     
     func didFetchData(data:CardInfoStruct){
@@ -127,12 +130,13 @@ class SimpleItemViewControllerOne: UIViewController{
         dateLabel.text = card.Date
         IDLabel.text = "\(card.ID)"
         primaryLabel.text = "Primary"
+        
     }
     
     func configureTableView() {
         view.addSubview(tableView)
         setTableViewDelegates()
-        tableView.rowHeight = ((view.frame.size.width - 60) * 4/10) + 20
+        tableView.rowHeight = ((view.frame.size.width - 60) * 7/20) + 20
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         tableView.pin(to: view)
         tableView.separatorStyle = .none

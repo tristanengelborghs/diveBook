@@ -62,9 +62,11 @@ extension ShowDiveViewController {
                     let location = data["Location"] as? String ?? "No Location"
                     let diveNr = data["DiveNr"] as? Int ?? 0
                     let date = data["Date"] as? String ?? ""
-                    print(location)
+                    let diveTime = data["DiveTime"] as? Int ?? 0
+                    let startTime = data["StartTime"] as? String ?? ""
+                    let depth = data["Depth"] as? Int ?? 0
                     
-                    let newDive = DiveInfoStruct(location: location, diveNr: diveNr, date: date)
+                    let newDive = DiveInfoStruct(location: location, diveNr: diveNr, date: date, diveTime: diveTime, startTime: startTime, depth: depth)
                     
                     self.dives.append(newDive)
                     

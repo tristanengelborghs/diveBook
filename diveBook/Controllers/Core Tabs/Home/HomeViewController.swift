@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
+        view.backgroundColor = UIColor(red: 0.1, green: 0.11, blue: 0.11, alpha: 1.00)
     }
     
     private func setupUI(){
@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
         slidingTabController.build() // build
         
     }
-    
+
     
     
 }

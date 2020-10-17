@@ -12,6 +12,9 @@ struct DiveInfoStruct {
     var location: String
     var diveNr: Int
     var date: String
+    var diveTime: Int
+    var startTime: String
+    var depth: Int
 }
 
 struct CardInfoStruct {

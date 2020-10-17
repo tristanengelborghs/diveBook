@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sn8-0J-jMz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sn8-0J-jMz">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -43,11 +43,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="yAT-b7-lRT" firstAttribute="trailing" secondItem="aRl-Bm-U8K" secondAttribute="trailing" constant="40" id="1XR-BC-ZoP"/>
+                            <constraint firstItem="wQm-Qd-tVm" firstAttribute="trailing" secondItem="aRl-Bm-U8K" secondAttribute="trailing" constant="40" id="1XR-BC-ZoP"/>
                             <constraint firstItem="aRl-Bm-U8K" firstAttribute="centerY" secondItem="JFp-wZ-Cbc" secondAttribute="centerY" id="MI3-gp-vD8"/>
-                            <constraint firstItem="aRl-Bm-U8K" firstAttribute="leading" secondItem="yAT-b7-lRT" secondAttribute="leading" constant="40" id="yI1-lL-V2h"/>
+                            <constraint firstItem="aRl-Bm-U8K" firstAttribute="leading" secondItem="wQm-Qd-tVm" secondAttribute="leading" constant="40" id="yI1-lL-V2h"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="yAT-b7-lRT"/>
+                        <viewLayoutGuide key="safeArea" id="wQm-Qd-tVm"/>
                     </view>
                     <navigationItem key="navigationItem" id="h2F-iN-vsE"/>
                     <connections>
@@ -142,19 +142,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="W8n-Fm-mKq" firstAttribute="leading" secondItem="e1V-9H-rav" secondAttribute="leading" constant="40" id="9Ed-r7-NZT"/>
-                            <constraint firstItem="uKG-3t-I7J" firstAttribute="leading" secondItem="e1V-9H-rav" secondAttribute="leading" constant="40" id="AuM-yU-QI0"/>
-                            <constraint firstItem="e1V-9H-rav" firstAttribute="trailing" secondItem="uKG-3t-I7J" secondAttribute="trailing" constant="40" id="Jo9-FG-vr5"/>
-                            <constraint firstItem="Vkm-qx-9MP" firstAttribute="leading" secondItem="e1V-9H-rav" secondAttribute="leading" constant="40" id="Kwl-G4-t55"/>
+                            <constraint firstItem="W8n-Fm-mKq" firstAttribute="leading" secondItem="sED-Ug-r1G" secondAttribute="leading" constant="40" id="9Ed-r7-NZT"/>
+                            <constraint firstItem="uKG-3t-I7J" firstAttribute="leading" secondItem="sED-Ug-r1G" secondAttribute="leading" constant="40" id="AuM-yU-QI0"/>
+                            <constraint firstItem="sED-Ug-r1G" firstAttribute="trailing" secondItem="uKG-3t-I7J" secondAttribute="trailing" constant="40" id="Jo9-FG-vr5"/>
+                            <constraint firstItem="Vkm-qx-9MP" firstAttribute="leading" secondItem="sED-Ug-r1G" secondAttribute="leading" constant="40" id="Kwl-G4-t55"/>
                             <constraint firstItem="W8n-Fm-mKq" firstAttribute="top" secondItem="uKG-3t-I7J" secondAttribute="bottom" id="RXA-78-edo"/>
-                            <constraint firstItem="fkt-wo-yxd" firstAttribute="leading" secondItem="e1V-9H-rav" secondAttribute="leading" constant="40" id="SwO-pc-8il"/>
+                            <constraint firstItem="fkt-wo-yxd" firstAttribute="leading" secondItem="sED-Ug-r1G" secondAttribute="leading" constant="40" id="SwO-pc-8il"/>
                             <constraint firstItem="uKG-3t-I7J" firstAttribute="top" secondItem="Vkm-qx-9MP" secondAttribute="bottom" constant="20" id="ezQ-xI-iuL"/>
-                            <constraint firstItem="e1V-9H-rav" firstAttribute="trailing" secondItem="W8n-Fm-mKq" secondAttribute="trailing" constant="40" id="lPa-WW-lPF"/>
+                            <constraint firstItem="sED-Ug-r1G" firstAttribute="trailing" secondItem="W8n-Fm-mKq" secondAttribute="trailing" constant="40" id="lPa-WW-lPF"/>
                             <constraint firstItem="fkt-wo-yxd" firstAttribute="top" secondItem="W8n-Fm-mKq" secondAttribute="bottom" constant="50" id="t8l-O3-1hW"/>
-                            <constraint firstItem="Vkm-qx-9MP" firstAttribute="top" secondItem="e1V-9H-rav" secondAttribute="top" constant="40" id="zNW-rA-omi"/>
-                            <constraint firstItem="e1V-9H-rav" firstAttribute="trailing" secondItem="fkt-wo-yxd" secondAttribute="trailing" constant="40" id="zbm-rf-pim"/>
+                            <constraint firstItem="Vkm-qx-9MP" firstAttribute="top" secondItem="sED-Ug-r1G" secondAttribute="top" constant="40" id="zNW-rA-omi"/>
+                            <constraint firstItem="sED-Ug-r1G" firstAttribute="trailing" secondItem="fkt-wo-yxd" secondAttribute="trailing" constant="40" id="zbm-rf-pim"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="e1V-9H-rav"/>
+                        <viewLayoutGuide key="safeArea" id="sED-Ug-r1G"/>
                     </view>
                     <navigationItem key="navigationItem" id="aMQ-HH-RZJ"/>
                     <connections>
@@ -240,18 +240,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xvH-gv-Uc6" firstAttribute="top" secondItem="XTm-ia-LxD" secondAttribute="bottom" id="0Hw-LK-Psq"/>
-                            <constraint firstItem="TMS-NL-Z3s" firstAttribute="top" secondItem="sMF-0q-uyi" secondAttribute="top" constant="40" id="Bxh-dW-2Sp"/>
-                            <constraint firstItem="sMF-0q-uyi" firstAttribute="trailing" secondItem="XTm-ia-LxD" secondAttribute="trailing" constant="40" id="CV5-7V-VS6"/>
-                            <constraint firstItem="xvH-gv-Uc6" firstAttribute="leading" secondItem="sMF-0q-uyi" secondAttribute="leading" constant="40" id="Dzd-lz-iIQ"/>
-                            <constraint firstItem="sMF-0q-uyi" firstAttribute="trailing" secondItem="pbf-nj-LWV" secondAttribute="trailing" constant="40" id="J2P-P1-u9p"/>
+                            <constraint firstItem="TMS-NL-Z3s" firstAttribute="top" secondItem="D5Z-MS-XO7" secondAttribute="top" constant="40" id="Bxh-dW-2Sp"/>
+                            <constraint firstItem="D5Z-MS-XO7" firstAttribute="trailing" secondItem="XTm-ia-LxD" secondAttribute="trailing" constant="40" id="CV5-7V-VS6"/>
+                            <constraint firstItem="xvH-gv-Uc6" firstAttribute="leading" secondItem="D5Z-MS-XO7" secondAttribute="leading" constant="40" id="Dzd-lz-iIQ"/>
+                            <constraint firstItem="D5Z-MS-XO7" firstAttribute="trailing" secondItem="pbf-nj-LWV" secondAttribute="trailing" constant="40" id="J2P-P1-u9p"/>
                             <constraint firstItem="XTm-ia-LxD" firstAttribute="top" secondItem="TMS-NL-Z3s" secondAttribute="bottom" constant="20" id="OKr-br-Z7s"/>
-                            <constraint firstItem="TMS-NL-Z3s" firstAttribute="leading" secondItem="sMF-0q-uyi" secondAttribute="leading" constant="40" id="ORn-mk-yLC"/>
-                            <constraint firstItem="sMF-0q-uyi" firstAttribute="trailing" secondItem="xvH-gv-Uc6" secondAttribute="trailing" constant="40" id="hhI-V9-YHi"/>
+                            <constraint firstItem="TMS-NL-Z3s" firstAttribute="leading" secondItem="D5Z-MS-XO7" secondAttribute="leading" constant="40" id="ORn-mk-yLC"/>
+                            <constraint firstItem="D5Z-MS-XO7" firstAttribute="trailing" secondItem="xvH-gv-Uc6" secondAttribute="trailing" constant="40" id="hhI-V9-YHi"/>
                             <constraint firstItem="pbf-nj-LWV" firstAttribute="top" secondItem="xvH-gv-Uc6" secondAttribute="bottom" constant="50" id="sk1-rO-BQy"/>
-                            <constraint firstItem="XTm-ia-LxD" firstAttribute="leading" secondItem="sMF-0q-uyi" secondAttribute="leading" constant="40" id="tIc-EL-DWN"/>
-                            <constraint firstItem="pbf-nj-LWV" firstAttribute="leading" secondItem="sMF-0q-uyi" secondAttribute="leading" constant="40" id="vZ8-KF-d2C"/>
+                            <constraint firstItem="XTm-ia-LxD" firstAttribute="leading" secondItem="D5Z-MS-XO7" secondAttribute="leading" constant="40" id="tIc-EL-DWN"/>
+                            <constraint firstItem="pbf-nj-LWV" firstAttribute="leading" secondItem="D5Z-MS-XO7" secondAttribute="leading" constant="40" id="vZ8-KF-d2C"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="sMF-0q-uyi"/>
+                        <viewLayoutGuide key="safeArea" id="D5Z-MS-XO7"/>
                     </view>
                     <navigationItem key="navigationItem" id="ANo-cA-l0R"/>
                     <connections>
@@ -317,9 +317,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="NX2-An-GyH"/>
+                        <viewLayoutGuide key="safeArea" id="Pd5-9q-cxM"/>
                     </view>
                     <navigationItem key="navigationItem" id="laM-ws-3ud"/>
+                    <connections>
+                        <segue destination="U8I-Fe-eUy" kind="show" identifier="ShowCards" id="HPr-Dh-jqB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CHu-rV-YLj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -333,13 +336,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Rdy-aC-akW"/>
+                        <viewLayoutGuide key="safeArea" id="h0f-PP-8KT"/>
                     </view>
                     <navigationItem key="navigationItem" id="Itg-8W-pmr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8f-Jd-65r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2475" y="638"/>
+        </scene>
+        <!--Show Cards View Controller-->
+        <scene sceneID="Hhq-we-cjm">
+            <objects>
+                <viewController id="U8I-Fe-eUy" customClass="ShowCardsViewController" customModule="diveBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IFk-ZP-rAF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Lqh-GA-sbL"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MK4-wf-E6p"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5QR-iI-GWu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4044" y="1343"/>
         </scene>
         <!--Cirtified Dive View Controller-->
         <scene sceneID="kYg-z7-P9w">
@@ -387,11 +406,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PoP-TY-nPI" firstAttribute="leading" secondItem="LuE-cZ-oLy" secondAttribute="leading" constant="50" id="FPs-Z9-5t0"/>
-                            <constraint firstItem="LuE-cZ-oLy" firstAttribute="trailing" secondItem="PoP-TY-nPI" secondAttribute="trailing" constant="50" id="QKf-el-dZR"/>
-                            <constraint firstItem="PoP-TY-nPI" firstAttribute="top" secondItem="LuE-cZ-oLy" secondAttribute="top" constant="80" id="fjV-D7-04M"/>
+                            <constraint firstItem="PoP-TY-nPI" firstAttribute="leading" secondItem="QSg-Dm-KU1" secondAttribute="leading" constant="50" id="FPs-Z9-5t0"/>
+                            <constraint firstItem="QSg-Dm-KU1" firstAttribute="trailing" secondItem="PoP-TY-nPI" secondAttribute="trailing" constant="50" id="QKf-el-dZR"/>
+                            <constraint firstItem="PoP-TY-nPI" firstAttribute="top" secondItem="QSg-Dm-KU1" secondAttribute="top" constant="80" id="fjV-D7-04M"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="LuE-cZ-oLy"/>
+                        <viewLayoutGuide key="safeArea" id="QSg-Dm-KU1"/>
                     </view>
                     <navigationItem key="navigationItem" id="9ED-up-cey"/>
                     <connections>
@@ -402,7 +421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OBh-NN-tC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2132" y="1319"/>
+            <point key="canvasLocation" x="-2116" y="1319"/>
         </scene>
         <!--Add Dive View Controller-->
         <scene sceneID="ONF-G2-jxB">
@@ -433,14 +452,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="eQw-t9-Icm" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mW7-0w-kxZ" secondAttribute="trailing" symbolic="YES" id="315-Zd-JsQ"/>
-                            <constraint firstItem="mW7-0w-kxZ" firstAttribute="leading" secondItem="eQw-t9-Icm" secondAttribute="leading" constant="165" id="8bF-dg-EBm"/>
+                            <constraint firstItem="zyt-vE-QB4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mW7-0w-kxZ" secondAttribute="trailing" symbolic="YES" id="315-Zd-JsQ"/>
+                            <constraint firstItem="mW7-0w-kxZ" firstAttribute="leading" secondItem="zyt-vE-QB4" secondAttribute="leading" constant="165" id="8bF-dg-EBm"/>
                             <constraint firstItem="mW7-0w-kxZ" firstAttribute="top" secondItem="v8f-f7-0jy" secondAttribute="bottom" constant="100" id="B6w-yR-lax"/>
-                            <constraint firstItem="v8f-f7-0jy" firstAttribute="top" secondItem="eQw-t9-Icm" secondAttribute="top" constant="250" id="Fw7-70-cKz"/>
-                            <constraint firstItem="eQw-t9-Icm" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v8f-f7-0jy" secondAttribute="trailing" symbolic="YES" id="bQg-pB-IZc"/>
-                            <constraint firstItem="v8f-f7-0jy" firstAttribute="leading" secondItem="eQw-t9-Icm" secondAttribute="leading" constant="162.5" id="yP8-Qv-ZAO"/>
+                            <constraint firstItem="v8f-f7-0jy" firstAttribute="top" secondItem="zyt-vE-QB4" secondAttribute="top" constant="250" id="Fw7-70-cKz"/>
+                            <constraint firstItem="zyt-vE-QB4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v8f-f7-0jy" secondAttribute="trailing" symbolic="YES" id="bQg-pB-IZc"/>
+                            <constraint firstItem="v8f-f7-0jy" firstAttribute="leading" secondItem="zyt-vE-QB4" secondAttribute="leading" constant="162.5" id="yP8-Qv-ZAO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="eQw-t9-Icm"/>
+                        <viewLayoutGuide key="safeArea" id="zyt-vE-QB4"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jat-PA-faq"/>
                 </viewController>
@@ -456,7 +475,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="p93-CQ-PUd"/>
+                        <viewLayoutGuide key="safeArea" id="F9l-v8-qGR"/>
                     </view>
                     <navigationItem key="navigationItem" id="7Te-fh-lk4"/>
                 </viewController>
@@ -484,11 +503,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="kMp-0P-o4g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UiP-mf-MSl" secondAttribute="leading" symbolic="YES" id="Arz-vF-xUL"/>
-                            <constraint firstItem="UiP-mf-MSl" firstAttribute="trailing" secondItem="kMp-0P-o4g" secondAttribute="trailing" constant="40" id="FK3-d9-vxa"/>
-                            <constraint firstItem="kMp-0P-o4g" firstAttribute="top" secondItem="UiP-mf-MSl" secondAttribute="top" constant="40" id="bo4-Ga-lga"/>
+                            <constraint firstItem="kMp-0P-o4g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0HN-6F-iZU" secondAttribute="leading" symbolic="YES" id="Arz-vF-xUL"/>
+                            <constraint firstItem="0HN-6F-iZU" firstAttribute="trailing" secondItem="kMp-0P-o4g" secondAttribute="trailing" constant="40" id="FK3-d9-vxa"/>
+                            <constraint firstItem="kMp-0P-o4g" firstAttribute="top" secondItem="0HN-6F-iZU" secondAttribute="top" constant="40" id="bo4-Ga-lga"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="UiP-mf-MSl"/>
+                        <viewLayoutGuide key="safeArea" id="0HN-6F-iZU"/>
                     </view>
                     <navigationItem key="navigationItem" id="hyV-wt-umK"/>
                 </viewController>
@@ -568,7 +587,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="S4r-dJ-YgY"/>
+                        <viewLayoutGuide key="safeArea" id="E5M-Mh-2aK"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f24-Jx-IBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -602,7 +621,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="UK5-ju-Pr6"/>
+                        <viewLayoutGuide key="safeArea" id="MmJ-tx-iAZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="y1k-O5-vWd"/>
                 </viewController>
