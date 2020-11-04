@@ -8,16 +8,15 @@
 
 import UIKit
 
-var myIndexCard = CardInfoStruct(Name: "", ID: 0, Organistation: "", Date: "", DiveClub: "")
+var myIndexCard = CardInfoStruct(Name: "", ID: 0, Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false)
 
 class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
+    let Title = UILabel.init()
+    let titleDescription = UILabel.init()
     let backgroundColor = UIColor(red: 0.1, green: 0.11, blue: 0.11, alpha: 1.00)
-    // CollectionView variable:
     var collectionView : UICollectionView?
     
-    // Variables asociated to collection view:
     fileprivate var currentPage: Int = 0
     fileprivate var pageSize: CGSize {
         let layout = self.collectionView?.collectionViewLayout as! UPCarouselFlowLayout
@@ -38,12 +37,65 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
         self.view.backgroundColor = backgroundColor
         self.addCollectionView()
         self.setupLayout()
-        
+        self.setTitleLayout()
+        setupNavBar()
     }
     
+    func setupNavBar() {
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.isTranslucent = true
+        navBar.backgroundColor = .clear
+        navBar.shadowImage = UIImage()
+        view.addSubview(navBar)
+
+        let navItem = UINavigationItem(title: "")
+        let saveItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(saveCard))
+        let backItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(closeVC))
+        saveItem.tintColor = .white
+        
+        navItem.rightBarButtonItem = saveItem
+        navItem.leftBarButtonItem = backItem
+        navBar.setItems([navItem], animated: false)
+    }
+    
+    @objc func saveCard(sender: UIButton!) {
+        let vc = AddCardViewController()
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func closeVC(sender: UIButton!) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func setTitleLayout() {
+        let height = self.view.frame.height
+        let width = self.view.frame.width
+        let middle = (height - 400)/4
+        let heightTitle = Utilities.requiredHeight(font:"Avenir Next Bold", labelText: "Dive Certifications", size: 25.0)
+        let heightTitleDescription = Utilities.requiredHeight(font: "Avenir Next", labelText: "Save your dive cards", size: 14.0)
+        let textHeight = (heightTitle + heightTitleDescription - 10)/2
+        self.view.addSubview(Title)
+        self.view.addSubview(titleDescription)
+        self.Title.translatesAutoresizingMaskIntoConstraints = false
+        self.Title.text = "Dive Certifications"
+        self.Title.font = UIFont.init(name: "Avenir Next Bold", size: 25)
+        self.Title.topAnchor.constraint(equalTo: self.view.topAnchor, constant: middle - textHeight).isActive = true
+        self.Title.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        
+        self.titleDescription.translatesAutoresizingMaskIntoConstraints = false
+        self.titleDescription.text = "Save your dive cards here so you can acces them anywhere"
+        self.titleDescription.font = UIFont.init(name: "Avenir Next", size: 14)
+        self.titleDescription.topAnchor.constraint(equalTo: self.Title.bottomAnchor, constant: 5).isActive = true
+        self.titleDescription.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.titleDescription.widthAnchor.constraint(equalToConstant: width / 1.5).isActive = true
+        self.titleDescription.numberOfLines = 0
+        self.titleDescription.textAlignment = .center
+        
+    }
     func setupLayout(){
-        // This is just an utility custom class to calculate screen points
-        // to the screen based in a reference view. You can ignore this and write the points manually where is required.
+
         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         
         self.collectionView?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -54,30 +106,19 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
         self.currentPage = 0
     }
     
-    
     func addCollectionView(){
-        
-        // This is just an utility custom class to calculate screen points
-        // to the screen based in a reference view. You can ignore this and write the points manually where is required.
+
         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         
-        // This is where the magic is done. With the flow layout the views are set to make costum movements. See https://github.com/ink-spot/UPCarouselFlowLayout for more info
         let layout = UPCarouselFlowLayout()
-        // This is used for setting the cell size (size of each view in this case)
-        // Here I'm writting 400 points of height and the 73.33% of the height view frame in points.
         layout.itemSize = CGSize(width: pointEstimator.relativeWidth(multiplier: 0.73333), height: 400)
-        // Setting the scroll direction
         layout.scrollDirection = .horizontal
-        
-        // Collection view initialization, the collectionView must be
-        // initialized with a layout object.
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        // This line if for able programmatic constrains.
         self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        // CollectionView delegates and dataSource:
+
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
-        // Registering the class for the collection view cells
+        self.collectionView?.showsHorizontalScrollIndicator = false
         self.collectionView?.register(CardCell.self, forCellWithReuseIdentifier: "cellId")
         
         // Spacing between cells:
@@ -101,9 +142,33 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CardCell
+
+        cell.cardTitle.text = colors[indexPath.row].Organistation + " " + colors[indexPath.row].Name
+        cell.dateLabel.text = colors[indexPath.row].Date
+        cell.idLabel.text = String(colors[indexPath.row].ID)
         
-        cell.customView.backgroundColor = Backgroundcolors[indexPath.row]
-        cell.NameLabel.text = colors[indexPath.row].Name
+        if (colors[indexPath.row].Instructor != "") {
+            cell.diveClubTitle.text = "Certified By"
+            cell.instructorLabel.text = colors[indexPath.row].Instructor
+            cell.diveClubLabel.text = colors[indexPath.row].DiveClub
+        } else if (colors[indexPath.row].DiveClub != "") {
+            cell.diveClubTitle.text = "Certified By"
+            cell.instructorLabel.text = colors[indexPath.row].DiveClub
+            cell.diveClubLabel.text = ""
+        } else {
+            cell.diveClubTitle.text = ""
+            cell.instructorLabel.text = ""
+            cell.diveClubLabel.text = ""
+        }
+        
+        if (colors[indexPath.row].Primary == true) {
+            cell.primaryLabel.setTitle("Primary", for: .normal)
+            cell.primaryLabel.layer.borderWidth = 1
+        } else {
+            cell.primaryLabel.setTitle("", for: .normal)
+            cell.primaryLabel.layer.borderWidth = 0
+        }
+        
         return cell
     }
     
@@ -127,43 +192,119 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
 }
 
 class CardCell: UICollectionViewCell {
+    
+    let gradientLayer = CAGradientLayer()
+    let cardTitle = UILabel()
+    let dateLabel = UILabel()
+    let idLabel = UILabel()
+    let diveClubTitle = UILabel()
+    let instructorLabel = UILabel()
+    let diveClubLabel = UILabel()
+    let editButton = UIButton()
+    let photoButton = UIButton()
+    let primaryLabel = UIButton()
+
+    override func layoutSublayers(of layer: CALayer) {
+            super.layoutSublayers(of: self.layer)
+            gradientLayer.frame = customView.bounds
+            
+            let colorSet = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00),
+                            UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00)]
+            let location = [0.2, 1.0]
+                    
+            customView.addGradient(with: gradientLayer, colorSet: colorSet, locations: location)
+        }
+    
     let customView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 12
+        view.layer.cornerRadius = 30
         return view
     }()
-    
-    let NameLabel: UILabel = {
-        let Name = UILabel()
-        Name.translatesAutoresizingMaskIntoConstraints = false
-        Name.textAlignment = .center
-        return Name
-    }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(self.customView)
-        self.customView.addSubview(NameLabel)
+        addSubview(self.customView)
+        customView.addSubview(self.cardTitle)
+        customView.addSubview(dateLabel)
+        customView.addSubview(idLabel)
+        customView.addSubview(diveClubTitle)
+        customView.addSubview(instructorLabel)
+        customView.addSubview(diveClubLabel)
+        customView.addSubview(editButton)
+        customView.addSubview(photoButton)
+        customView.addSubview(primaryLabel)
         
-        self.customView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.customView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.customView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
-        self.customView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1).isActive = true
+        customView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        customView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        customView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        customView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1).isActive = true
         
-        self.NameLabel.centerXAnchor.constraint(equalTo: customView.centerXAnchor).isActive = true
-        self.NameLabel.centerYAnchor.constraint(equalTo: customView.centerYAnchor).isActive = true
-        self.NameLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
-        self.NameLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1).isActive = true
+        cardTitle.translatesAutoresizingMaskIntoConstraints = false
+        cardTitle.leadingAnchor.constraint(equalTo: self.customView.leadingAnchor, constant: 30).isActive = true
+        cardTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        cardTitle.widthAnchor.constraint(equalTo: self.customView.widthAnchor, multiplier: 0.75).isActive = true
+        cardTitle.font = UIFont.init(name: "Avenir Next Bold", size: 20)
+        cardTitle.numberOfLines = 0
         
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 30).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: cardTitle.bottomAnchor, constant: 5).isActive = true
+        dateLabel.font = UIFont.init(name: "Avenir Next", size: 14)
+        dateLabel.numberOfLines = 0
+        
+        idLabel.translatesAutoresizingMaskIntoConstraints = false
+        idLabel.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 30).isActive = true
+        idLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 5).isActive = true
+        idLabel.font = UIFont.init(name: "Avenir Next", size: 14)
+        idLabel.numberOfLines = 0
+        
+        diveClubTitle.translatesAutoresizingMaskIntoConstraints = false
+        diveClubTitle.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 30).isActive = true
+        diveClubTitle.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: 30).isActive = true
+        diveClubTitle.font = UIFont.init(name: "Avenir Next Bold", size: 14)
+        diveClubTitle.numberOfLines = 0
+        
+        instructorLabel.translatesAutoresizingMaskIntoConstraints = false
+        instructorLabel.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 30).isActive = true
+        instructorLabel.topAnchor.constraint(equalTo: diveClubTitle.bottomAnchor, constant: 5).isActive = true
+        instructorLabel.font = UIFont.init(name: "Avenir Next", size: 14)
+        instructorLabel.numberOfLines = 0
+        
+        diveClubLabel.translatesAutoresizingMaskIntoConstraints = false
+        diveClubLabel.leadingAnchor.constraint(equalTo: customView.leadingAnchor, constant: 30).isActive = true
+        diveClubLabel.topAnchor.constraint(equalTo: instructorLabel.bottomAnchor, constant: 5).isActive = true
+        diveClubLabel.font = UIFont.init(name: "Avenir Next", size: 14)
+        diveClubLabel.numberOfLines = 0
+        
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        editButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        editButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        editButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        editButton.tintColor = .white
+        
+        photoButton.translatesAutoresizingMaskIntoConstraints = false
+        photoButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        photoButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30).isActive = true
+        photoButton.setTitle("view photo", for: .normal)
+        photoButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 14)
+        
+        primaryLabel.translatesAutoresizingMaskIntoConstraints = false
+        primaryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+        primaryLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30).isActive = true
+        primaryLabel.contentEdgeInsets = UIEdgeInsets(top: 3,left: 8,bottom: 3,right: 8)
+        primaryLabel.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 14)
+        primaryLabel.layer.cornerRadius = 3
+        primaryLabel.layer.borderColor = UIColor.white.cgColor
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     
     
 } // End of CardCell
@@ -191,4 +332,26 @@ class RelativeLayoutUtilityClass {
     
     
     
+}
+
+extension UIView {
+    func addGradient(with layer: CAGradientLayer, gradientFrame: CGRect? = nil, colorSet: [UIColor],
+                     locations: [Double], startEndPoints: (CGPoint, CGPoint)? = nil) {
+        layer.frame = gradientFrame ?? self.bounds
+        layer.frame.origin = .zero
+
+        let layerColorSet = colorSet.map { $0.cgColor }
+        let layerLocations = locations.map { $0 as NSNumber }
+
+        layer.colors = layerColorSet
+        layer.locations = layerLocations
+        layer.cornerRadius = 12
+
+        if let startEndPoints = startEndPoints {
+            layer.startPoint = startEndPoints.0
+            layer.endPoint = startEndPoints.1
+        }
+        
+        self.layer.insertSublayer(layer, at: 0)
+    }
 }

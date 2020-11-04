@@ -22,16 +22,26 @@ class UISimpleSlidingTabController: UIViewController {
     private let horizontalBar = UIView.init()
     private let collectionHeaderIdentifier = "COLLECTION_HEADER_IDENTIFIER"
     private let collectionPageIdentifier = "COLLECTION_PAGE_IDENTIFIER"
-    private var items = [UIViewController]()
+    private var items = [SimpleItemViewControllerOne(), SimpleItemViewControllerTwo()]
     private var titles = [String]()
     private var colorHeaderActive = UIColor.blue
     private var colorHeaderInActive = UIColor.gray
     private var colorHeaderBackground = UIColor.white
-    private var currentPosition = 0
+    private var currentPosition = 1
     private var tabStyle = SlidingTabStyle.fixed
     private let heightHeader = 57
+    var flag = false
+   
     
-  
+    func viewDidAppear() {
+         super.viewWillLayoutSubviews()
+         collectionHeader.collectionViewLayout.invalidateLayout()
+         collectionPage.collectionViewLayout.invalidateLayout()
+         self.collectionPage.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
+        self.collectionPage.reloadData()
+         
+       }
+    
     func addItem(item: UIViewController, title: String){
         items.append(item)
         titles.append(title)
@@ -50,22 +60,19 @@ class UISimpleSlidingTabController: UIViewController {
     }
     
     func setCurrentPosition(position: Int){
-        
         currentPosition = position
-        let path = IndexPath(item: currentPosition, section: 0)
+        let path = IndexPath(item: position, section: 0)
+        print(path)
         
-        DispatchQueue.main.async {
-            if self.tabStyle == .flexible {
-                self.collectionHeader.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
-            }
-           self.collectionHeader.reloadData()
-        }
         
-        DispatchQueue.main.async {
-            self.collectionPage.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
-            self.collectionPage.reloadData()
-        }
         
+                DispatchQueue.main.async {
+                    self.collectionPage.collectionViewLayout.invalidateLayout()
+                    self.collectionPage.scrollToItem(at: path, at: .centeredHorizontally, animated: true)
+                    self.collectionPage.reloadData()
+                    self.collectionPage.collectionViewLayout.invalidateLayout()
+                    self.collectionPage.reloadData()
+                }
     }
     
     func setStyle(style: SlidingTabStyle){
@@ -146,6 +153,7 @@ class UISimpleSlidingTabController: UIViewController {
         collectionHeader.dataSource = self
         collectionHeader.reloadData()
         collectionHeader.backgroundColor = backgroundColor
+       
     }
     
     func configurCollectionPage() {
@@ -161,12 +169,13 @@ class UISimpleSlidingTabController: UIViewController {
         collectionPage.register(UICollectionViewCell.self, forCellWithReuseIdentifier: collectionPageIdentifier)
         collectionPage.delegate = self
         collectionPage.dataSource = self
+        collectionPage.contentOffset.x = 0
         collectionPage.reloadData()
         collectionPage.backgroundColor = backgroundColor
     }
     
     func configureHorizontalBar() {
-        horizontalBar.backgroundColor = UIColor(red: 0.19, green: 0.44, blue: 0.61, alpha: 1.00)
+        horizontalBar.backgroundColor = UIColor(red: 0.19, green: 0.55, blue: 0.65, alpha: 1.00)
         horizontalBar.translatesAutoresizingMaskIntoConstraints = false
         self.view.layoutSubviews()
         horizontalBarLeftAnchorConstraint = horizontalBar.leftAnchor.constraint(equalTo: view.leftAnchor)
@@ -223,7 +232,11 @@ extension UISimpleSlidingTabController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            self.setCurrentPosition(position: indexPath.row)
+            if indexPath.row == 0 {
+            self.collectionPage.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            } else {
+            self.collectionPage.setContentOffset(CGPoint(x: self.collectionPage.frame.width, y: 0), animated: true)
+            }
         }
         let x = CGFloat(indexPath.item) * view.frame.width / 2
         horizontalBarLeftAnchorConstraint?.constant = x
@@ -234,10 +247,20 @@ extension UISimpleSlidingTabController: UICollectionViewDelegate {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+     sizeForItemAtindexPath: IndexPath) -> CGSize {
+          let cellsAcross: CGFloat = 1
+          let spaceBetweenCells: CGFloat = 1
+             let dim = (self.collectionPage.bounds.width - (cellsAcross - 1) * spaceBetweenCells) / cellsAcross
+          return CGSize(width: dim, height: self.collectionPage.bounds.height)
+    }
+   
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == collectionPage {
-            let currentIndex = Int(collectionPage.contentOffset.x / collectionPage.frame.size.width)
-            setCurrentPosition(position: currentIndex)
+            //let currentIndex = Int(collectionPage.contentOffset.x / collectionPage.frame.size.width)
+            //setCurrentPosition(position: currentIndex)
+            
         }
         horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
         
@@ -248,11 +271,12 @@ extension UISimpleSlidingTabController: UICollectionViewDelegate {
 }
 
 extension UISimpleSlidingTabController: UICollectionViewDataSource{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionHeader {
             return titles.count
         }
-        return items.count
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -268,7 +292,6 @@ extension UISimpleSlidingTabController: UICollectionViewDataSource{
             }
             
             cell.select(didSelect: didSelect, activeColor: colorHeaderActive, inActiveColor: colorHeaderInActive)
-            
             return cell
         }
         let statusBarHeight: CGFloat
@@ -327,4 +350,9 @@ enum SlidingTabStyle: String {
     case flexible
 }
 
-
+/*extension UICollectionView {
+    func scrollTo(indexPath: IndexPath) {
+        let attributes = collectionViewLayout.layoutAttributesForItem(at: indexPath)!
+        setContentOffset(attributes.frame.origin, animated: true)
+    }
+}*/

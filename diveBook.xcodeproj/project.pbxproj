@@ -42,7 +42,8 @@
 		2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */; };
 		2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A9325017F9E0084B496 /* SplashViewController.swift */; };
 		2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A952502DCFD0084B496 /* FetchData.swift */; };
-		A64E4E9B132DA16FA9ED4111 /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */; };
+		2FF42C25254ECEAD00CF482B /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */; };
+		AF0B6AE2D7925620500F065B /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +75,7 @@
 		2F4F125F24F2727300666535 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F4F126124F2728E00666535 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		2F4F126324F272E000666535 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		2F4F126524F2730000666535 /* EditDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiveViewController.swift; sourceTree = "<group>"; };
+		2F4F126524F2730000666535 /* EditDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditDiveViewController.swift; path = "../New Group/EditDiveViewController.swift"; sourceTree = "<group>"; };
 		2F4F126724F2731B00666535 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2F4F126924F283A200666535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
@@ -83,9 +84,10 @@
 		2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardsViewController.swift; sourceTree = "<group>"; };
 		2FE50A9325017F9E0084B496 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2FE50A952502DCFD0084B496 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
-		3F4286F5EE12AC30E69B6587 /* Pods-diveBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.release.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.release.xcconfig"; sourceTree = "<group>"; };
-		4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93D3EB210CC486592C6C209F /* Pods-diveBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.debug.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.debug.xcconfig"; sourceTree = "<group>"; };
+		2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		41EB2E9A3C96819DDA9A192D /* Pods-diveBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.release.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.release.xcconfig"; sourceTree = "<group>"; };
+		808E96D03CA4F6CB4FF7EC28 /* Pods-diveBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.debug.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.debug.xcconfig"; sourceTree = "<group>"; };
+		847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A64E4E9B132DA16FA9ED4111 /* Pods_diveBook.framework in Frameworks */,
+				AF0B6AE2D7925620500F065B /* Pods_diveBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +118,8 @@
 		2F320BE924F5453A00BBEE13 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2FF42C23254ECE7A00CF482B /* Edit */,
+				2FF42C22254ECE6B00CF482B /* Add */,
 				2FE50A92250162E40084B496 /* Slide */,
 				2FE50A91250162880084B496 /* Show */,
 				2F33C73E24F69AE000752B45 /* custom cell */,
@@ -148,7 +152,7 @@
 				2F4F123A24F26FC200666535 /* diveBook */,
 				2F4F123924F26FC200666535 /* Products */,
 				705F134E4C81E7A698A42A0F /* Pods */,
-				4B0428E9FB38303E57C0F9D2 /* Frameworks */,
+				BC4BC544E96868DC94C628CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -279,7 +283,6 @@
 		2FE50A91250162880084B496 /* Show */ = {
 			isa = PBXGroup;
 			children = (
-				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
 				2F33C74324F911C400752B45 /* ShowDiveViewController.swift */,
 				2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */,
 				2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */,
@@ -297,21 +300,37 @@
 			path = Slide;
 			sourceTree = "<group>";
 		};
-		4B0428E9FB38303E57C0F9D2 /* Frameworks */ = {
+		2FF42C22254ECE6B00CF482B /* Add */ = {
 			isa = PBXGroup;
 			children = (
-				4903C81318DC8EB4841A5F73 /* Pods_diveBook.framework */,
+				2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */,
 			);
-			name = Frameworks;
+			path = Add;
+			sourceTree = "<group>";
+		};
+		2FF42C23254ECE7A00CF482B /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		705F134E4C81E7A698A42A0F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				93D3EB210CC486592C6C209F /* Pods-diveBook.debug.xcconfig */,
-				3F4286F5EE12AC30E69B6587 /* Pods-diveBook.release.xcconfig */,
+				808E96D03CA4F6CB4FF7EC28 /* Pods-diveBook.debug.xcconfig */,
+				41EB2E9A3C96819DDA9A192D /* Pods-diveBook.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BC4BC544E96868DC94C628CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,11 +340,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F4F124C24F26FC600666535 /* Build configuration list for PBXNativeTarget "diveBook" */;
 			buildPhases = (
-				EF8884FD43220FB3A19E7D86 /* [CP] Check Pods Manifest.lock */,
+				8FB5ACA19A0152127BC238D4 /* [CP] Check Pods Manifest.lock */,
 				2F4F123424F26FC200666535 /* Sources */,
 				2F4F123524F26FC200666535 /* Frameworks */,
 				2F4F123624F26FC200666535 /* Resources */,
-				9B5DE7470668971C82B37F36 /* [CP] Embed Pods Frameworks */,
+				059C3BA2B8B912F37B81014D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -343,7 +362,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Tristan Engelborghs";
 				TargetAttributes = {
 					2F4F123724F26FC200666535 = {
@@ -384,7 +403,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9B5DE7470668971C82B37F36 /* [CP] Embed Pods Frameworks */ = {
+		059C3BA2B8B912F37B81014D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -401,7 +420,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-diveBook/Pods-diveBook-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF8884FD43220FB3A19E7D86 /* [CP] Check Pods Manifest.lock */ = {
+		8FB5ACA19A0152127BC238D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -454,6 +473,7 @@
 				2F33C74924F9237100752B45 /* CirtifiedDiveViewController.swift in Sources */,
 				2F320BEF24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift in Sources */,
 				2F320BED24F546D900BBEE13 /* SimpleItemViewControllerOne.swift in Sources */,
+				2FF42C25254ECEAD00CF482B /* AddCardViewController.swift in Sources */,
 				2F33C73D24F695F700752B45 /* UIViewExtension.swift in Sources */,
 				2F320BEB24F5456500BBEE13 /* UISlidingTabController.swift in Sources */,
 				2F63B352250CB35B00F4EEBD /* ShowCardInfoViewController.swift in Sources */,
@@ -512,6 +532,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -572,6 +593,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -602,7 +624,7 @@
 		};
 		2F4F124D24F26FC600666535 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93D3EB210CC486592C6C209F /* Pods-diveBook.debug.xcconfig */;
+			baseConfigurationReference = 808E96D03CA4F6CB4FF7EC28 /* Pods-diveBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -621,7 +643,7 @@
 		};
 		2F4F124E24F26FC600666535 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F4286F5EE12AC30E69B6587 /* Pods-diveBook.release.xcconfig */;
+			baseConfigurationReference = 41EB2E9A3C96819DDA9A192D /* Pods-diveBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

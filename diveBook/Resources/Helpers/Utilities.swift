@@ -34,9 +34,9 @@ class Utilities {
         return passwordTest.evaluate(with: password)
     }
     
-    static func requiredHeight(labelText:String) -> CGFloat {
+    static func requiredHeight(font:String, labelText:String, size:CGFloat) -> CGFloat {
 
-        let font = UIFont(name: "Avenir NEx", size: 17.0)
+        let font = UIFont(name: font, size: size)
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: .max))
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -56,6 +56,18 @@ extension UITextField
         self.borderStyle = UITextField.BorderStyle.none
         self.backgroundColor = UIColor.clear
         let width: CGFloat = 3.0
+
+        let borderLine = UIView(frame: CGRect(x: 0, y: self.frame.height - width, width: self.frame.width, height: width))
+        borderLine.backgroundColor = color
+        borderLine.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        self.addSubview(borderLine)
+    }
+    
+    func setBottomBorderText(withColor color: UIColor)
+    {
+        self.borderStyle = UITextField.BorderStyle.none
+        self.backgroundColor = UIColor.clear
+        let width: CGFloat = 1.0
 
         let borderLine = UIView(frame: CGRect(x: 0, y: self.frame.height - width, width: self.frame.width, height: width))
         borderLine.backgroundColor = color

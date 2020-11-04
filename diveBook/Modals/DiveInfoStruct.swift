@@ -23,4 +23,6 @@ struct CardInfoStruct {
     var Organistation: String
     var Date: String
     var DiveClub: String
+    var Instructor: String
+    var Primary: Bool
 }

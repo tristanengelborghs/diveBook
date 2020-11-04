@@ -27,7 +27,7 @@ class SimpleItemViewControllerOne: UIViewController{
     let organistationLabel = UILabel.init()
     
     var dives: [DiveInfoStruct] = []
-    var card: CardInfoStruct = CardInfoStruct(Name: "2", ID: 0, Organistation: "", Date: "", DiveClub: "")
+    var card: CardInfoStruct = CardInfoStruct(Name: "2", ID: 0, Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false)
     let uid = Auth.auth().currentUser!.uid
     
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ class SimpleItemViewControllerOne: UIViewController{
     }
     
     func configureHeader() {
-        let labelHeight = Utilities.requiredHeight(labelText: "Logged Dives") + 45
+        let labelHeight = Utilities.requiredHeight(font:"Avenir Next", labelText: "Logged Dives", size: 17.0) + 45
         let headerHeight = (((view.frame.size.width) - 60) * (7/20)) + labelHeight
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: headerHeight))
         
@@ -118,9 +118,8 @@ class SimpleItemViewControllerOne: UIViewController{
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
         let vc = ShowCardsViewController()
-           //vc.modalPresentationStyle = .fullScreen
-           //self.present(vc, animated: true, completion: nil)
-        show(vc, sender: self)
+        self.present(vc, animated: true, completion: nil)
+        //show(vc, sender: self)
     }
     
     func didFetchData(data:CardInfoStruct){

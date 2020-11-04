@@ -17,7 +17,7 @@ class FetchData {
     
     func fetchCardData(callback: @escaping(CardInfoStruct) -> Void) {
         
-        var cardInfo: CardInfoStruct = CardInfoStruct(Name: "", ID: 0, Organistation: "", Date: "", DiveClub: "")
+        var cardInfo: CardInfoStruct = CardInfoStruct(Name: "", ID: 0, Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false)
 
         Firestore.firestore().collection("users").document(uid).collection("Cards").whereField("Primary", isEqualTo: true).addSnapshotListener { (snapshot, err) in
 
@@ -33,8 +33,9 @@ class FetchData {
                     let Date = data["Date"] as? String ?? ""
                     let ID = data["ID"] as? Int ?? 0
                     let DiveClub = data["DiveClub"] as? String ?? ""
+                    let Instructor = data["Instructor"] as? String ?? ""
 
-                    cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub)
+                    cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: false)
                 }
             }
             callback(cardInfo)
@@ -59,8 +60,10 @@ class FetchData {
                     let Date = data["Date"] as? String ?? ""
                     let ID = data["ID"] as? Int ?? 0
                     let DiveClub = data["DiveClub"] as? String ?? ""
+                    let Instructor = data["Instructor"] as? String ?? ""
+                    let Primary = data["Primary"] as? Bool ?? false
 
-                    let cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub)
+                    let cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: Primary)
                     
                     cardsInfo.append(cardInfo)
                 }

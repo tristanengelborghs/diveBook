@@ -1,0 +1,6 @@
+framework module Pods_diveBook {
+  umbrella header "Pods-diveBook-umbrella.h"
+
+  export *
+  module * { export * }
+}
