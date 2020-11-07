@@ -72,6 +72,14 @@ extension UITextField
         let borderLine = UIView(frame: CGRect(x: 0, y: self.frame.height - width, width: self.frame.width, height: width))
         borderLine.backgroundColor = color
         borderLine.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        borderLine.alpha = 0.3
         self.addSubview(borderLine)
+    }
+    func setDarkTextField(textfield: UITextField) {
+        textfield.layer.cornerRadius = 5
+        textfield.backgroundColor = .systemGray5
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textfield.frame.height))
+        textfield.leftView = paddingView
+        textfield.leftViewMode = UITextField.ViewMode.always
     }
 }

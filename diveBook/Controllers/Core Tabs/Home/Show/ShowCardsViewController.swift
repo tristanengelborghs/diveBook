@@ -8,14 +8,17 @@
 
 import UIKit
 
-var myIndexCard = CardInfoStruct(Name: "", ID: 0, Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false)
+var myIndexCard = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoFront: nil  , PhotoBack: nil)
 
 class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    var selectedButtonsArray: [Int] = []
     let Title = UILabel.init()
     let titleDescription = UILabel.init()
     let backgroundColor = UIColor(red: 0.1, green: 0.11, blue: 0.11, alpha: 1.00)
     var collectionView : UICollectionView?
+    var dataPhoto: Data?
+    var finalImage: UIImage?
     
     fileprivate var currentPage: Int = 0
     fileprivate var pageSize: CGSize {
@@ -49,7 +52,7 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
         navBar.backgroundColor = .clear
         navBar.shadowImage = UIImage()
         view.addSubview(navBar)
-
+        
         let navItem = UINavigationItem(title: "")
         let saveItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(saveCard))
         let backItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(closeVC))
@@ -95,7 +98,7 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
         
     }
     func setupLayout(){
-
+        
         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         
         self.collectionView?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -107,7 +110,7 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func addCollectionView(){
-
+        
         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         
         let layout = UPCarouselFlowLayout()
@@ -115,7 +118,7 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
         layout.scrollDirection = .horizontal
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         self.collectionView?.translatesAutoresizingMaskIntoConstraints = false
-
+        
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
         self.collectionView?.showsHorizontalScrollIndicator = false
@@ -142,10 +145,16 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CardCell
-
+        
         cell.cardTitle.text = colors[indexPath.row].Organistation + " " + colors[indexPath.row].Name
         cell.dateLabel.text = colors[indexPath.row].Date
         cell.idLabel.text = String(colors[indexPath.row].ID)
+        cell.photoBackButton.setTitle("", for: .normal)
+        cell.photoView.backgroundColor = .clear
+        cell.photoView.image = nil
+        cell.photoView.backgroundColor = .clear
+        cell.photoBackButton.setTitle("", for: .normal)
+        
         
         if (colors[indexPath.row].Instructor != "") {
             cell.diveClubTitle.text = "Certified By"
@@ -169,7 +178,53 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
             cell.primaryLabel.layer.borderWidth = 0
         }
         
+        if (colors[indexPath.row].PhotoFront != nil) {
+            cell.finalImage = UIImage(data: colors[indexPath.row].PhotoFront!)!
+        } else {
+            cell.finalImage = nil
+        }
+        
+        if (cell.finalImage != nil) {
+            cell.customView.addSubview(cell.photoButton)
+            cell.photoButton.translatesAutoresizingMaskIntoConstraints = false
+            cell.photoButton.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -30).isActive = true
+            cell.photoButton.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -30).isActive = true
+            cell.photoButton.setTitle("view photo", for: .normal)
+            cell.photoButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 14)
+            cell.photoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
+            
+            cell.customView.addSubview(cell.photoBackButton)
+            cell.photoBackButton.translatesAutoresizingMaskIntoConstraints = false
+            cell.photoBackButton.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: -30).isActive = true
+            cell.photoBackButton.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -30).isActive = true
+            cell.photoBackButton.setTitle("", for: .normal)
+            cell.photoBackButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 14)
+            cell.photoBackButton.addTarget(self, action: #selector(hideButtonTapped), for: .touchUpInside)
+            cell.photoBackButton.isHidden = true
+        }
+        cell.photoButton.tag = indexPath.row
+        
+        
+        cell.reloadInputViews()
+        
+        
         return cell
+    }
+    
+    @objc func photoButtonTapped(_ sender: UIButton){
+        let sen: UIButton = sender
+        let g : NSIndexPath = NSIndexPath(row: sen.tag, section: 0)
+        let t : CardCell = self.collectionView?.cellForItem(at: g as IndexPath) as! CardCell
+        t.photoButton.setTitle("", for: .normal)
+        t.photoView.clipsToBounds = true;
+        t.photoView.image = t.finalImage
+        t.photoView.backgroundColor = .systemGray6
+        t.photoBackButton.isHidden = false
+        t.photoBackButton.setTitle("hide photo", for: .normal)
+    }
+    
+    @objc func hideButtonTapped(_ sender: UIButton){
+        self.collectionView?.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -178,21 +233,26 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
         let vc = ShowCardInfoViewController()
         self.present(vc, animated: true, completion: nil)
     }
-
-
-// MARK: - UIScrollViewDelegate
-
+    
+    
+    // MARK: - UIScrollViewDelegate
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let layout = self.collectionView?.collectionViewLayout as! UPCarouselFlowLayout
         let pageSide = (layout.scrollDirection == .horizontal) ? self.pageSize.width : self.pageSize.height
         let offset = (layout.scrollDirection == .horizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y
         currentPage = Int(floor((offset - pageSide / 2) / pageSide) + 1)
     }
-
+    
+    
 }
 
 class CardCell: UICollectionViewCell {
     
+    var yourobj : (() -> Void)? = nil
+
+    var finalImage: UIImage? = nil
+    let photoView = UIImageView()
     let gradientLayer = CAGradientLayer()
     let cardTitle = UILabel()
     let dateLabel = UILabel()
@@ -202,18 +262,19 @@ class CardCell: UICollectionViewCell {
     let diveClubLabel = UILabel()
     let editButton = UIButton()
     let photoButton = UIButton()
+    let photoBackButton = UIButton()
     let primaryLabel = UIButton()
-
+    
     override func layoutSublayers(of layer: CALayer) {
-            super.layoutSublayers(of: self.layer)
-            gradientLayer.frame = customView.bounds
-            
-            let colorSet = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00),
-                            UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00)]
-            let location = [0.2, 1.0]
-                    
-            customView.addGradient(with: gradientLayer, colorSet: colorSet, locations: location)
-        }
+        super.layoutSublayers(of: self.layer)
+        gradientLayer.frame = customView.bounds
+        
+        let colorSet = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00),
+                        UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00)]
+        let location = [0.2, 1.0]
+        
+        customView.addGradient(with: gradientLayer, colorSet: colorSet, locations: location)
+    }
     
     let customView: UIView = {
         let view = UIView()
@@ -225,7 +286,9 @@ class CardCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
         addSubview(self.customView)
+        
         customView.addSubview(self.cardTitle)
         customView.addSubview(dateLabel)
         customView.addSubview(idLabel)
@@ -233,8 +296,17 @@ class CardCell: UICollectionViewCell {
         customView.addSubview(instructorLabel)
         customView.addSubview(diveClubLabel)
         customView.addSubview(editButton)
-        customView.addSubview(photoButton)
         customView.addSubview(primaryLabel)
+        customView.addSubview(photoView)
+        
+        
+        photoView.translatesAutoresizingMaskIntoConstraints = false
+        photoView.topAnchor.constraint(equalTo: customView.topAnchor).isActive = true
+        photoView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        photoView.leadingAnchor.constraint(equalTo: customView.leadingAnchor).isActive = true
+        photoView.trailingAnchor.constraint(equalTo: customView.trailingAnchor).isActive = true
+        photoView.contentMode = .scaleAspectFit
+        photoView.clipsToBounds = true;
         
         customView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         customView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -284,12 +356,6 @@ class CardCell: UICollectionViewCell {
         editButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         editButton.tintColor = .white
         
-        photoButton.translatesAutoresizingMaskIntoConstraints = false
-        photoButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
-        photoButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30).isActive = true
-        photoButton.setTitle("view photo", for: .normal)
-        photoButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 14)
-        
         primaryLabel.translatesAutoresizingMaskIntoConstraints = false
         primaryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         primaryLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30).isActive = true
@@ -300,15 +366,24 @@ class CardCell: UICollectionViewCell {
         
     }
     
+    @objc func photoButtonTapped(_ sender: UIButton){
+        //photoView.image = finalImage
+        
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    @objc func connected(sender: UIButton){
+        if let btnAction = self.yourobj
+        {
+            btnAction()
+        }
+    }
     
     
 } // End of CardCell
-
 
 class RelativeLayoutUtilityClass {
     
@@ -339,14 +414,14 @@ extension UIView {
                      locations: [Double], startEndPoints: (CGPoint, CGPoint)? = nil) {
         layer.frame = gradientFrame ?? self.bounds
         layer.frame.origin = .zero
-
+        
         let layerColorSet = colorSet.map { $0.cgColor }
         let layerLocations = locations.map { $0 as NSNumber }
-
+        
         layer.colors = layerColorSet
         layer.locations = layerLocations
         layer.cornerRadius = 12
-
+        
         if let startEndPoints = startEndPoints {
             layer.startPoint = startEndPoints.0
             layer.endPoint = startEndPoints.1

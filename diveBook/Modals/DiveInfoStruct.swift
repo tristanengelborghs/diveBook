@@ -19,10 +19,12 @@ struct DiveInfoStruct {
 
 struct CardInfoStruct {
     var Name: String
-    var ID: Int
+    var ID: String
     var Organistation: String
     var Date: String
     var DiveClub: String
     var Instructor: String
     var Primary: Bool
+    var PhotoFront: Data?
+    var PhotoBack: Data?
 }

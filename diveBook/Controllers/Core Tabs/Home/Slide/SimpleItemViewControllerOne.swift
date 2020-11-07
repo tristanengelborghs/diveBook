@@ -27,7 +27,7 @@ class SimpleItemViewControllerOne: UIViewController{
     let organistationLabel = UILabel.init()
     
     var dives: [DiveInfoStruct] = []
-    var card: CardInfoStruct = CardInfoStruct(Name: "2", ID: 0, Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false)
+    var card: CardInfoStruct = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoFront: nil, PhotoBack: nil)
     let uid = Auth.auth().currentUser!.uid
     
     override func viewDidLoad() {

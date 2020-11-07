@@ -17,7 +17,7 @@ class FetchData {
     
     func fetchCardData(callback: @escaping(CardInfoStruct) -> Void) {
         
-        var cardInfo: CardInfoStruct = CardInfoStruct(Name: "", ID: 0, Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false)
+        var cardInfo: CardInfoStruct = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoFront: nil, PhotoBack: nil)
 
         Firestore.firestore().collection("users").document(uid).collection("Cards").whereField("Primary", isEqualTo: true).addSnapshotListener { (snapshot, err) in
 
@@ -31,11 +31,13 @@ class FetchData {
                     let Name = data["Name"] as? String ?? "Hello"
                     let Organistation = data["Organisation"] as? String ?? ""
                     let Date = data["Date"] as? String ?? ""
-                    let ID = data["ID"] as? Int ?? 0
+                    let ID = data["ID"] as? String ?? ""
                     let DiveClub = data["DiveClub"] as? String ?? ""
                     let Instructor = data["Instructor"] as? String ?? ""
+                    let PhotoFront = data["PhotoFront"] as? Data ?? nil
+                    let PhotoBack = data["PhotoBack"] as? Data ?? nil
 
-                    cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: false)
+                    cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: false, PhotoFront: PhotoFront, PhotoBack: PhotoBack)
                 }
             }
             callback(cardInfo)
@@ -58,12 +60,14 @@ class FetchData {
                     let Name = data["Name"] as? String ?? "Hello"
                     let Organistation = data["Organisation"] as? String ?? ""
                     let Date = data["Date"] as? String ?? ""
-                    let ID = data["ID"] as? Int ?? 0
+                    let ID = data["ID"] as? String ?? ""
                     let DiveClub = data["DiveClub"] as? String ?? ""
                     let Instructor = data["Instructor"] as? String ?? ""
                     let Primary = data["Primary"] as? Bool ?? false
+                    let PhotoFront = data["PhotoFront"] as? Data ?? nil
+                    let PhotoBack = data["PhotoBack"] as? Data ?? nil
 
-                    let cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: Primary)
+                    let cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: Primary, PhotoFront: PhotoFront, PhotoBack: PhotoBack)
                     
                     cardsInfo.append(cardInfo)
                 }

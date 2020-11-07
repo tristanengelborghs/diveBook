@@ -39,6 +39,7 @@
 		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
 		2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */; };
 		2F63B352250CB35B00F4EEBD /* ShowCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */; };
+		2FBBD8892555E6EE007E7772 /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8882555E6EE007E7772 /* ShowPhotoViewController.swift */; };
 		2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */; };
 		2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A9325017F9E0084B496 /* SplashViewController.swift */; };
 		2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A952502DCFD0084B496 /* FetchData.swift */; };
@@ -81,6 +82,7 @@
 		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
 		2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardInfoViewController.swift; sourceTree = "<group>"; };
+		2FBBD8882555E6EE007E7772 /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
 		2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardsViewController.swift; sourceTree = "<group>"; };
 		2FE50A9325017F9E0084B496 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2FE50A952502DCFD0084B496 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				2F33C74324F911C400752B45 /* ShowDiveViewController.swift */,
 				2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */,
 				2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */,
+				2FBBD8882555E6EE007E7772 /* ShowPhotoViewController.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				2F63B352250CB35B00F4EEBD /* ShowCardInfoViewController.swift in Sources */,
 				2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */,
 				2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */,
+				2FBBD8892555E6EE007E7772 /* ShowPhotoViewController.swift in Sources */,
 				2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */,
 				2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */,
 			);
