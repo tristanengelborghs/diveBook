@@ -17,7 +17,7 @@ class UISimpleSlidingTabController: UIViewController {
     let image = UIImage(named: "profielFoto.png") as UIImage?
     private let imageButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
     private let arrowButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
-    let backgroundColor = UIColor(red: 0.1, green: 0.11, blue: 0.11, alpha: 1.00)
+    let backgroundColor = UIColor.systemGray6
     private let nameLabel = type(of: UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))).init()
     private let horizontalBar = UIView.init()
     private let collectionHeaderIdentifier = "COLLECTION_HEADER_IDENTIFIER"
@@ -114,9 +114,8 @@ class UISimpleSlidingTabController: UIViewController {
         nameLabel.centerYAnchor.constraint(equalTo: collectionNamePage.centerYAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: imageButton.trailingAnchor, constant: 20).isActive = true
         nameLabel.setTitle("Tristan Engelborghs", for: .normal)
+        nameLabel.setTitleColor(.label, for: .normal)
         nameLabel.titleLabel?.font =  UIFont(name: "Avenir Next", size: 16)
-        nameLabel.setTitleColor(.white, for: .normal)
-        nameLabel.backgroundColor = backgroundColor
         nameLabel.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         imageButton.translatesAutoresizingMaskIntoConstraints = false
@@ -131,7 +130,7 @@ class UISimpleSlidingTabController: UIViewController {
         arrowButton.centerYAnchor.constraint(equalTo: collectionNamePage.centerYAnchor).isActive = true
         arrowButton.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 20).isActive = true
         arrowButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
-        arrowButton.tintColor = .white
+        arrowButton.tintColor = .label
     }
     
     @objc func buttonAction(sender: UIButton!) {
@@ -209,10 +208,8 @@ class UISimpleSlidingTabController: UIViewController {
             indicator.backgroundColor = activeColor
             
             if didSelect {
-                label.textColor = UIColor.white
                 indicator.isHidden = false
             }else{
-                label.textColor = UIColor.white
                 indicator.isHidden = true
             }
         }

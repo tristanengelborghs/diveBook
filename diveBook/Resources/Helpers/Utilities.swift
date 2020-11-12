@@ -11,6 +11,8 @@ import UIKit
 
 class Utilities {
     
+    private var cornerRadius: CGFloat = 0
+    
     static func styleFilledButton(_ button:UIButton) {
         
         // Filled rounded corner style
@@ -47,6 +49,37 @@ class Utilities {
 
     }
     
+    static func styleFilledButtongradient(_ button:UIButton) {
+
+        let gradientLayer = CAGradientLayer()
+        button.layer.cornerRadius = button.frame.size.height/2
+        button.layer.masksToBounds = true
+        gradientLayer.frame = button.bounds
+        gradientLayer.colors = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0) // Top left corner.
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        button.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    static func styleHollowButtongradient(_ button:UIButton) {
+        button.layer.cornerRadius = 25.0
+        button.clipsToBounds = true
+        let gradient = CAGradientLayer()
+        gradient.startPoint = CGPoint(x: 0, y: 0) // Top left corner.
+        gradient.endPoint = CGPoint(x: 1, y: 1)
+        gradient.frame = CGRect(origin: .zero, size: button.frame.size)
+        gradient.colors = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
+        button.layer.insertSublayer(gradient, at: 0)
+        let backgroundView = UIView()
+        button.insertSubview(backgroundView, at: 1)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.backgroundColor = UIColor.systemGray6
+        backgroundView.fill(toView: button, space: UIEdgeInsets(space: 2))
+        backgroundView.layer.cornerRadius = 25
+        backgroundView.createRoundCorner(25)
+        backgroundView.createRoundCorner(25 - 2)
+        backgroundView.isUserInteractionEnabled = false
+    }
 }
 
 extension UITextField
@@ -83,3 +116,14 @@ extension UITextField
         textfield.leftViewMode = UITextField.ViewMode.always
     }
 }
+
+extension UILabel {
+    
+}
+
+extension UIButton
+{
+    
+}
+
+

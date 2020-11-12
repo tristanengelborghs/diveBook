@@ -16,21 +16,17 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        view.backgroundColor = UIColor(red: 0.1, green: 0.11, blue: 0.11, alpha: 1.00)
+        view.backgroundColor = .systemGray6
     }
     
     private func setupUI(){
         // view
-        view.backgroundColor = .white
+        
         view.addSubview(slidingTabController.view) // add slidingTabController to main view
         
         // navigation
-        navigationItem.title = "Dive Log"
-        navigationController?.navigationBar.barTintColor = .blue
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.barStyle = .black
+        
+        //navigationController?.navigationBar.barStyle = .black
         
         // MARK: slidingTabController
         slidingTabController.addItem(item: SimpleItemViewControllerOne(), title: "Dive Log") // add first item
@@ -42,7 +38,7 @@ class HomeViewController: UIViewController {
         slidingTabController.setCurrentPosition(position: 0) // default 0
         //slidingTabController.setStyle(style: .flexible) // default fixed
         slidingTabController.build() // build
-        
+
     }
 
     

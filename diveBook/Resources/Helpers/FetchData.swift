@@ -17,7 +17,7 @@ class FetchData {
     
     func fetchCardData(callback: @escaping(CardInfoStruct) -> Void) {
         
-        var cardInfo: CardInfoStruct = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoFront: nil, PhotoBack: nil)
+        var cardInfo: CardInfoStruct = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoBack: nil)
 
         Firestore.firestore().collection("users").document(uid).collection("Cards").whereField("Primary", isEqualTo: true).addSnapshotListener { (snapshot, err) in
 
@@ -34,10 +34,9 @@ class FetchData {
                     let ID = data["ID"] as? String ?? ""
                     let DiveClub = data["DiveClub"] as? String ?? ""
                     let Instructor = data["Instructor"] as? String ?? ""
-                    let PhotoFront = data["PhotoFront"] as? Data ?? nil
                     let PhotoBack = data["PhotoBack"] as? Data ?? nil
 
-                    cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: false, PhotoFront: PhotoFront, PhotoBack: PhotoBack)
+                    cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: false, PhotoBack: PhotoBack)
                 }
             }
             callback(cardInfo)
@@ -64,10 +63,9 @@ class FetchData {
                     let DiveClub = data["DiveClub"] as? String ?? ""
                     let Instructor = data["Instructor"] as? String ?? ""
                     let Primary = data["Primary"] as? Bool ?? false
-                    let PhotoFront = data["PhotoFront"] as? Data ?? nil
                     let PhotoBack = data["PhotoBack"] as? Data ?? nil
 
-                    let cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: Primary, PhotoFront: PhotoFront, PhotoBack: PhotoBack)
+                    let cardInfo = CardInfoStruct(Name: Name, ID: ID, Organistation: Organistation, Date: Date, DiveClub: DiveClub, Instructor: Instructor, Primary: Primary,  PhotoBack: PhotoBack)
                     
                     cardsInfo.append(cardInfo)
                 }
@@ -105,5 +103,26 @@ class FetchData {
             }
             callback(dives)
         }
+    }
+    
+    func fetchDiveNr(callback: @escaping(Int) -> Void) {
+        
+        Firestore.firestore().collection("users").document(uid).collection("DivesCollection")
+            .order(by: "DiveNr", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+                
+                var diveNr: Int = 0
+                
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        
+                        diveNr = data["DiveNr"] as? Int ?? 0
+                        
+                    }
+                }
+                callback(diveNr)
+            }
     }
 }

@@ -53,13 +53,17 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func configureBackgroundView() {
-        coloredBackgroundView.clipsToBounds = true
+        coloredBackgroundView.clipsToBounds = false
         coloredBackgroundView.image = UIImage(named: "dataCell")
         coloredBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         coloredBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 30).isActive = true
         coloredBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         coloredBackgroundView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         coloredBackgroundView.widthAnchor.constraint(equalTo: coloredBackgroundView.heightAnchor, multiplier: 20/7).isActive = true
+        coloredBackgroundView.layer.shadowColor = UIColor.black.cgColor
+        coloredBackgroundView.layer.shadowOpacity = 0.1
+        coloredBackgroundView.layer.shadowOffset = .zero
+        coloredBackgroundView.layer.shadowRadius = 5
     }
     
     func configureLocationLabel() {
@@ -71,6 +75,7 @@ class CustomTableViewCell: UITableViewCell {
         locationLabel.leadingAnchor.constraint(equalTo: locationLabel.leadingAnchor).isActive = true
         locationLabel.heightAnchor.constraint(equalTo: locationLabel.heightAnchor).isActive = true
         locationLabel.trailingAnchor.constraint(equalTo: coloredBackgroundView.trailingAnchor, constant: -15).isActive = true
+        locationLabel.textColor = .white
         
         DiveNrLabel.numberOfLines = 0
         DiveNrLabel.font = UIFont.init(name: "AvenirNext-Medium", size: 20)
@@ -79,40 +84,45 @@ class CustomTableViewCell: UITableViewCell {
         DiveNrLabel.leadingAnchor.constraint(equalTo: coloredBackgroundView.leadingAnchor, constant: 15).isActive = true
         DiveNrLabel.heightAnchor.constraint(equalTo: DiveNrLabel.heightAnchor).isActive = true
         DiveNrLabel.trailingAnchor.constraint(equalTo: DiveNrLabel.trailingAnchor).isActive = true
+        DiveNrLabel.textColor = .white
         
         diveTime.numberOfLines = 0
         diveTime.textAlignment = .right
         diveTime.font = UIFont.init(name: "Avenir Next", size: 14)
         diveTime.translatesAutoresizingMaskIntoConstraints = false
-        diveTime.topAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: width * 0.18).isActive = true
+        diveTime.topAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: self.frame.size.width * 0.18).isActive = true
         diveTime.leadingAnchor.constraint(equalTo: diveTime.leadingAnchor).isActive = true
         diveTime.heightAnchor.constraint(equalTo: diveTime.heightAnchor).isActive = true
         diveTime.trailingAnchor.constraint(equalTo: coloredBackgroundView.trailingAnchor, constant: -15).isActive = true
+        diveTime.textColor = .white
         
         startTime.numberOfLines = 0
         startTime.font = UIFont.init(name: "Avenir Next", size: 14)
         startTime.translatesAutoresizingMaskIntoConstraints = false
-        startTime.topAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: width * 0.18).isActive = true
+        startTime.topAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: self.frame.size.width * 0.18).isActive = true
         startTime.leadingAnchor.constraint(equalTo: coloredBackgroundView.leadingAnchor, constant: 15).isActive = true
         startTime.heightAnchor.constraint(equalTo: startTime.heightAnchor).isActive = true
         startTime.trailingAnchor.constraint(equalTo: startTime.trailingAnchor).isActive = true
+        startTime.textColor = .white
         
         depth.numberOfLines = 0
         depth.font = UIFont.init(name: "Avenir Next", size: 14)
         depth.translatesAutoresizingMaskIntoConstraints = false
-        depth.bottomAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: width * 0.3).isActive = true
-        depth.centerXAnchor.constraint(equalTo: coloredBackgroundView.leadingAnchor, constant: width * 0.41).isActive = true
+        depth.bottomAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: self.frame.size.width * 0.3).isActive = true
+        depth.centerXAnchor.constraint(equalTo: coloredBackgroundView.leadingAnchor, constant: self.frame.size.width * 0.41).isActive = true
         depth.heightAnchor.constraint(equalTo: startTime.heightAnchor).isActive = true
         depth.trailingAnchor.constraint(equalTo: startTime.trailingAnchor).isActive = true
+        depth.textColor = .white
     }
     
     func configureDateLabel() {
         dateLabel.font = UIFont.init(name: "Avenir Next", size: 14)
         dateLabel.textAlignment = .right
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.topAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: width * 0.095).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: coloredBackgroundView.topAnchor, constant: self.frame.size.width * 0.095).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor).isActive = true
         dateLabel.heightAnchor.constraint(equalTo: dateLabel.heightAnchor).isActive = true
         dateLabel.trailingAnchor.constraint(equalTo: coloredBackgroundView.trailingAnchor, constant: -15).isActive = true
+        dateLabel.textColor = .white
     }
 }

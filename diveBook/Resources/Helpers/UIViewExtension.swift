@@ -79,6 +79,7 @@ extension UIViewController {
 }
 
 extension UIView {
+    
     func setGradientBackground(colorTop: UIColor, colorBottom: UIColor) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorBottom.cgColor, colorTop.cgColor]
@@ -89,4 +90,5 @@ extension UIView {
 
        layer.insertSublayer(gradientLayer, at: 0)
     }
+
 }

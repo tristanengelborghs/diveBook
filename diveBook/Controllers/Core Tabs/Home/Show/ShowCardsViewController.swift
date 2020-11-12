@@ -8,9 +8,10 @@
 
 import UIKit
 
-var myIndexCard = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoFront: nil  , PhotoBack: nil)
+var myIndexCard = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoBack: nil)
 
-class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+    
     
     var selectedButtonsArray: [Int] = []
     let Title = UILabel.init()
@@ -33,15 +34,26 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView?.reloadData()
+        DataManager.shared.firstVC = self
         FetchData.sharedInstance.fetchCards(callback: { (Cards) in
             self.colors = Cards
-            self.collectionView?.reloadData()
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
         })
         self.view.backgroundColor = backgroundColor
         self.addCollectionView()
         self.setupLayout()
         self.setTitleLayout()
         setupNavBar()
+    }
+    
+    func viewDidAppear() {
+         super.viewWillLayoutSubviews()
+         
+        self.collectionView?.reloadData()
+         
     }
     
     func setupNavBar() {
@@ -150,7 +162,6 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.dateLabel.text = colors[indexPath.row].Date
         cell.idLabel.text = String(colors[indexPath.row].ID)
         cell.photoBackButton.setTitle("", for: .normal)
-        cell.photoView.backgroundColor = .clear
         cell.photoView.image = nil
         cell.photoView.backgroundColor = .clear
         cell.photoBackButton.setTitle("", for: .normal)
@@ -178,8 +189,8 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
             cell.primaryLabel.layer.borderWidth = 0
         }
         
-        if (colors[indexPath.row].PhotoFront != nil) {
-            cell.finalImage = UIImage(data: colors[indexPath.row].PhotoFront!)!
+        if (colors[indexPath.row].PhotoBack != nil) {
+            cell.finalImage = UIImage(data: colors[indexPath.row].PhotoBack!)!
         } else {
             cell.finalImage = nil
         }
@@ -202,11 +213,17 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
             cell.photoBackButton.addTarget(self, action: #selector(hideButtonTapped), for: .touchUpInside)
             cell.photoBackButton.isHidden = true
         }
+        
         cell.photoButton.tag = indexPath.row
         
+        cell.buttonAction = { sender in
+            myIndexCard = self.colors[indexPath.row]
+            
+            let vc = EditCardInfoViewController()
+            self.present(vc, animated: true, completion: nil)
+        }
         
         cell.reloadInputViews()
-        
         
         return cell
     }
@@ -228,10 +245,7 @@ class ShowCardsViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        myIndexCard = colors[indexPath.row]
         
-        let vc = ShowCardInfoViewController()
-        self.present(vc, animated: true, completion: nil)
     }
     
     
@@ -264,6 +278,12 @@ class CardCell: UICollectionViewCell {
     let photoButton = UIButton()
     let photoBackButton = UIButton()
     let primaryLabel = UIButton()
+    
+    var buttonAction: ((Any) -> Void)?
+
+    @objc func buttonPressed(sender: Any) {
+            self.buttonAction?(sender)
+    }
     
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: self.layer)
@@ -308,15 +328,17 @@ class CardCell: UICollectionViewCell {
         photoView.contentMode = .scaleAspectFit
         photoView.clipsToBounds = true;
         
+        
         customView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         customView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         customView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         customView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1).isActive = true
         
+        
         cardTitle.translatesAutoresizingMaskIntoConstraints = false
         cardTitle.leadingAnchor.constraint(equalTo: self.customView.leadingAnchor, constant: 30).isActive = true
         cardTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
-        cardTitle.widthAnchor.constraint(equalTo: self.customView.widthAnchor, multiplier: 0.75).isActive = true
+        cardTitle.widthAnchor.constraint(equalTo: self.customView.widthAnchor, multiplier: 0.60).isActive = true
         cardTitle.font = UIFont.init(name: "Avenir Next Bold", size: 20)
         cardTitle.numberOfLines = 0
         
@@ -355,6 +377,7 @@ class CardCell: UICollectionViewCell {
         editButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
         editButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         editButton.tintColor = .white
+        editButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         primaryLabel.translatesAutoresizingMaskIntoConstraints = false
         primaryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true

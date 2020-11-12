@@ -432,36 +432,8 @@
                     <view key="view" contentMode="scaleToFill" id="Nz3-YA-ar8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8f-f7-0jy">
-                                <rect key="frame" x="162.66666666666666" y="294" width="89" height="30"/>
-                                <state key="normal" title="Cirtified Dive">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="vXo-A2-0cu" kind="presentation" modalPresentationStyle="fullScreen" id="yoN-se-y5x"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mW7-0w-kxZ">
-                                <rect key="frame" x="165" y="424" width="84" height="30"/>
-                                <state key="normal" title="Normal Dive">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="8Mp-df-H3L" kind="presentation" modalPresentationStyle="fullScreen" id="PcK-41-f94"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zyt-vE-QB4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="zyt-vE-QB4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mW7-0w-kxZ" secondAttribute="trailing" symbolic="YES" id="315-Zd-JsQ"/>
-                            <constraint firstItem="mW7-0w-kxZ" firstAttribute="leading" secondItem="zyt-vE-QB4" secondAttribute="leading" constant="165" id="8bF-dg-EBm"/>
-                            <constraint firstItem="mW7-0w-kxZ" firstAttribute="top" secondItem="v8f-f7-0jy" secondAttribute="bottom" constant="100" id="B6w-yR-lax"/>
-                            <constraint firstItem="v8f-f7-0jy" firstAttribute="top" secondItem="zyt-vE-QB4" secondAttribute="top" constant="250" id="Fw7-70-cKz"/>
-                            <constraint firstItem="zyt-vE-QB4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v8f-f7-0jy" secondAttribute="trailing" symbolic="YES" id="bQg-pB-IZc"/>
-                            <constraint firstItem="v8f-f7-0jy" firstAttribute="leading" secondItem="zyt-vE-QB4" secondAttribute="leading" constant="162.5" id="yP8-Qv-ZAO"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Jat-PA-faq"/>
                 </viewController>

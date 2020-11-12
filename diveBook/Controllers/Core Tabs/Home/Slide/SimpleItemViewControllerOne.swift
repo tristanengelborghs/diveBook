@@ -14,7 +14,7 @@ var myIndex = DiveInfoStruct(location: "", diveNr: 0, date: "", diveTime: 0, sta
 
 class SimpleItemViewControllerOne: UIViewController{
     
-    let backgroundColor = UIColor(red: 0.1, green: 0.11, blue: 0.11, alpha: 1.00)
+    let backgroundColor = UIColor.systemGray6
     var tableView = UITableView()
     let headerCard = UIButton.init()
     let headerLabel = UILabel.init()
@@ -27,7 +27,7 @@ class SimpleItemViewControllerOne: UIViewController{
     let organistationLabel = UILabel.init()
     
     var dives: [DiveInfoStruct] = []
-    var card: CardInfoStruct = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoFront: nil, PhotoBack: nil)
+    var card: CardInfoStruct = CardInfoStruct(Name: "", ID: "", Organistation: "", Date: "", DiveClub: "", Instructor: "", Primary: false, PhotoBack: nil)
     let uid = Auth.auth().currentUser!.uid
     
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class SimpleItemViewControllerOne: UIViewController{
         headerCard.backgroundColor = backgroundColor
         headerCard.layer.cornerRadius = 15
         headerCard.layer.borderWidth = 1
-        headerCard.layer.borderColor = UIColor.white.cgColor
+        headerCard.layer.borderColor = UIColor.label.cgColor
         headerCard.translatesAutoresizingMaskIntoConstraints = false
         headerCard.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
         headerCard.topAnchor.constraint(equalTo: header.topAnchor, constant: 20).isActive = true
@@ -112,6 +112,10 @@ class SimpleItemViewControllerOne: UIViewController{
         arrowButton.trailingAnchor.constraint(equalTo: headerCard.trailingAnchor, constant: -20).isActive = true
         arrowButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         arrowButton.tintColor = .white
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        headerCard.layer.borderColor = UIColor.label.cgColor
     }
     
     

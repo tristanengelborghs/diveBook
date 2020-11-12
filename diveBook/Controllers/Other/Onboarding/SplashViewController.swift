@@ -13,6 +13,7 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemRed
 
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {

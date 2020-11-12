@@ -33,13 +33,13 @@
 		2F4F126024F2727300666535 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F125F24F2727300666535 /* LoginViewController.swift */; };
 		2F4F126224F2728E00666535 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126124F2728E00666535 /* RegistrationViewController.swift */; };
 		2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126324F272E000666535 /* EditProfileViewController.swift */; };
-		2F4F126624F2730000666535 /* EditDiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126524F2730000666535 /* EditDiveViewController.swift */; };
 		2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126724F2731B00666535 /* SettingsViewController.swift */; };
 		2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F126924F283A200666535 /* GoogleService-Info.plist */; };
 		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
 		2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */; };
-		2F63B352250CB35B00F4EEBD /* ShowCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */; };
-		2FBBD8892555E6EE007E7772 /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8882555E6EE007E7772 /* ShowPhotoViewController.swift */; };
+		2F63B352250CB35B00F4EEBD /* EditCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */; };
+		2FBBD8AF25587F1C007E7772 /* GradientBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */; };
+		2FBBD8B225588011007E7772 /* knConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8B125588011007E7772 /* knConstraints.swift */; };
 		2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */; };
 		2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A9325017F9E0084B496 /* SplashViewController.swift */; };
 		2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A952502DCFD0084B496 /* FetchData.swift */; };
@@ -76,13 +76,13 @@
 		2F4F125F24F2727300666535 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2F4F126124F2728E00666535 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		2F4F126324F272E000666535 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		2F4F126524F2730000666535 /* EditDiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditDiveViewController.swift; path = "../New Group/EditDiveViewController.swift"; sourceTree = "<group>"; };
 		2F4F126724F2731B00666535 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2F4F126924F283A200666535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
 		2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
-		2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardInfoViewController.swift; sourceTree = "<group>"; };
-		2FBBD8882555E6EE007E7772 /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
+		2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardInfoViewController.swift; sourceTree = "<group>"; };
+		2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBorderView.swift; sourceTree = "<group>"; };
+		2FBBD8B125588011007E7772 /* knConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = knConstraints.swift; sourceTree = "<group>"; };
 		2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardsViewController.swift; sourceTree = "<group>"; };
 		2FE50A9325017F9E0084B496 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2FE50A952502DCFD0084B496 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
@@ -110,7 +110,9 @@
 				2F4F127424F2C2EC00666535 /* GradientColor.swift */,
 				2F320BDD24F3F4D900BBEE13 /* Constants.swift */,
 				2F320BDC24F3F4D800BBEE13 /* Utilities.swift */,
+				2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */,
 				2F33C73C24F695F700752B45 /* UIViewExtension.swift */,
+				2FBBD8B125588011007E7772 /* knConstraints.swift */,
 				2FE50A952502DCFD0084B496 /* FetchData.swift */,
 				2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */,
 			);
@@ -120,8 +122,8 @@
 		2F320BE924F5453A00BBEE13 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				2FF42C23254ECE7A00CF482B /* Edit */,
-				2FF42C22254ECE6B00CF482B /* Add */,
+				2FBBD892255863D8007E7772 /* Edit */,
+				2FF42C22254ECE6B00CF482B /* Add Card */,
 				2FE50A92250162E40084B496 /* Slide */,
 				2FE50A91250162880084B496 /* Show */,
 				2F33C73E24F69AE000752B45 /* custom cell */,
@@ -256,6 +258,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		2FBBD892255863D8007E7772 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		2FE50A8624FC01D30084B496 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,8 +297,6 @@
 			children = (
 				2F33C74324F911C400752B45 /* ShowDiveViewController.swift */,
 				2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */,
-				2F63B351250CB35B00F4EEBD /* ShowCardInfoViewController.swift */,
-				2FBBD8882555E6EE007E7772 /* ShowPhotoViewController.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -303,20 +311,12 @@
 			path = Slide;
 			sourceTree = "<group>";
 		};
-		2FF42C22254ECE6B00CF482B /* Add */ = {
+		2FF42C22254ECE6B00CF482B /* Add Card */ = {
 			isa = PBXGroup;
 			children = (
 				2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */,
 			);
-			path = Add;
-			sourceTree = "<group>";
-		};
-		2FF42C23254ECE7A00CF482B /* Edit */ = {
-			isa = PBXGroup;
-			children = (
-				2F4F126524F2730000666535 /* EditDiveViewController.swift */,
-			);
-			path = Edit;
+			path = "Add Card";
 			sourceTree = "<group>";
 		};
 		705F134E4C81E7A698A42A0F /* Pods */ = {
@@ -463,7 +463,6 @@
 				2F4F126224F2728E00666535 /* RegistrationViewController.swift in Sources */,
 				2F320BDE24F3F4D900BBEE13 /* Utilities.swift in Sources */,
 				2F4F124024F26FC200666535 /* HomeViewController.swift in Sources */,
-				2F4F126624F2730000666535 /* EditDiveViewController.swift in Sources */,
 				2F33C74B24F9237F00752B45 /* NormalDiveViewController.swift in Sources */,
 				2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */,
 				2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */,
@@ -479,12 +478,13 @@
 				2FF42C25254ECEAD00CF482B /* AddCardViewController.swift in Sources */,
 				2F33C73D24F695F700752B45 /* UIViewExtension.swift in Sources */,
 				2F320BEB24F5456500BBEE13 /* UISlidingTabController.swift in Sources */,
-				2F63B352250CB35B00F4EEBD /* ShowCardInfoViewController.swift in Sources */,
+				2FBBD8AF25587F1C007E7772 /* GradientBorderView.swift in Sources */,
+				2F63B352250CB35B00F4EEBD /* EditCardInfoViewController.swift in Sources */,
 				2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */,
 				2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */,
-				2FBBD8892555E6EE007E7772 /* ShowPhotoViewController.swift in Sources */,
 				2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */,
 				2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */,
+				2FBBD8B225588011007E7772 /* knConstraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +634,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4WT7ZZZ3KY;
 				INFOPLIST_FILE = diveBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,6 +654,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4WT7ZZZ3KY;
 				INFOPLIST_FILE = diveBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
