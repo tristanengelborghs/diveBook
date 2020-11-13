@@ -102,10 +102,10 @@ extension UITextField
         self.backgroundColor = UIColor.clear
         let width: CGFloat = 1.0
 
-        let borderLine = UIView(frame: CGRect(x: 0, y: self.frame.height - width, width: self.frame.width, height: width))
+        let borderLine = UIView(frame: CGRect(x: 0, y: self.frame.height - width, width: self.frame.width, height: 1.5))
         borderLine.backgroundColor = color
         borderLine.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
-        borderLine.alpha = 0.3
+        borderLine.alpha = 0.35
         self.addSubview(borderLine)
     }
     func setDarkTextField(textfield: UITextField) {
