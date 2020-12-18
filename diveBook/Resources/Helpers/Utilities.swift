@@ -115,6 +115,14 @@ extension UITextField
         textfield.leftView = paddingView
         textfield.leftViewMode = UITextField.ViewMode.always
     }
+    
+    func setConstraints(top: Any, T: CGFloat,right: Any, R:CGFloat, bottom: Any, B:CGFloat, left: Any, L:CGFloat, textfield: UITextField) {
+        textfield.topAnchor.constraint(equalTo: top as! NSLayoutAnchor<NSLayoutYAxisAnchor>, constant: T).isActive = true
+        textfield.leadingAnchor.constraint(equalTo: left as! NSLayoutAnchor<NSLayoutXAxisAnchor> , constant: R).isActive = true
+        textfield.trailingAnchor.constraint(equalTo: right as! NSLayoutAnchor<NSLayoutXAxisAnchor>, constant: B).isActive = true
+        textfield.bottomAnchor.constraint(equalTo: bottom as! NSLayoutAnchor<NSLayoutYAxisAnchor>, constant: L).isActive = true
+    }
+    
 }
 
 extension UILabel {

@@ -213,7 +213,6 @@ class AddCardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         picker2 = UIPickerView(frame: CGRect(x: 0, y: 200, width: view.frame.width, height: 250))
         
         picker.selectRow(0, inComponent: 0, animated: true)
-        
         picker.backgroundColor = backgroundColor
         picker.delegate = self
         picker.dataSource = self

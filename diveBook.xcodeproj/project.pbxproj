@@ -45,6 +45,7 @@
 		2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A952502DCFD0084B496 /* FetchData.swift */; };
 		2FE9D4A5255EA6A9004819DC /* NormalDiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */; };
 		2FF42C25254ECEAD00CF482B /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */; };
+		2FFFAA83258CB4F10040C279 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */; };
 		AF0B6AE2D7925620500F065B /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		2FE50A952502DCFD0084B496 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalDiveExtension.swift; sourceTree = "<group>"; };
 		2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
 		41EB2E9A3C96819DDA9A192D /* Pods-diveBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.release.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.release.xcconfig"; sourceTree = "<group>"; };
 		808E96D03CA4F6CB4FF7EC28 /* Pods-diveBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.debug.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.debug.xcconfig"; sourceTree = "<group>"; };
 		847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +151,7 @@
 				2F33C74824F9237100752B45 /* CirtifiedDiveViewController.swift */,
 				2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */,
 				2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */,
+				2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */,
 			);
 			path = "Add Dive";
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */,
 				2F33C74424F911C400752B45 /* ShowDiveViewController.swift in Sources */,
 				2F320BE224F3F78800BBEE13 /* FirstViewController.swift in Sources */,
+				2FFFAA83258CB4F10040C279 /* ConditionsViewController.swift in Sources */,
 				2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */,
 				2F33C74924F9237100752B45 /* CirtifiedDiveViewController.swift in Sources */,
 				2F320BEF24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift in Sources */,

@@ -12,14 +12,18 @@ import FirebaseFirestore
 
 class NormalDiveViewController: UIViewController {
     
+    let currentDateTime = Date()
+    let formatter = DateFormatter()
     let scrollView = UIScrollView(frame: UIScreen.main.bounds)
     let topGradientView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 340))
     let contentView = UIView()
+    
+    // first section textfields
     let diveNr = UITextField()
     let location = UITextField()
     let divePoint = UITextField()
-    
-    let timeDate: UIDatePicker = UIDatePicker()
+    let datePicker: UIDatePicker = UIDatePicker()
+    let dateTextField = UITextField()
     let timeDateTitle = UILabel()
     var timeDateText = ""
     let maxDepth = UITextField()
@@ -39,12 +43,33 @@ class NormalDiveViewController: UIViewController {
     let tankVolumeValue = UILabel()
     let tankSteelLabel = UILabel()
     let tankAlLabel = UILabel()
-    let tankSteelButton = UIButton()
+    let tankSteelButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
     let tankAlButton = UIButton()
     let rating = UISlider(frame:CGRect(x: 10, y: 100, width: 300, height: 20))
     let step : Float = 1
     
+    // Second section
+    let coloredTankBackground = UIView()
+    let bottlePhoto = UIImageView()
+    let airInTitle = UILabel()
+    let barLabel = UILabel()
+    let airIn = UITextField()
+    let SACTitle = UILabel()
+    let barLabel2 = UILabel()
+    let SAC = UITextField()
+    let airOutTitle = UILabel()
+    let barLabel3 = UILabel()
+    let airOut = UITextField()
+    let nitroxTitle = UILabel()
+    let barLabel4 = UILabel()
+    let nitrox = UITextField()
     
+    //third section
+    let conditionsTitle = UILabel()
+    let conditions = UIButton()
+    
+    let SelectedDot = UIImage(named: "SelectedDot") as UIImage?
+    let UnselectedDot = UIImage(named: "UnselectedDot") as UIImage?
     let topColor = UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00)
     let bottomColor = UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00)
     var colors: [UIColor] = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00), UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00)]
@@ -147,7 +172,6 @@ class NormalDiveViewController: UIViewController {
         topGradientView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -200 + 85 - statusBarHeight ).isActive = true
         topGradientView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
         topGradientView.heightAnchor.constraint(equalToConstant: 340).isActive = true
-
         topGradientView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
         
         let gradient = CAGradientLayer()
@@ -185,6 +209,7 @@ class NormalDiveViewController: UIViewController {
         topGradientView.layer.shadowOpacity = 0.7
         topGradientView.layer.shadowOffset = .zero
         topGradientView.layer.shadowRadius = 20
+
     }
     
     func getStatusBarHeight() -> CGFloat {
