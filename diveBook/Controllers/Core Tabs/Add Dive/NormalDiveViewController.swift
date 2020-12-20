@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
+var waterConditionsArray = waterConditionsStruct(type: "", maxTemp: "", minTemp: "", waves: "", visibility: "0m", current: "")
+
 class NormalDiveViewController: UIViewController {
     
     let currentDateTime = Date()
@@ -23,6 +25,7 @@ class NormalDiveViewController: UIViewController {
     let location = UITextField()
     let divePoint = UITextField()
     let datePicker: UIDatePicker = UIDatePicker()
+    let datePicker2: UIDatePicker = UIDatePicker()
     let dateTextField = UITextField()
     let timeDateTitle = UILabel()
     var timeDateText = ""
@@ -32,7 +35,7 @@ class NormalDiveViewController: UIViewController {
     let avgDepthTitle = UILabel()
     let diveIn = UITextField()
     let diveInTitle = UILabel()
-    let diveTime = UITextField()
+    var diveTime = UITextField()
     let diveTimeTitle = UILabel()
     let ratingTitle = UILabel()
     let ratingValue = UILabel()
@@ -67,6 +70,17 @@ class NormalDiveViewController: UIViewController {
     //third section
     let conditionsTitle = UILabel()
     let conditions = UIButton()
+    let completion = UIButton(type: UIButton.ButtonType.custom) as UIButton
+    let entryTitle = UILabel()
+    let entry = UITextField()
+    let entryArray = ["Select water entry", "Boat", "Shore"]
+    var picker = UIPickerView()
+    var entryText: String = ""
+    let airTempTitle = UILabel()
+    let airTemp = UITextField()
+    let equipmentTitle = UILabel()
+    let equipment = UIButton()
+    let completion2 = UIButton(type: UIButton.ButtonType.custom) as UIButton
     
     let SelectedDot = UIImage(named: "SelectedDot") as UIImage?
     let UnselectedDot = UIImage(named: "UnselectedDot") as UIImage?
@@ -116,11 +130,11 @@ class NormalDiveViewController: UIViewController {
         label.tintColor = .white
     }
     
+    // navigation bar
     func setupNavbar() {
         
         let navbar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 85))
         view.addSubview(navbar)
-        
         navbar.translatesAutoresizingMaskIntoConstraints = false
         navbar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         navbar.heightAnchor.constraint(equalToConstant: 85).isActive = true
@@ -150,30 +164,32 @@ class NormalDiveViewController: UIViewController {
         saveButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
         saveButton.setTitle("Save", for: .normal)
         saveButton.tintColor = .white
-        
+        saveButton.addTarget(self, action: #selector(saveButtonActions), for: .touchUpInside)
         navbar.addSubview(diveNr)
         
         diveNr.translatesAutoresizingMaskIntoConstraints = false
         diveNr.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 44).isActive = true
         diveNr.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         diveNr.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        diveNr.attributedPlaceholder = NSAttributedString(string: "143",
-                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         diveNr.font = UIFont.init(name: "Avenir Light", size: 22)
         diveNr.textAlignment = .center
         diveNr.alpha = 0.75
+        diveNr.attributedPlaceholder = NSAttributedString(string: "143",
+                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
     func topContainer() {
-        let statusBarHeight = getStatusBarHeight()
+        let statusBarHeight = Utilities.getStatusBarHeight()
         scrollView.addSubview(topGradientView)
+        scrollView.addSubview(location)
+        scrollView.addSubview(divePoint)
         
+        // top gradient view
         topGradientView.translatesAutoresizingMaskIntoConstraints = false
         topGradientView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -200 + 85 - statusBarHeight ).isActive = true
         topGradientView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
         topGradientView.heightAnchor.constraint(equalToConstant: 340).isActive = true
         topGradientView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
-        
         let gradient = CAGradientLayer()
         gradient.frame = topGradientView.bounds
         gradient.colors = [bottomColor.cgColor, topColor.cgColor]
@@ -181,30 +197,27 @@ class NormalDiveViewController: UIViewController {
         gradient.endPoint = CGPoint(x: 1, y: 0.5)
         topGradientView.layer.insertSublayer(gradient, at: 0)
         
-        scrollView.addSubview(location)
-        scrollView.addSubview(divePoint)
-        
-        
+        // location textfield
         location.translatesAutoresizingMaskIntoConstraints = false
         location.bottomAnchor.constraint(equalTo: divePoint.topAnchor, constant: -20).isActive = true
         location.leadingAnchor.constraint(equalTo: topGradientView.leadingAnchor, constant: 45).isActive = true
         location.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         location.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        location.attributedPlaceholder = NSAttributedString(string: "Location",
-                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         location.font = UIFont.init(name: "Avenir Next", size: 16)
         location.setBottomBorderText(withColor: UIColor.white)
-
+        location.attributedPlaceholder = NSAttributedString(string: "Location",
+                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        // name of dive point textfield
         divePoint.translatesAutoresizingMaskIntoConstraints = false
         divePoint.bottomAnchor.constraint(equalTo: topGradientView.bottomAnchor, constant: -40).isActive = true
         divePoint.leadingAnchor.constraint(equalTo: topGradientView.leadingAnchor, constant: 45).isActive = true
         divePoint.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         divePoint.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        divePoint.attributedPlaceholder = NSAttributedString(string: "Dive Point",
-                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         divePoint.font = UIFont.init(name: "Avenir Next", size: 16)
         divePoint.setBottomBorderText(withColor: UIColor.white)
-        
+        divePoint.attributedPlaceholder = NSAttributedString(string: "Dive Point",
+                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        // set shadow of blue top view
         topGradientView.layer.shadowColor = UIColor.black.cgColor
         topGradientView.layer.shadowOpacity = 0.7
         topGradientView.layer.shadowOffset = .zero
@@ -212,15 +225,9 @@ class NormalDiveViewController: UIViewController {
 
     }
     
-    func getStatusBarHeight() -> CGFloat {
-       var statusBarHeight: CGFloat = 0
-       if #available(iOS 13.0, *) {
-           let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
-           statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-       } else {
-           statusBarHeight = UIApplication.shared.statusBarFrame.height
-       }
-       return statusBarHeight
-   }
+    @objc func saveButtonActions() {
+        print("\(waterConditionsArray)")
+        print("hello")
+    }
 }
 

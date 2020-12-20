@@ -362,69 +362,6 @@
             </objects>
             <point key="canvasLocation" x="-4044" y="1343"/>
         </scene>
-        <!--Cirtified Dive View Controller-->
-        <scene sceneID="kYg-z7-P9w">
-            <objects>
-                <viewController id="vXo-A2-0cu" customClass="CirtifiedDiveViewController" customModule="diveBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="h68-Cg-vrh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PoP-TY-nPI">
-                                <rect key="frame" x="50" y="124" width="275" height="260"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D6G-56-qty">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="UDe-Z8-G1I"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dive Nr" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nk2-Qs-eW1">
-                                        <rect key="frame" x="0.0" y="70" width="275" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BQX-gM-LiH">
-                                        <rect key="frame" x="0.0" y="140" width="275" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDX-hY-9F1">
-                                        <rect key="frame" x="0.0" y="210" width="275" height="50"/>
-                                        <state key="normal" title="Add Dive"/>
-                                        <connections>
-                                            <action selector="AddDiveTapped:" destination="vXo-A2-0cu" eventType="touchUpInside" id="BYO-C4-9Xl"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Nk2-Qs-eW1" firstAttribute="height" secondItem="D6G-56-qty" secondAttribute="height" id="IeR-T7-3Mb"/>
-                                    <constraint firstItem="BQX-gM-LiH" firstAttribute="height" secondItem="D6G-56-qty" secondAttribute="height" id="ShJ-sl-zGa"/>
-                                    <constraint firstItem="UDX-hY-9F1" firstAttribute="height" secondItem="D6G-56-qty" secondAttribute="height" id="TwE-Jr-K0H"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="QSg-Dm-KU1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="PoP-TY-nPI" firstAttribute="leading" secondItem="QSg-Dm-KU1" secondAttribute="leading" constant="50" id="FPs-Z9-5t0"/>
-                            <constraint firstItem="QSg-Dm-KU1" firstAttribute="trailing" secondItem="PoP-TY-nPI" secondAttribute="trailing" constant="50" id="QKf-el-dZR"/>
-                            <constraint firstItem="PoP-TY-nPI" firstAttribute="top" secondItem="QSg-Dm-KU1" secondAttribute="top" constant="80" id="fjV-D7-04M"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="9ED-up-cey"/>
-                    <connections>
-                        <outlet property="DateTextField" destination="BQX-gM-LiH" id="xrx-Mx-V6f"/>
-                        <outlet property="DiveNrTextField" destination="Nk2-Qs-eW1" id="2XK-Fv-62B"/>
-                        <outlet property="LocationTextField" destination="D6G-56-qty" id="ItU-bE-ciN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OBh-NN-tC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2116" y="1319"/>
-        </scene>
         <!--Add Dive View Controller-->
         <scene sceneID="ONF-G2-jxB">
             <objects>
@@ -586,22 +523,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuV-st-fZg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1775" y="-2711"/>
-        </scene>
-        <!--Normal Dive View Controller-->
-        <scene sceneID="Mpa-1V-XXN">
-            <objects>
-                <viewController id="8Mp-df-H3L" customClass="NormalDiveViewController" customModule="diveBook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Oun-5r-rUe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="MmJ-tx-iAZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="y1k-O5-vWd"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="moF-zS-E25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1343" y="1319"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -46,6 +46,8 @@
 		2FE9D4A5255EA6A9004819DC /* NormalDiveExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */; };
 		2FF42C25254ECEAD00CF482B /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */; };
 		2FFFAA83258CB4F10040C279 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */; };
+		2FFFE447258F5BA50054C300 /* EquipmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */; };
+		2FFFE44A258F6AA20054C300 /* EquipmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */; };
 		AF0B6AE2D7925620500F065B /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +93,8 @@
 		2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalDiveExtension.swift; sourceTree = "<group>"; };
 		2FF42C24254ECEAD00CF482B /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
+		2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentViewController.swift; sourceTree = "<group>"; };
+		2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentTableViewCell.swift; sourceTree = "<group>"; };
 		41EB2E9A3C96819DDA9A192D /* Pods-diveBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.release.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.release.xcconfig"; sourceTree = "<group>"; };
 		808E96D03CA4F6CB4FF7EC28 /* Pods-diveBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-diveBook.debug.xcconfig"; path = "Target Support Files/Pods-diveBook/Pods-diveBook.debug.xcconfig"; sourceTree = "<group>"; };
 		847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_diveBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +156,8 @@
 				2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */,
 				2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */,
 				2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */,
+				2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */,
+				2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */,
 			);
 			path = "Add Dive";
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 				2F4F125924F2719700666535 /* AlbumViewController.swift in Sources */,
 				2F320BDF24F3F4D900BBEE13 /* Constants.swift in Sources */,
 				2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */,
+				2FFFE44A258F6AA20054C300 /* EquipmentTableViewCell.swift in Sources */,
 				2F33C74024F69B0200752B45 /* CustomTableViewCell.swift in Sources */,
 				2FE9D4A5255EA6A9004819DC /* NormalDiveExtension.swift in Sources */,
 				2F4F125B24F2722A00666535 /* AddDiveViewController.swift in Sources */,
@@ -481,6 +488,7 @@
 				2FFFAA83258CB4F10040C279 /* ConditionsViewController.swift in Sources */,
 				2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */,
 				2F33C74924F9237100752B45 /* CirtifiedDiveViewController.swift in Sources */,
+				2FFFE447258F5BA50054C300 /* EquipmentViewController.swift in Sources */,
 				2F320BEF24F546FF00BBEE13 /* SimpleItemViewControllerTwo.swift in Sources */,
 				2F320BED24F546D900BBEE13 /* SimpleItemViewControllerOne.swift in Sources */,
 				2FF42C25254ECEAD00CF482B /* AddCardViewController.swift in Sources */,

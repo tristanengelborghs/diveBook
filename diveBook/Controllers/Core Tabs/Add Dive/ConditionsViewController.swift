@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     let waterTypeTitle = UILabel()
     var waterTypeText: String = ""
@@ -33,9 +33,9 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
     var wavesText: String = ""
     let waves = UITextField()
     
-    let waterTypeArray = ["--", "Salt", "Fresh", "1.000 kg/l", "1.050 kg/l", "1.100 kg/l", "1.150 kg/l", "1.200 kg/l", "1.250 kg/l"]
-    let currentArray = ["--", "None", "Light", "Medium", "Strong"]
-    let wavesArray = ["--", "Flat", "Low waves", "Medium waves", "High waves"]
+    let waterTypeArray = ["Select water type", "Salt", "Fresh", "1.000 kg/l", "1.050 kg/l", "1.100 kg/l", "1.150 kg/l", "1.200 kg/l", "1.250 kg/l"]
+    let currentArray = ["Select type of current", "None", "Light", "Medium", "Strong"]
+    let wavesArray = ["Select wave type", "Flat", "Low waves", "Medium waves", "High waves"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +54,8 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.view.addSubview(waterType)
         self.view.addSubview(minTempTitle)
         self.view.addSubview(minTemp)
-        self.view.addSubview(minTempLabel)
         self.view.addSubview(maxTempTitle)
         self.view.addSubview(maxTemp)
-        self.view.addSubview(maxTempLabel)
         self.view.addSubview(currentTitle)
         self.view.addSubview(current)
         self.view.addSubview(visibiltySlider)
@@ -65,6 +63,9 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.view.addSubview(visibilityRating)
         self.view.addSubview(waves)
         self.view.addSubview(wavesTitle)
+        
+        minTemp.delegate = self
+        maxTemp.delegate = self
         
         // water type Title
         waterTypeTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -85,8 +86,9 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         waterType.font = UIFont.init(name: "Avenir Next", size: 16)
         waterType.setDarkTextField(textfield: waterType)
         setupPicker(textField: waterType, picker: picker)
-        waterType.attributedPlaceholder = NSAttributedString(string: "--",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        waterType.text = waterConditionsArray.type
+        waterType.attributedPlaceholder = NSAttributedString(string: "Select water type...",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // minimum temperature title
         minTempTitle.translatesAutoresizingMaskIntoConstraints = false
         minTempTitle.topAnchor.constraint(equalTo: waterType.bottomAnchor, constant: 20).isActive = true
@@ -96,13 +98,6 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         minTempTitle.font = UIFont.init(name: "Avenir Next", size: 16)
         minTempTitle.alpha = 0.75
         
-        // minimum temperature label
-        minTempLabel.translatesAutoresizingMaskIntoConstraints = false
-        minTempLabel.centerYAnchor.constraint(equalTo: minTemp.centerYAnchor, constant: 0).isActive = true
-        minTempLabel.leadingAnchor.constraint(equalTo: minTemp.trailingAnchor, constant: -35).isActive = true
-        minTempLabel.text = "°C"
-        minTempLabel.font = UIFont.init(name: "Avenir Next", size: 16)
-        
         // minimum temperature textfield
         minTemp.translatesAutoresizingMaskIntoConstraints = false
         minTemp.topAnchor.constraint(equalTo: minTempTitle.bottomAnchor, constant: 10).isActive = true
@@ -111,8 +106,10 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         minTemp.trailingAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -10).isActive = true
         minTemp.font = UIFont.init(name: "Avenir Next", size: 16)
         minTemp.setDarkTextField(textfield: minTemp)
-        minTemp.attributedPlaceholder = NSAttributedString(string: "0",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        minTemp.text = waterConditionsArray.minTemp
+        minTemp.keyboardType = UIKeyboardType.decimalPad
+        minTemp.attributedPlaceholder = NSAttributedString(string: "0 °C",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // maximum temperature title
         maxTempTitle.translatesAutoresizingMaskIntoConstraints = false
         maxTempTitle.topAnchor.constraint(equalTo: waterType.bottomAnchor, constant: 20).isActive = true
@@ -122,13 +119,6 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         maxTempTitle.font = UIFont.init(name: "Avenir Next", size: 16)
         maxTempTitle.alpha = 0.75
         
-        // maximum temperature label
-        maxTempLabel.translatesAutoresizingMaskIntoConstraints = false
-        maxTempLabel.centerYAnchor.constraint(equalTo: maxTemp.centerYAnchor, constant: 0).isActive = true
-        maxTempLabel.leadingAnchor.constraint(equalTo: maxTemp.trailingAnchor, constant: -35).isActive = true
-        maxTempLabel.text = "°C"
-        maxTempLabel.font = UIFont.init(name: "Avenir Next", size: 16)
-        
         // maximum temperature textfield
         maxTemp.translatesAutoresizingMaskIntoConstraints = false
         maxTemp.topAnchor.constraint(equalTo: minTempTitle.bottomAnchor, constant: 10).isActive = true
@@ -137,8 +127,10 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         maxTemp.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         maxTemp.font = UIFont.init(name: "Avenir Next", size: 16)
         maxTemp.setDarkTextField(textfield: maxTemp)
-        maxTemp.attributedPlaceholder = NSAttributedString(string: "0",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        maxTemp.text = waterConditionsArray.maxTemp
+        maxTemp.keyboardType = UIKeyboardType.decimalPad
+        maxTemp.attributedPlaceholder = NSAttributedString(string: "0 C°",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // water type Title
         wavesTitle.translatesAutoresizingMaskIntoConstraints = false
         wavesTitle.topAnchor.constraint(equalTo: maxTemp.bottomAnchor, constant: 20).isActive = true
@@ -157,8 +149,9 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         waves.font = UIFont.init(name: "Avenir Next", size: 16)
         waves.setDarkTextField(textfield: waves)
         setupPicker(textField: waves, picker: picker3)
-        waves.attributedPlaceholder = NSAttributedString(string: "--",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        waves.text = waterConditionsArray.waves
+        waves.attributedPlaceholder = NSAttributedString(string: "Select wave type...",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // rating title
         visibilityTitle.translatesAutoresizingMaskIntoConstraints = false
         visibilityTitle.topAnchor.constraint(equalTo: waves.bottomAnchor, constant: 20).isActive = true
@@ -173,7 +166,7 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         visibilityRating.topAnchor.constraint(equalTo: waves.bottomAnchor, constant: 20).isActive = true
         visibilityRating.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
         visibilityRating.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        visibilityRating.text = "0m"
+        visibilityRating.text = waterConditionsArray.visibility
         visibilityRating.font = UIFont.init(name: "Avenir Next", size: 16)
         visibilityRating.alpha = 0.75
         visibilityRating.textAlignment = .right
@@ -185,10 +178,9 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         visibiltySlider.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         visibiltySlider.minimumValue = 0
         visibiltySlider.maximumValue = 30
+        visibiltySlider.value = Float(waterConditionsArray.visibility.replacingOccurrences(of: "m", with: ""))!
         visibiltySlider.isContinuous = true
         visibiltySlider.tintColor = UIColor(red: 0.07, green: 0.45, blue: 0.70, alpha: 1.00)
-        visibiltySlider.minimumTrackTintColor = UIColor(red: 0.07, green: 0.45, blue: 0.70, alpha: 1.00)
-        visibiltySlider.maximumTrackTintColor = UIColor(red: 0.07, green: 0.45, blue: 0.70, alpha: 0.50)
         visibiltySlider.addTarget(self, action: #selector(NormalDiveViewController.sliderValueDidChange(_:)), for: .valueChanged)
         
         // water type Title
@@ -209,8 +201,19 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         current.font = UIFont.init(name: "Avenir Next", size: 16)
         current.setDarkTextField(textfield: current)
         setupPicker(textField: current, picker: picker2)
-        current.attributedPlaceholder = NSAttributedString(string: "--",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        current.text = waterConditionsArray.current
+        current.attributedPlaceholder = NSAttributedString(string: "Select type of current...",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = textField.text?.replacingOccurrences(of: " °C", with: "")
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField.text != "") {
+            textField.text = "\(textField.text ?? "")" + " °C"
+        }
     }
     
     func setupPicker(textField: UITextField, picker: UIPickerView) {
@@ -246,7 +249,32 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     @objc func saveWaterConditions(sender: UIButton!) {
-        self.dismiss(animated: true, completion: nil)
+        if let presenter = presentingViewController as? NormalDiveViewController {
+            let type: String = "\(waterType.text ?? "")"
+            let minTempText: String = "\(minTemp.text ?? "")"
+            let maxTempText: String = "\(maxTemp.text ?? "")"
+            let waveText: String = "\(waves.text ?? "")"
+            let visibilityText: String = "\(visibilityRating.text ?? "")"
+            let currentsText: String = "\(current.text ?? "")"
+            
+            waterConditionsArray.type = type
+            waterConditionsArray.minTemp = minTempText
+            waterConditionsArray.maxTemp = maxTempText
+            waterConditionsArray.waves = waveText
+            waterConditionsArray.visibility = visibilityText
+            waterConditionsArray.current = currentsText
+            
+            if (type != "" || minTempText != "" || maxTempText != "" || waveText != "" || visibilityText != "0m" || currentsText != "") {
+                presenter.conditions.setTitleColor(.white, for: .normal)
+                presenter.conditions.setTitle("completed", for: .normal)
+                presenter.completion.isHidden = false
+            } else {
+                presenter.conditions.setTitleColor(.gray, for: .normal)
+                presenter.conditions.setTitle("Select here...", for: .normal)
+                presenter.completion.isHidden = true
+            }
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func closeVC(sender: UIButton!) {
@@ -326,4 +354,6 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         navItem.leftBarButtonItem = backItem
         navBar.setItems([navItem], animated: false)
     }
+
+
 }

@@ -27,3 +27,12 @@ struct CardInfoStruct {
     var Primary: Bool
     var PhotoBack: Data?
 }
+
+struct waterConditionsStruct {
+    var type: String
+    var maxTemp: String
+    var minTemp: String
+    var waves: String
+    var visibility: String
+    var current: String
+}

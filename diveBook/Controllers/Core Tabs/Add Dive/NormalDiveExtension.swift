@@ -9,49 +9,25 @@
 import Foundation
 import UIKit
 
-extension NormalDiveViewController {
+extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, UIPickerViewDataSource  {
     
+
     func middleTexFields() {
         
-        scrollView.addSubview(timeDateTitle)
-        scrollView.addSubview(maxDepth)
-        scrollView.addSubview(maxDepthTitle)
-        scrollView.addSubview(avgDepth)
-        scrollView.addSubview(avgDepthTitle)
-        scrollView.addSubview(diveInTitle)
-        scrollView.addSubview(diveIn)
-        scrollView.addSubview(diveTime)
-        scrollView.addSubview(diveTimeTitle)
-        scrollView.addSubview(ratingTitle)
-        scrollView.addSubview(rating)
-        scrollView.addSubview(ratingValue)
-        scrollView.addSubview(safetyStopTitle)
-        scrollView.addSubview(safetyStop)
-        scrollView.addSubview(tankVolume)
-        scrollView.addSubview(tankVolumeTitle)
-        scrollView.addSubview(tankVolumeValue)
-        scrollView.addSubview(tankAlLabel)
-        scrollView.addSubview(tankAlButton)
-        scrollView.addSubview(tankSteelLabel)
-        scrollView.addSubview(tankSteelButton)
+        // adding subviews
+        addSubviews()
         
-        scrollView.addSubview(coloredTankBackground)
-        coloredTankBackground.addSubview(bottlePhoto)
-        scrollView.addSubview(airInTitle)
-        scrollView.addSubview(airIn)
-        scrollView.addSubview(barLabel)
-        scrollView.addSubview(SAC)
-        scrollView.addSubview(SACTitle)
-        scrollView.addSubview(barLabel2)
-        scrollView.addSubview(airOut)
-        scrollView.addSubview(airOutTitle)
-        scrollView.addSubview(barLabel3)
-        scrollView.addSubview(nitrox)
-        scrollView.addSubview(nitroxTitle)
-        scrollView.addSubview(barLabel4)
-        
-        scrollView.addSubview(conditionsTitle)
-        scrollView.addSubview(conditions)
+        // delegates
+        diveIn.delegate = self
+        diveTime.delegate = self
+        maxDepth.delegate = self
+        avgDepth.delegate = self
+        safetyStop.delegate = self
+        airIn.delegate = self
+        airOut.delegate = self
+        SAC.delegate = self
+        nitrox.delegate = self
+        airTemp.delegate = self
         
         // date Title
         timeDateTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +51,9 @@ extension NormalDiveViewController {
         formatter.timeStyle = .none
         formatter.dateStyle = .medium
         dateTextField.text = "\(formatter.string(from: currentDateTime))"
-        createDatePicker()
+        createDatePicker(picker: datePicker, textField: dateTextField)
+        dateTextField.inputView = datePicker
+        datePicker.datePickerMode = .date
         
         // dive time in title
         diveInTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -94,8 +72,11 @@ extension NormalDiveViewController {
         diveIn.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: -10).isActive = true
         diveIn.font = UIFont.init(name: "Avenir Next", size: 16)
         diveIn.setDarkTextField(textfield: diveIn)
+        createDatePicker(picker: datePicker2, textField: diveIn)
+        diveIn.inputView = datePicker2
+        datePicker2.datePickerMode = .time
         diveIn.attributedPlaceholder = NSAttributedString(string: "00:00",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // dive time title
         diveTimeTitle.translatesAutoresizingMaskIntoConstraints = false
         diveTimeTitle.topAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: 20).isActive = true
@@ -113,8 +94,9 @@ extension NormalDiveViewController {
         diveTime.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         diveTime.font = UIFont.init(name: "Avenir Next", size: 16)
         diveTime.setDarkTextField(textfield: diveTime)
+        diveTime.keyboardType = UIKeyboardType.decimalPad
         diveTime.attributedPlaceholder = NSAttributedString(string: "0 min",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // maximum depth title
         maxDepthTitle.translatesAutoresizingMaskIntoConstraints = false
         maxDepthTitle.topAnchor.constraint(equalTo: diveTime.bottomAnchor, constant: 20).isActive = true
@@ -132,8 +114,9 @@ extension NormalDiveViewController {
         maxDepth.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: -10).isActive = true
         maxDepth.font = UIFont.init(name: "Avenir Next", size: 16)
         maxDepth.setDarkTextField(textfield: maxDepth)
+        maxDepth.keyboardType = UIKeyboardType.decimalPad
         maxDepth.attributedPlaceholder = NSAttributedString(string: "0 m",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // avarage depth title
         avgDepthTitle.translatesAutoresizingMaskIntoConstraints = false
         avgDepthTitle.topAnchor.constraint(equalTo: diveTime.bottomAnchor, constant: 20).isActive = true
@@ -151,8 +134,9 @@ extension NormalDiveViewController {
         avgDepth.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         avgDepth.font = UIFont.init(name: "Avenir Next", size: 16)
         avgDepth.setDarkTextField(textfield: avgDepth)
+        avgDepth.keyboardType = UIKeyboardType.decimalPad
         avgDepth.attributedPlaceholder = NSAttributedString(string: "0 m",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // rating title
         ratingTitle.translatesAutoresizingMaskIntoConstraints = false
         ratingTitle.topAnchor.constraint(equalTo: maxDepth.bottomAnchor, constant: 20).isActive = true
@@ -200,8 +184,9 @@ extension NormalDiveViewController {
         safetyStop.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         safetyStop.font = UIFont.init(name: "Avenir Next", size: 16)
         safetyStop.setDarkTextField(textfield: safetyStop)
+        safetyStop.keyboardType = UIKeyboardType.decimalPad
         safetyStop.attributedPlaceholder = NSAttributedString(string: "0 m",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // tank volume title
         tankVolumeTitle.translatesAutoresizingMaskIntoConstraints = false
         tankVolumeTitle.topAnchor.constraint(equalTo: safetyStop.bottomAnchor, constant: 30).isActive = true
@@ -299,15 +284,6 @@ extension NormalDiveViewController {
         airInTitle.font = UIFont.init(name: "Avenir Next", size: 16)
         airInTitle.alpha = 0.75
         
-        // bar unit text
-        barLabel.translatesAutoresizingMaskIntoConstraints = false
-        barLabel.centerYAnchor.constraint(equalTo: airIn.centerYAnchor, constant: 0).isActive = true
-        barLabel.trailingAnchor.constraint(equalTo: airIn.trailingAnchor, constant: -10).isActive = true
-        barLabel.textAlignment = .right
-        barLabel.text = "bar"
-        barLabel.font = UIFont.init(name: "Avenir Next", size: 16)
-        barLabel.alpha = 0.75
-        
         // air in textfield
         airIn.translatesAutoresizingMaskIntoConstraints = false
         airIn.topAnchor.constraint(equalTo: airInTitle.bottomAnchor, constant: 10).isActive = true
@@ -316,8 +292,9 @@ extension NormalDiveViewController {
         airIn.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         airIn.font = UIFont.init(name: "Avenir Next", size: 16)
         airIn.setDarkTextField(textfield: airIn)
-        airIn.attributedPlaceholder = NSAttributedString(string: "200",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        airIn.keyboardType = UIKeyboardType.decimalPad
+        airIn.attributedPlaceholder = NSAttributedString(string: "0 bar",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // SAC Title
         SACTitle.translatesAutoresizingMaskIntoConstraints = false
         SACTitle.topAnchor.constraint(equalTo: airIn.bottomAnchor, constant: 10).isActive = true
@@ -327,15 +304,6 @@ extension NormalDiveViewController {
         SACTitle.font = UIFont.init(name: "Avenir Next", size: 16)
         SACTitle.alpha = 0.75
         
-        // bar unit text
-        barLabel2.translatesAutoresizingMaskIntoConstraints = false
-        barLabel2.centerYAnchor.constraint(equalTo: SAC.centerYAnchor, constant: 0).isActive = true
-        barLabel2.trailingAnchor.constraint(equalTo: SAC.trailingAnchor, constant: -10).isActive = true
-        barLabel2.textAlignment = .right
-        barLabel2.text = "bar/min"
-        barLabel2.font = UIFont.init(name: "Avenir Next", size: 16)
-        barLabel2.alpha = 0.75
-        
         // SAC textfield
         SAC.translatesAutoresizingMaskIntoConstraints = false
         SAC.topAnchor.constraint(equalTo: SACTitle.bottomAnchor, constant: 10).isActive = true
@@ -344,8 +312,9 @@ extension NormalDiveViewController {
         SAC.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         SAC.font = UIFont.init(name: "Avenir Next", size: 16)
         SAC.setDarkTextField(textfield: SAC)
-        SAC.attributedPlaceholder = NSAttributedString(string: "0",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        SAC.keyboardType = UIKeyboardType.decimalPad
+        SAC.attributedPlaceholder = NSAttributedString(string: "0 bar/min",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // air out Title
         airOutTitle.translatesAutoresizingMaskIntoConstraints = false
         airOutTitle.topAnchor.constraint(equalTo: SAC.bottomAnchor, constant: 10).isActive = true
@@ -355,15 +324,6 @@ extension NormalDiveViewController {
         airOutTitle.font = UIFont.init(name: "Avenir Next", size: 16)
         airOutTitle.alpha = 0.75
         
-        // bar unit text
-        barLabel3.translatesAutoresizingMaskIntoConstraints = false
-        barLabel3.centerYAnchor.constraint(equalTo: airOut.centerYAnchor, constant: 0).isActive = true
-        barLabel3.trailingAnchor.constraint(equalTo: airOut.trailingAnchor, constant: -10).isActive = true
-        barLabel3.textAlignment = .right
-        barLabel3.text = "bar"
-        barLabel3.font = UIFont.init(name: "Avenir Next", size: 16)
-        barLabel3.alpha = 0.75
-        
         // air out textfield
         airOut.translatesAutoresizingMaskIntoConstraints = false
         airOut.topAnchor.constraint(equalTo: airOutTitle.bottomAnchor, constant: 10).isActive = true
@@ -372,8 +332,9 @@ extension NormalDiveViewController {
         airOut.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         airOut.font = UIFont.init(name: "Avenir Next", size: 16)
         airOut.setDarkTextField(textfield: airOut)
-        airOut.attributedPlaceholder = NSAttributedString(string: "50",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        airOut.keyboardType = UIKeyboardType.decimalPad
+        airOut.attributedPlaceholder = NSAttributedString(string: "0 bar",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // nitrox Title
         nitroxTitle.translatesAutoresizingMaskIntoConstraints = false
         nitroxTitle.topAnchor.constraint(equalTo: airOut.bottomAnchor, constant: 10).isActive = true
@@ -383,15 +344,6 @@ extension NormalDiveViewController {
         nitroxTitle.font = UIFont.init(name: "Avenir Next", size: 16)
         nitroxTitle.alpha = 0.75
         
-        // nitrox text
-        barLabel4.translatesAutoresizingMaskIntoConstraints = false
-        barLabel4.centerYAnchor.constraint(equalTo: nitrox.centerYAnchor, constant: 0).isActive = true
-        barLabel4.trailingAnchor.constraint(equalTo: nitrox.trailingAnchor, constant: -10).isActive = true
-        barLabel4.textAlignment = .right
-        barLabel4.text = "%"
-        barLabel4.font = UIFont.init(name: "Avenir Next", size: 16)
-        barLabel4.alpha = 0.75
-        
         // nitrox textfield
         nitrox.translatesAutoresizingMaskIntoConstraints = false
         nitrox.topAnchor.constraint(equalTo: nitroxTitle.bottomAnchor, constant: 10).isActive = true
@@ -400,11 +352,12 @@ extension NormalDiveViewController {
         nitrox.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         nitrox.font = UIFont.init(name: "Avenir Next", size: 16)
         nitrox.setDarkTextField(textfield: nitrox)
-        nitrox.attributedPlaceholder = NSAttributedString(string: "--",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        nitrox.keyboardType = UIKeyboardType.decimalPad
+        nitrox.attributedPlaceholder = NSAttributedString(string: "0 %",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         // Environmental conditions Title
         conditionsTitle.translatesAutoresizingMaskIntoConstraints = false
-        conditionsTitle.topAnchor.constraint(equalTo: coloredTankBackground.bottomAnchor, constant: 40).isActive = true
+        conditionsTitle.topAnchor.constraint(equalTo: coloredTankBackground.bottomAnchor, constant: 30).isActive = true
         conditionsTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
         conditionsTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         conditionsTitle.text = "Water conditions"
@@ -418,12 +371,121 @@ extension NormalDiveViewController {
         conditions.heightAnchor.constraint(equalToConstant: 40).isActive = true
         conditions.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         conditions.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
-        conditions.setTitle("--", for: .normal)
+        conditions.setTitle("select here...", for: .normal)
+        conditions.setTitleColor(UIColor.systemGray, for: .normal)
         conditions.addTarget(self, action: #selector(conditionsAction), for: .touchUpInside)
         conditions.backgroundColor = .systemGray5
         conditions.layer.cornerRadius = 5
         conditions.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         conditions.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        
+        // confirmation icon
+        completion.translatesAutoresizingMaskIntoConstraints = false
+        completion.centerYAnchor.constraint(equalTo: conditions.centerYAnchor).isActive = true
+        completion.trailingAnchor.constraint(equalTo: conditions.trailingAnchor, constant: -20).isActive = true
+        completion.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        completion.tintColor = .white
+        completion.isHidden = true
+        
+        // water entry title
+        entryTitle.translatesAutoresizingMaskIntoConstraints = false
+        entryTitle.topAnchor.constraint(equalTo: conditions.bottomAnchor, constant: 20).isActive = true
+        entryTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
+        entryTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        entryTitle.text = "Water entry"
+        entryTitle.font = UIFont.init(name: "Avenir Next", size: 16)
+        entryTitle.alpha = 0.75
+        
+        // water entry textfield
+        entry.translatesAutoresizingMaskIntoConstraints = false
+        entry.topAnchor.constraint(equalTo: entryTitle.bottomAnchor, constant: 10).isActive = true
+        entry.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 45).isActive = true
+        entry.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        entry.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: -10).isActive = true
+        entry.font = UIFont.init(name: "Avenir Next", size: 16)
+        entry.setDarkTextField(textfield: entry)
+        setupPicker(textField: entry, picker: picker)
+        entry.text = waterConditionsArray.type
+        entry.attributedPlaceholder = NSAttributedString(string: "Select here...",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        // air temperature title
+        airTempTitle.translatesAutoresizingMaskIntoConstraints = false
+        airTempTitle.topAnchor.constraint(equalTo: conditions.bottomAnchor, constant: 20).isActive = true
+        airTempTitle.leadingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 10).isActive = true
+        airTempTitle.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -45).isActive = true
+        airTempTitle.text = "Air temperature"
+        airTempTitle.font = UIFont.init(name: "Avenir Next", size: 16)
+        airTempTitle.alpha = 0.75
+        
+        // air temperature textfield
+        airTemp.translatesAutoresizingMaskIntoConstraints = false
+        airTemp.topAnchor.constraint(equalTo: airTempTitle.bottomAnchor, constant: 10).isActive = true
+        airTemp.leadingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 10).isActive = true
+        airTemp.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        airTemp.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        airTemp.font = UIFont.init(name: "Avenir Next", size: 16)
+        airTemp.setDarkTextField(textfield: airTemp)
+        airTemp.keyboardType = UIKeyboardType.decimalPad
+        airTemp.attributedPlaceholder = NSAttributedString(string: "0 C°",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        // Environmental conditions Title
+        equipmentTitle.translatesAutoresizingMaskIntoConstraints = false
+        equipmentTitle.topAnchor.constraint(equalTo: airTemp.bottomAnchor, constant: 20).isActive = true
+        equipmentTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
+        equipmentTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        equipmentTitle.text = "Equipment"
+        equipmentTitle.font = UIFont.init(name: "Avenir Next", size: 16)
+        equipmentTitle.alpha = 0.75
+        
+        // Environmental conditions textfield
+        equipment.translatesAutoresizingMaskIntoConstraints = false
+        equipment.topAnchor.constraint(equalTo: equipmentTitle.bottomAnchor, constant: 10).isActive = true
+        equipment.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 45).isActive = true
+        equipment.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        equipment.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        equipment.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
+        equipment.setTitle("choose here...", for: .normal)
+        equipment.setTitleColor(UIColor.systemGray, for: .normal)
+        equipment.addTarget(self, action: #selector(equipmentAction), for: .touchUpInside)
+        equipment.backgroundColor = .systemGray5
+        equipment.layer.cornerRadius = 5
+        equipment.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        equipment.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (textField == diveTime) {
+            textField.text = textField.text?.replacingOccurrences(of: " min", with: "")
+        } else if (textField == maxDepth || textField == avgDepth || textField == safetyStop) {
+            textField.text = textField.text?.replacingOccurrences(of: " m", with: "")
+        } else if (textField == airIn || textField == airOut) {
+            textField.text = textField.text?.replacingOccurrences(of: " bar", with: "")
+        } else if (textField == SAC) {
+            textField.text = textField.text?.replacingOccurrences(of: " bar/min", with: "")
+        } else if (textField == nitrox) {
+            textField.text = textField.text?.replacingOccurrences(of: " %", with: "")
+        } else if (textField == airTemp) {
+            textField.text = textField.text?.replacingOccurrences(of: " C°", with: "")
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if (textField.text != "") {
+            if (textField == diveTime) {
+            textField.text = "\(textField.text ?? "")" + " min"
+            } else if (textField == maxDepth || textField == avgDepth || textField == safetyStop) {
+            textField.text = "\(textField.text ?? "")" + " m"
+            } else if (textField == airIn || textField == airOut) {
+            textField.text = "\(textField.text ?? "")" + " bar"
+            } else if (textField == SAC) {
+            textField.text = "\(textField.text ?? "")" + " bar/min"
+            } else if (textField == nitrox) {
+            textField.text = "\(textField.text ?? "")" + " %"
+            } else if (textField == airTemp) {
+            textField.text = "\(textField.text ?? "")" + " C°"
+            }
+        }
     }
     
     @objc func sliderValueDidChange(_ sender:UISlider!)
@@ -451,14 +513,14 @@ extension NormalDiveViewController {
         timeDateText = ("\(selectedDate)")
     }
     
-    func createDatePicker() {
+    func createDatePicker(picker: UIDatePicker, textField: UITextField) {
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.donePicker))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.doneDatePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelPicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelDatePicker))
         
         doneButton.tintColor = UIColor(red: 0.07, green: 0.63, blue: 0.93, alpha: 1.00)
         cancelButton.tintColor = UIColor(red: 0.07, green: 0.63, blue: 0.93, alpha: 1.00)
@@ -466,25 +528,29 @@ extension NormalDiveViewController {
         toolbar.isUserInteractionEnabled = true
         
         
-        dateTextField.inputAccessoryView = toolbar
-        dateTextField.inputView = datePicker
-        
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .wheels
+        textField.inputAccessoryView = toolbar
+        picker.preferredDatePickerStyle = .wheels
         
     }
     
-    @objc func donePicker() {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
+    @objc func doneDatePicker() {
+        let formatterDate = DateFormatter()
+        formatterDate.dateStyle = .medium
+        formatterDate.timeStyle = .none
         
-        dateTextField.text = formatter.string(from: datePicker.date)
+        let formatterTime = DateFormatter()
+        formatterTime.dateStyle = .none
+        formatterTime.timeStyle = .short
+        
+        dateTextField.text = formatterDate.string(from: datePicker.date)
+        diveIn.text = formatterTime.string(from: datePicker2.date)
         dateTextField.resignFirstResponder()
+        diveIn.resignFirstResponder()
     }
     
-    @objc func cancelPicker() {
+    @objc func cancelDatePicker() {
         dateTextField.resignFirstResponder()
+        diveIn.resignFirstResponder()
     }
     
     @objc func tankSteelButtonAction() {
@@ -502,9 +568,111 @@ extension NormalDiveViewController {
     }
     
     @objc func conditionsAction() {
-        
         let vc = ConditionsViewController()
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func equipmentAction() {
+        let vc = EquipmentViewController()
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func setupPicker(textField: UITextField, picker: UIPickerView) {
+        picker.selectRow(0, inComponent: 0, animated: true)
+        picker.backgroundColor = UIColor.systemGray6
+        picker.delegate = self
+        picker.dataSource = self
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelPicker))
+        
+        doneButton.tintColor = UIColor(red: 0.07, green: 0.63, blue: 0.93, alpha: 1.00)
+        cancelButton.tintColor = UIColor(red: 0.07, green: 0.63, blue: 0.93, alpha: 1.00)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        textField.inputView = picker
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return entryArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return entryArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.entryText = entryArray[row]
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    @objc func donePicker() {
+        entry.resignFirstResponder()
+        entry.text = entryText
+    }
+    
+    @objc func cancelPicker() {
+        entry.resignFirstResponder()
+    }
+    
+    func addSubviews() {
+        scrollView.addSubview(timeDateTitle)
+        scrollView.addSubview(maxDepth)
+        scrollView.addSubview(maxDepthTitle)
+        scrollView.addSubview(avgDepth)
+        scrollView.addSubview(avgDepthTitle)
+        scrollView.addSubview(diveInTitle)
+        scrollView.addSubview(diveIn)
+        scrollView.addSubview(diveTime)
+        scrollView.addSubview(diveTimeTitle)
+        scrollView.addSubview(ratingTitle)
+        scrollView.addSubview(rating)
+        scrollView.addSubview(ratingValue)
+        scrollView.addSubview(safetyStopTitle)
+        scrollView.addSubview(safetyStop)
+        scrollView.addSubview(tankVolume)
+        scrollView.addSubview(tankVolumeTitle)
+        scrollView.addSubview(tankVolumeValue)
+        scrollView.addSubview(tankAlLabel)
+        scrollView.addSubview(tankAlButton)
+        scrollView.addSubview(tankSteelLabel)
+        scrollView.addSubview(tankSteelButton)
+        scrollView.addSubview(coloredTankBackground)
+        coloredTankBackground.addSubview(bottlePhoto)
+        scrollView.addSubview(airInTitle)
+        scrollView.addSubview(airIn)
+        scrollView.addSubview(barLabel)
+        scrollView.addSubview(SAC)
+        scrollView.addSubview(SACTitle)
+        scrollView.addSubview(barLabel2)
+        scrollView.addSubview(airOut)
+        scrollView.addSubview(airOutTitle)
+        scrollView.addSubview(barLabel3)
+        scrollView.addSubview(nitrox)
+        scrollView.addSubview(nitroxTitle)
+        scrollView.addSubview(barLabel4)
+        scrollView.addSubview(conditionsTitle)
+        scrollView.addSubview(conditions)
+        scrollView.addSubview(completion)
+        scrollView.addSubview(entryTitle)
+        scrollView.addSubview(entry)
+        scrollView.addSubview(airTempTitle)
+        scrollView.addSubview(airTemp)
+        scrollView.addSubview(equipmentTitle)
+        scrollView.addSubview(equipment)
+        scrollView.addSubview(completion2)
     }
 
 }
