@@ -125,4 +125,34 @@ class FetchData {
                 callback(diveNr)
             }
     }
+    
+    func fetchEquipment(callback: @escaping([EquipmentStruct]) -> Void) {
+
+        Firestore.firestore().collection("users").document(uid).collection("Settings").document("Equipment").collection("Templates").addSnapshotListener { (snapshot, err) in
+
+            var equipmentArray: [EquipmentStruct] = []
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                guard let snap = snapshot else { return }
+                for document in snap.documents {
+                    let data = document.data()
+
+                    let Name = data["Name"] as? String ?? "Hello"
+                    let SuitType = data["SuitType"] as? String ?? ""
+                    let SuitThickness = data["SuitThickness"] as? String ?? ""
+                    let OneLayer = data["OneLayer"] as? Bool ?? true
+                    let TwoLayers = data["TwoLayers"] as? Bool ?? false
+                    let Weight = data["Weight"] as? String ?? ""
+                    let Extra = data["Extra"] as? [String] ?? []
+
+                    let equipmentInfo = EquipmentStruct(Name: Name, SuitType: SuitType, SuitThickness: SuitThickness, OneLayer: OneLayer, TwoLayers: TwoLayers, Weight: Weight, Extra: Extra)
+                    
+                    equipmentArray.append(equipmentInfo)
+                }
+            }
+            callback(equipmentArray)
+        }
+    }
 }

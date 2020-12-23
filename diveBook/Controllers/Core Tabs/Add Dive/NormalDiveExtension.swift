@@ -200,7 +200,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankVolumeValue.topAnchor.constraint(equalTo: safetyStop.bottomAnchor, constant: 30).isActive = true
         tankVolumeValue.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
         tankVolumeValue.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        tankVolumeValue.text = "0L"
+        tankVolumeValue.text = "7L"
         tankVolumeValue.font = UIFont.init(name: "Avenir Next", size: 16)
         tankVolumeValue.alpha = 0.75
         tankVolumeValue.textAlignment = .right
@@ -210,8 +210,8 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankVolume.centerYAnchor.constraint(equalTo: tankVolumeTitle.centerYAnchor).isActive = true
         tankVolume.leadingAnchor.constraint(equalTo: tankVolumeTitle.trailingAnchor, constant: 20).isActive = true
         tankVolume.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -90).isActive = true
-        tankVolume.minimumValue = 0
-        tankVolume.maximumValue = 20
+        tankVolume.minimumValue = 7
+        tankVolume.maximumValue = 15
         tankVolume.isContinuous = true
         tankVolume.tintColor = UIColor(red: 0.07, green: 0.45, blue: 0.70, alpha: 1.00)
         tankVolume.addTarget(self, action: #selector(NormalDiveViewController.sliderValueDidChange(_:)), for: .valueChanged)
@@ -451,6 +451,14 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         equipment.layer.cornerRadius = 5
         equipment.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         equipment.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        
+        // confirmation icon
+        completion2.translatesAutoresizingMaskIntoConstraints = false
+        completion2.centerYAnchor.constraint(equalTo: equipment.centerYAnchor).isActive = true
+        completion2.trailingAnchor.constraint(equalTo: equipment.trailingAnchor, constant: -20).isActive = true
+        completion2.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        completion2.tintColor = .white
+        completion2.isHidden = true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

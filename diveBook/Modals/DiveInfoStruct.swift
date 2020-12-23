@@ -36,3 +36,13 @@ struct waterConditionsStruct {
     var visibility: String
     var current: String
 }
+
+struct EquipmentStruct {
+    var Name: String
+    var SuitType: String
+    var SuitThickness: String
+    var OneLayer: Bool
+    var TwoLayers: Bool
+    var Weight: String
+    var Extra: [String]
+}

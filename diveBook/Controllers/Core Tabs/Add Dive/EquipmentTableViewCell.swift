@@ -41,6 +41,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
     let row1 = UIStackView()
     let row2 = UIStackView()
     let row3 = UIStackView()
+    
     let hood = UIButton()
     let hoodVest = UIButton()
     let gloves = UIButton()
@@ -51,6 +52,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
     let compass = UIButton()
     let reel = UIButton()
     let knife = UIButton()
+    var common = [UIButton]()
     
     //checkbox
     let checkButton = UIButton()
@@ -251,6 +253,15 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
     }
     
     func multipleChoiceConfigure() {
+        common.append(hood)
+        common.append(hoodVest)
+        common.append(gloves)
+        common.append(reefHook)
+        common.append(compass)
+        common.append(knife)
+        common.append(dryGloves)
+        common.append(buoy)
+        common.append(torch)
         bottomView.addSubview(multipleChoiceView)
         bottomView.addSubview(hood)
         bottomView.addSubview(hoodVest)

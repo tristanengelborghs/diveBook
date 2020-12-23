@@ -12,7 +12,8 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
     
     var currentScrollPos : CGFloat?
     var cellHeights = [IndexPath: CGFloat]()
-    var titles: [String] = ["cold water","warm water", "cold water","warm water", "cold water"]
+    var equipmentArray: [EquipmentStruct] = []
+    var titles: [String] = ["Cold water","Zilvermeer","Gozo","Drysuit cold","Drysuit warm"]
     var dataTextfield: [String] = ["20m","10m","12m", "13m"]
     
     var tableView: UITableView = {
@@ -32,11 +33,17 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
         return tv
     }()
     
-    var selectedCell:IndexPath?
-    var selectedCellButton:IndexPath?
+    //var selectedCell:IndexPath?
+    //var selectedCellButton:IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        FetchData.sharedInstance.fetchEquipment(callback: { (equipment) in
+            self.equipmentArray = equipment
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
         self.view.addSubview(tableView)
         self.view.backgroundColor = .systemGray6
         setupNavBar()
@@ -63,15 +70,59 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
         tableView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -20).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
-    
-    @objc func saveEquipment(sender: UIButton!) {
-        dismiss(animated: true, completion: nil)
-    }
         
     @objc func closeVC(sender: UIButton!) {
         dismiss(animated: true, completion: nil)
     }
 
+    @objc func saveEquipment(sender: UIButton!) {
+        if let presenter = presentingViewController as? NormalDiveViewController {
+            let cell = tableView.cellForRow(at: selectedCellButton!) as! CustomCell
+            print(cell.suitType.text!)
+            var layerBool: Bool?
+            var commonExtras: [String] = []
+            if cell.oneLayerButton.currentBackgroundImage == UIImage(systemName: "circle") {
+                layerBool = false
+            } else {
+                layerBool = true
+            }
+            
+            for button in cell.common {
+                if equipmentArray[selectedCellButton!.row].Extra.contains((button.titleLabel?.text)!) {
+                    let title = button.titleLabel?.text
+                    commonExtras.append(title!)
+                }
+            }
+            
+            let name: String = "\(cell.wordLabel.text ?? "")"
+            let suitType: String = "\(cell.suitType.text ?? "")"
+            let suitThickness: String = "\(cell.suitThick.text ?? "")"
+            let oneLayer: Bool = layerBool ?? true
+            let twoLayers: Bool = !(layerBool ?? false)
+            let weights: String = "\(cell.wheight.text ?? "")"
+            let extra: [String] = commonExtras
+            
+            saveEquipmentArray.Name = name
+            saveEquipmentArray.SuitType = suitType
+            saveEquipmentArray.SuitThickness = suitThickness
+            saveEquipmentArray.OneLayer = oneLayer
+            saveEquipmentArray.TwoLayers = twoLayers
+            saveEquipmentArray.Weight = weights
+            saveEquipmentArray.Extra = extra
+
+            
+            if (name != "" || suitType != "" || suitThickness != "" || weights != "" || extra != []) {
+                presenter.equipment.setTitleColor(.white, for: .normal)
+                presenter.equipment.setTitle("completed", for: .normal)
+                presenter.completion2.isHidden = false
+            } else {
+                presenter.equipment.setTitleColor(.gray, for: .normal)
+                presenter.equipment.setTitle("Select here...", for: .normal)
+                presenter.completion2.isHidden = true
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
     
     func setupNavBar() {
             let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
@@ -94,12 +145,32 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
 extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        if equipmentArray.count == 0 {
+                self.tableView.setEmptyMessage("You can add equipment templates in the settings menu")
+            } else {
+                self.tableView.restore()
+        }
+        
+        return equipmentArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomCell ?? CustomCell()
-        cell.wordLabel.text = titles[indexPath.row]
+        cell.wordLabel.text = equipmentArray[indexPath.row].Name
+        cell.suitType.text = equipmentArray[indexPath.row].SuitType
+        cell.suitThick.text = equipmentArray[indexPath.row].SuitThickness
+        
+        if equipmentArray[indexPath.row].TwoLayers == true {
+            cell.oneLayerButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
+            cell.twoLayerButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
+        }
+        cell.wheight.text = equipmentArray[indexPath.row].Weight
+        
+        for button in cell.common {
+            if equipmentArray[indexPath.row].Extra.contains((button.titleLabel?.text)!) {
+                connected(sender: button)
+            }
+        }
         cell.delegate = self
         
         
@@ -129,6 +200,10 @@ extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
             cell.checkButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
         }
         
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+
         return cell
     }
     
@@ -155,6 +230,21 @@ extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.reloadData()
     }
     
+    func connected(sender: UIButton){
+        // create gradientlayer
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.name = "buttonLayer"
+        sender.layer.cornerRadius = sender.frame.size.height/2
+        sender.layer.masksToBounds = true
+        gradientLayer.frame = sender.bounds
+        gradientLayer.colors = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+            sender.titleLabel?.alpha = 1
+            sender.layer.insertSublayer(gradientLayer, at: 0)
+        
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -167,4 +257,25 @@ extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
 protocol DailySpeakingLessonDelegate: class {
     func reload(indexPatch: UIButton)
     func checkboxReload(indexPatch: UIButton)
+}
+
+extension UITableView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .white
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont.init(name: "Avenir Next", size: 16)
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel
+        self.separatorStyle = .none
+    }
+
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
+    }
 }

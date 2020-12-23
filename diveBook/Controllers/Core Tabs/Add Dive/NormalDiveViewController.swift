@@ -11,6 +11,9 @@ import Firebase
 import FirebaseFirestore
 
 var waterConditionsArray = waterConditionsStruct(type: "", maxTemp: "", minTemp: "", waves: "", visibility: "0m", current: "")
+var saveEquipmentArray = EquipmentStruct(Name: "", SuitType: "", SuitThickness: "", OneLayer: true, TwoLayers: false, Weight: "", Extra: [])
+var selectedCell: IndexPath?
+var selectedCellButton: IndexPath?
 
 class NormalDiveViewController: UIViewController {
     
