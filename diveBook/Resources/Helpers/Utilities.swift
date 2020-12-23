@@ -74,6 +74,8 @@ class Utilities {
         button.layer.insertSublayer(gradientLayer, at: 0)
     }
     
+    
+    
     static func styleHollowButtongradient(_ button:UIButton) {
         button.layer.cornerRadius = 25.0
         button.clipsToBounds = true

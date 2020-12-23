@@ -221,8 +221,8 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankSteelButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
         tankSteelButton.topAnchor.constraint(equalTo: tankVolumeTitle.bottomAnchor, constant: 45).isActive = true
         tankSteelButton.frame = CGRect(x: 100, y: 100, width: 130, height: 130)
-        tankSteelButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
-        tankSteelButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        tankSteelButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        tankSteelButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         tankSteelButton.setBackgroundImage(SelectedDot, for: .normal)
         tankSteelButton.addTarget(self, action: #selector(tankSteelButtonAction), for: .touchUpInside)
         
@@ -239,8 +239,8 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankAlButton.leadingAnchor.constraint(equalTo: tankSteelLabel.trailingAnchor, constant: 30).isActive = true
         tankAlButton.topAnchor.constraint(equalTo: tankVolumeTitle.bottomAnchor, constant: 45).isActive = true
         tankAlButton.frame = CGRect(x: 100, y: 100, width: 130, height: 130)
-        tankAlButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
-        tankAlButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        tankAlButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        tankAlButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         tankAlButton.setBackgroundImage(UnselectedDot, for: .normal)
         tankAlButton.addTarget(self, action: #selector(tankAllButtonAction), for: .touchUpInside)
         

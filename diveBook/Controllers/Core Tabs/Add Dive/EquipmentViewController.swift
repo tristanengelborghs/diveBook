@@ -8,20 +8,22 @@
 
 import UIKit
 
-class EquipmentViewController: UIViewController {
+class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
     
+    var currentScrollPos : CGFloat?
+    var cellHeights = [IndexPath: CGFloat]()
     var titles: [String] = ["cold water","warm water","drysuit template"]
     var dataTextfield: [String] = ["20m","10m","12m"]
     
     var tableView: UITableView = {
         let tv = UITableView(frame: .zero)
         tv.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
+        //tv.allowsSelection = true
         tv.contentInset = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        tv.separatorStyle = .none
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.rowHeight = UITableView.automaticDimension
-        tv.estimatedRowHeight = 200.0
-        tv.estimatedSectionHeaderHeight = 0
-        tv.estimatedSectionFooterHeight = 0
+        tv.estimatedRowHeight = 400
         tv.showsVerticalScrollIndicator = false
         tv.tableFooterView = UIView()
         tv.alwaysBounceVertical = true
@@ -38,6 +40,15 @@ class EquipmentViewController: UIViewController {
         self.view.backgroundColor = .systemGray6
         setupNavBar()
         setupTableView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.view.setNeedsLayout()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
     func setupTableView() {
@@ -75,9 +86,7 @@ class EquipmentViewController: UIViewController {
             navItem.rightBarButtonItem = saveItem
             navItem.leftBarButtonItem = backItem
             navBar.setItems([navItem], animated: false)
-        }
-
-
+    }
 }
 extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -88,32 +97,33 @@ extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as? CustomCell ?? CustomCell()
         cell.wordLabel.text = titles[indexPath.row]
+        cell.delegate = self
+        
         
         if selectedCell != indexPath {
-                cell.bottomView.isHidden = true
+            cell.bottomView.isHidden = true
+        } else {
+            cell.bottomView.isHidden = !cell.bottomView.isHidden
         }
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? CustomCell {
-            
-            UIView.animate(withDuration: 0.3) {
-            cell.bottomView.isHidden = !cell.bottomView.isHidden
-            }
-                
-            selectedCell = indexPath
-            tableView.beginUpdates()
-            tableView.endUpdates()
-            tableView.deselectRow(at: indexPath, animated: true)
-            tableView.reloadData()
-        }
-
+    
+    func reload(indexPatch: UIButton) {
+        let buttonPosition = indexPatch.convert(CGPoint(), to:tableView)
+        let indexPath = tableView.indexPathForRow(at:buttonPosition)
+        selectedCell = indexPath
+        tableView.reloadData()
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 400
     }
 
+}
+
+protocol DailySpeakingLessonDelegate: class {
+    func reload(indexPatch: UIButton)
 }
