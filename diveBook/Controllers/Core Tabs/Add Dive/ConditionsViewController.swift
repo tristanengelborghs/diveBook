@@ -19,7 +19,7 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
     let minTemp = UITextField()
     let maxTempTitle = UILabel()
     let maxTempLabel = UILabel()
-    let maxTemp = UITextField()
+    let maxTemp:UITextField = UITextField()
     let currentTitle = UILabel()
     var currentText: String = ""
     let current = UITextField()
@@ -50,160 +50,75 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
         picker2 = UIPickerView(frame: CGRect(x: 0, y: 200, width: view.frame.width, height: 250))
         picker3 = UIPickerView(frame: CGRect(x: 0, y: 200, width: view.frame.width, height: 250))
         
-        self.view.addSubview(waterTypeTitle)
-        self.view.addSubview(waterType)
-        self.view.addSubview(minTempTitle)
-        self.view.addSubview(minTemp)
-        self.view.addSubview(maxTempTitle)
-        self.view.addSubview(maxTemp)
-        self.view.addSubview(currentTitle)
-        self.view.addSubview(current)
-        self.view.addSubview(visibiltySlider)
-        self.view.addSubview(visibilityTitle)
-        self.view.addSubview(visibilityRating)
-        self.view.addSubview(waves)
-        self.view.addSubview(wavesTitle)
+        [waterTypeTitle, waterType, minTempTitle, minTemp, maxTemp, maxTempTitle, currentTitle, current, visibiltySlider, visibilityTitle, visibilityRating, waves, wavesTitle].forEach { self.view.addSubview($0) }
         
         minTemp.delegate = self
         maxTemp.delegate = self
         
         // water type Title
-        waterTypeTitle.translatesAutoresizingMaskIntoConstraints = false
-        waterTypeTitle.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80).isActive = true
-        waterTypeTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        waterTypeTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        waterTypeTitle.text = "Water type"
-        waterTypeTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        waterTypeTitle.alpha = 0.75
+        waterTypeTitle.setTitle(name: "Water type")
+        waterTypeTitle.anchorLabel(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 80, left: 45, bottom: 0, right: 45))
         
-        
-        // date Textfield
-        waterType.translatesAutoresizingMaskIntoConstraints = false
-        waterType.topAnchor.constraint(equalTo: waterTypeTitle.bottomAnchor, constant: 10).isActive = true
-        waterType.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        waterType.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        waterType.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        waterType.font = UIFont.init(name: "Avenir Next", size: 16)
-        waterType.setDarkTextField(textfield: waterType)
+        // water type Textfield
+        waterType.configure(placeholder: "Select water Type", textInput: waterConditionsArray.type)
         setupPicker(textField: waterType, picker: picker)
-        waterType.text = waterConditionsArray.type
-        waterType.attributedPlaceholder = NSAttributedString(string: "Select water type...",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        waterType.anchorTextfield(top: waterTypeTitle.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 10, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 40))
+        
         // minimum temperature title
-        minTempTitle.translatesAutoresizingMaskIntoConstraints = false
-        minTempTitle.topAnchor.constraint(equalTo: waterType.bottomAnchor, constant: 20).isActive = true
-        minTempTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        minTempTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        minTempTitle.text = "Min temperture"
-        minTempTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        minTempTitle.alpha = 0.75
+        minTempTitle.setTitle(name: "Min temperature")
+        minTempTitle.anchorLabel(top: waterType.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 20, left: 45, bottom: 0, right: 45))
         
         // minimum temperature textfield
-        minTemp.translatesAutoresizingMaskIntoConstraints = false
-        minTemp.topAnchor.constraint(equalTo: minTempTitle.bottomAnchor, constant: 10).isActive = true
-        minTemp.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        minTemp.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        minTemp.trailingAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -10).isActive = true
-        minTemp.font = UIFont.init(name: "Avenir Next", size: 16)
-        minTemp.setDarkTextField(textfield: minTemp)
-        minTemp.text = waterConditionsArray.minTemp
+        minTemp.configure(placeholder: "0 °C", textInput: waterConditionsArray.minTemp)
         minTemp.keyboardType = UIKeyboardType.decimalPad
-        minTemp.attributedPlaceholder = NSAttributedString(string: "0 °C",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        minTemp.anchorTextfield(top: minTempTitle.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.centerXAnchor, padding: .init(top: 10, left: 45, bottom: 0, right: 10), size: .init(width: 0, height: 40))
+        
         // maximum temperature title
-        maxTempTitle.translatesAutoresizingMaskIntoConstraints = false
-        maxTempTitle.topAnchor.constraint(equalTo: waterType.bottomAnchor, constant: 20).isActive = true
-        maxTempTitle.leadingAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 10).isActive = true
-        maxTempTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        maxTempTitle.text = "Max temperature"
-        maxTempTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        maxTempTitle.alpha = 0.75
+        maxTempTitle.setTitle(name: "Max temperature")
+        maxTempTitle.anchorLabel(top: waterType.bottomAnchor, leading: self.view.centerXAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 20, left: 10, bottom: 0, right: 45))
         
         // maximum temperature textfield
-        maxTemp.translatesAutoresizingMaskIntoConstraints = false
-        maxTemp.topAnchor.constraint(equalTo: minTempTitle.bottomAnchor, constant: 10).isActive = true
-        maxTemp.leadingAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 10).isActive = true
-        maxTemp.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        maxTemp.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        maxTemp.font = UIFont.init(name: "Avenir Next", size: 16)
-        maxTemp.setDarkTextField(textfield: maxTemp)
-        maxTemp.text = waterConditionsArray.maxTemp
         maxTemp.keyboardType = UIKeyboardType.decimalPad
-        maxTemp.attributedPlaceholder = NSAttributedString(string: "0 C°",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
-        // water type Title
-        wavesTitle.translatesAutoresizingMaskIntoConstraints = false
-        wavesTitle.topAnchor.constraint(equalTo: maxTemp.bottomAnchor, constant: 20).isActive = true
-        wavesTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        wavesTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        wavesTitle.text = "Waves"
-        wavesTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        wavesTitle.alpha = 0.75
+        maxTemp.anchorTextfield(top: minTempTitle.bottomAnchor, leading: self.view.centerXAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: 45), size: .init(width: 0, height: 40))
+        maxTemp.configure(placeholder: "0 °C", textInput: waterConditionsArray.maxTemp)
         
-        // date Textfield
-        waves.translatesAutoresizingMaskIntoConstraints = false
-        waves.topAnchor.constraint(equalTo: wavesTitle.bottomAnchor, constant: 10).isActive = true
-        waves.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        waves.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        waves.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        waves.font = UIFont.init(name: "Avenir Next", size: 16)
-        waves.setDarkTextField(textfield: waves)
+        // waves Title
+        wavesTitle.setTitle(name: "Waves")
+        wavesTitle.anchorLabel(top: maxTemp.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 20, left: 45, bottom: 0, right: 45))
+        
+        // waves Textfield
+        waves.configure(placeholder: "Select wave type", textInput: waterConditionsArray.waves)
         setupPicker(textField: waves, picker: picker3)
-        waves.text = waterConditionsArray.waves
-        waves.attributedPlaceholder = NSAttributedString(string: "Select wave type...",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        waves.anchorTextfield(top: wavesTitle.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 10, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 40))
+        
         // rating title
-        visibilityTitle.translatesAutoresizingMaskIntoConstraints = false
-        visibilityTitle.topAnchor.constraint(equalTo: waves.bottomAnchor, constant: 20).isActive = true
-        visibilityTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        visibilityTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        visibilityTitle.text = "Visibility"
-        visibilityTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        visibilityTitle.alpha = 0.75
+        visibilityTitle.setTitle(name: "Visibility")
+        visibilityTitle.anchorLabel(top: waves.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 20, left: 45, bottom: 0, right: 45))
         
         // rating value
-        visibilityRating.translatesAutoresizingMaskIntoConstraints = false
-        visibilityRating.topAnchor.constraint(equalTo: waves.bottomAnchor, constant: 20).isActive = true
-        visibilityRating.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        visibilityRating.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         visibilityRating.text = waterConditionsArray.visibility
         visibilityRating.font = UIFont.init(name: "Avenir Next", size: 16)
         visibilityRating.alpha = 0.75
         visibilityRating.textAlignment = .right
+        visibilityRating.anchorLabel(top: waves.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 20, left: 45, bottom: 0, right: 45))
         
         // rating slider
-        visibiltySlider.translatesAutoresizingMaskIntoConstraints = false
-        visibiltySlider.topAnchor.constraint(equalTo: visibilityTitle.bottomAnchor, constant: 20).isActive = true
-        visibiltySlider.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        visibiltySlider.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         visibiltySlider.minimumValue = 0
         visibiltySlider.maximumValue = 30
         visibiltySlider.value = Float(waterConditionsArray.visibility.replacingOccurrences(of: "m", with: ""))!
         visibiltySlider.isContinuous = true
         visibiltySlider.tintColor = UIColor(red: 0.07, green: 0.45, blue: 0.70, alpha: 1.00)
         visibiltySlider.addTarget(self, action: #selector(NormalDiveViewController.sliderValueDidChange(_:)), for: .valueChanged)
+        visibiltySlider.anchorSlider(top: visibilityTitle.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 20, left: 45, bottom: 0, right: 45))
         
-        // water type Title
-        currentTitle.translatesAutoresizingMaskIntoConstraints = false
-        currentTitle.topAnchor.constraint(equalTo: visibiltySlider.bottomAnchor, constant: 20).isActive = true
-        currentTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        currentTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        currentTitle.text = "Current"
-        currentTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        currentTitle.alpha = 0.75
+        // current Title
+        currentTitle.setTitle(name: "Current")
+        currentTitle.anchorLabel(top: visibiltySlider.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 20, left: 45, bottom: 0, right: 45))
         
-        // date Textfield
-        current.translatesAutoresizingMaskIntoConstraints = false
-        current.topAnchor.constraint(equalTo: currentTitle.bottomAnchor, constant: 10).isActive = true
-        current.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
-        current.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        current.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
-        current.font = UIFont.init(name: "Avenir Next", size: 16)
-        current.setDarkTextField(textfield: current)
+        // current Textfield
+        current.configure(placeholder: "Select type of current", textInput: waterConditionsArray.current)
         setupPicker(textField: current, picker: picker2)
-        current.text = waterConditionsArray.current
-        current.attributedPlaceholder = NSAttributedString(string: "Select type of current...",
-                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        current.anchorTextfield(top: currentTitle.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 10, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 40))
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -357,3 +272,4 @@ class ConditionsViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
 
 }
+

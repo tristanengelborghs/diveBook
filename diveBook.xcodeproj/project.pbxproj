@@ -36,6 +36,7 @@
 		2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126724F2731B00666535 /* SettingsViewController.swift */; };
 		2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F126924F283A200666535 /* GoogleService-Info.plist */; };
 		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
+		2F58011B259530A300B88B0E /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */; };
 		2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */; };
 		2F63B352250CB35B00F4EEBD /* EditCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */; };
 		2FBBD8AF25587F1C007E7772 /* GradientBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */; };
@@ -83,6 +84,7 @@
 		2F4F126724F2731B00666535 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2F4F126924F283A200666535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
+		2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardInfoViewController.swift; sourceTree = "<group>"; };
 		2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBorderView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */,
 				2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */,
 				2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */,
+				2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */,
 			);
 			path = "Add Dive";
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				2F320BDE24F3F4D900BBEE13 /* Utilities.swift in Sources */,
 				2F4F124024F26FC200666535 /* HomeViewController.swift in Sources */,
 				2F33C74B24F9237F00752B45 /* NormalDiveViewController.swift in Sources */,
+				2F58011B259530A300B88B0E /* PhotoGalleryViewController.swift in Sources */,
 				2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */,
 				2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */,
 				2F4F126024F2727300666535 /* LoginViewController.swift in Sources */,

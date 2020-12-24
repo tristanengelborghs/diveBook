@@ -81,12 +81,14 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         stackView.alignment = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(stackView)
+        stackView.addArrangedSubview(topView)
+        stackView.addArrangedSubview(bottomView)
 
         // configure top view
         topView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(topView)
         topView.addSubview(wordLabel)
         topView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         wordLabel.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 0).isActive = true
         wordLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
@@ -98,6 +100,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         stackView.addSubview(editbutton)
         editbutton.translatesAutoresizingMaskIntoConstraints = false
        // editbutton.leadingAnchor.constraint(equalTo: wordLabel.trailingAnchor, constant: 20).isActive = true
+        
         editbutton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60).isActive = true
         editbutton.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
         editbutton.setTitle("edit", for: .normal)
@@ -119,7 +122,6 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         
         // configure bottom view
         bottomView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(bottomView)
         bottomView.addSubview(suitTypeTitle)
         bottomView.addSubview(suitType)
         bottomView.addSubview(suitThickTitle)
@@ -142,7 +144,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         suitTypeTitle.alpha = 0.75
         
         // suit type textfield
-        suitType.setDarkTextField(textfield: suitType)
+        suitType.setDarkTextField()
         suitType.translatesAutoresizingMaskIntoConstraints = false
         suitType.topAnchor.constraint(equalTo: suitTypeTitle.bottomAnchor, constant: 10).isActive = true
         suitType.trailingAnchor.constraint(equalTo: bottomView.centerXAnchor, constant: -10).isActive = true
@@ -162,7 +164,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         suitThickTitle.alpha = 0.75
         
         // suit thickness textfield
-        suitThick.setDarkTextField(textfield: suitThick)
+        suitThick.setDarkTextField()
         suitThick.translatesAutoresizingMaskIntoConstraints = false
         suitThick.topAnchor.constraint(equalTo: suitThickTitle.bottomAnchor, constant: 10).isActive = true
         suitThick.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: 0).isActive = true
@@ -219,7 +221,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         wheightTitle.alpha = 0.75
         
         // suit thickness textfield
-        wheight.setDarkTextField(textfield: wheight)
+        wheight.setDarkTextField()
         wheight.translatesAutoresizingMaskIntoConstraints = false
         wheight.topAnchor.constraint(equalTo: wheightTitle.bottomAnchor, constant: 10).isActive = true
         wheight.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: 0).isActive = true

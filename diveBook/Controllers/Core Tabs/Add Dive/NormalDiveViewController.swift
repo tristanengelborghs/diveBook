@@ -85,6 +85,57 @@ class NormalDiveViewController: UIViewController {
     let equipment = UIButton()
     let completion2 = UIButton(type: UIButton.ButtonType.custom) as UIButton
     
+    let row1 = UIStackView()
+    let row2 = UIStackView()
+    let row3 = UIStackView()
+    let row4 = UIStackView()
+    let row5 = UIStackView()
+    let line = UIView()
+    let memo = UITextView()
+    let memoTitle = UILabel()
+    let features = UILabel()
+    let purpose = UILabel()
+    
+    let CoralReef = UIButton()
+    let Wreck = UIButton()
+    let Wall = UIButton()
+    let Muck = UIButton()
+    let Cenote = UIButton()
+    let BlueHole = UIButton()
+    let Mines = UIButton()
+    let Quarry = UIButton()
+    let Ocean = UIButton()
+    let Ruins = UIButton()
+    let Lake = UIButton()
+    let Channel = UIButton()
+    let Altitude = UIButton()
+    let Kelp = UIButton()
+    let River = UIButton()
+    let Ice = UIButton()
+    
+    let row6 = UIStackView()
+    let row7 = UIStackView()
+    let row8 = UIStackView()
+    let row9 = UIStackView()
+    let row10 = UIStackView()
+    
+    let FunDive = UIButton()
+    let Training = UIButton()
+    let Research = UIButton()
+    let Technical = UIButton()
+    let SearchRescue = UIButton()
+    let Drift = UIButton()
+    let Night = UIButton()
+    let Photography = UIButton()
+    let SkilPractice = UIButton()
+    let Rebreather = UIButton()
+    let Deep = UIButton()
+    let ColdWater = UIButton()
+    let SideMount = UIButton()
+    
+    let photogalleryTitle = UILabel()
+    let photogallery = UIButton()
+    
     let SelectedDot = UIImage(named: "SelectedDot") as UIImage?
     let UnselectedDot = UIImage(named: "UnselectedDot") as UIImage?
     let topColor = UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00)
@@ -124,7 +175,7 @@ class NormalDiveViewController: UIViewController {
         scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         scrollView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 2000).isActive = true
+        label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 3000).isActive = true
         label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
         label.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 30).isActive = true
         label.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -30).isActive = true

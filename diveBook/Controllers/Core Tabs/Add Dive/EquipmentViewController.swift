@@ -32,9 +32,6 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
         tv.bounces = false
         return tv
     }()
-    
-    //var selectedCell:IndexPath?
-    //var selectedCellButton:IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,15 +61,13 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: 20).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -20).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        tableView.anchorTableView(top: self.view.topAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: self.view.bottomAnchor, trailing: self.view.layoutMarginsGuide.trailingAnchor, padding: .init(top: 80, left: 20, bottom: 0, right: 20))
     }
         
     @objc func closeVC(sender: UIButton!) {
         dismiss(animated: true, completion: nil)
+        selectedCell = nil
+        selectedCellButton = nil
     }
 
     @objc func saveEquipment(sender: UIButton!) {
@@ -88,7 +83,7 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
             }
             
             for button in cell.common {
-                if equipmentArray[selectedCellButton!.row].Extra.contains((button.titleLabel?.text)!) {
+                if (button.titleLabel?.alpha == 1) {
                     let title = button.titleLabel?.text
                     commonExtras.append(title!)
                 }
@@ -121,6 +116,7 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
                 presenter.completion2.isHidden = true
             }
         }
+        print(saveEquipmentArray)
         dismiss(animated: true, completion: nil)
     }
     
@@ -240,8 +236,8 @@ extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
         gradientLayer.colors = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-            sender.titleLabel?.alpha = 1
-            sender.layer.insertSublayer(gradientLayer, at: 0)
+        sender.titleLabel?.alpha = 1
+        sender.layer.insertSublayer(gradientLayer, at: 0)
         
     }
     

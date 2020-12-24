@@ -117,7 +117,7 @@ class AddCardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         idNumberTextField.attributedPlaceholder = NSAttributedString(string: "ID Number",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         idNumberTextField.font = UIFont.init(name: "Avenir Next", size: 14)
-        idNumberTextField.setDarkTextField(textfield: idNumberTextField)
+        idNumberTextField.setDarkTextField()
         
         //switch
         checkbox.addTarget(self, action: #selector(AddCardViewController.switchStateDidChange(_:)), for: .valueChanged)
@@ -153,7 +153,7 @@ class AddCardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         diveInstructor.attributedPlaceholder = NSAttributedString(string: "Dive Instructor",
                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         diveInstructor.font = UIFont.init(name: "Avenir Next", size: 14)
-        diveInstructor.setDarkTextField(textfield: diveInstructor)
+        diveInstructor.setDarkTextField()
         
         
         //Dive Center
@@ -165,7 +165,7 @@ class AddCardViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         diveCenter.attributedPlaceholder = NSAttributedString(string: "Dive Center",
                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         diveCenter.font = UIFont.init(name: "Avenir Next", size: 14)
-        diveCenter.setDarkTextField(textfield: diveCenter)
+        diveCenter.setDarkTextField()
         
         
         //photoView

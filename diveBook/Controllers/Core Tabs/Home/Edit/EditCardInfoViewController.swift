@@ -136,7 +136,7 @@ class EditCardInfoViewController: UIViewController, UIPickerViewDelegate, UIPick
         idNumberTextField.attributedPlaceholder = NSAttributedString(string: "ID Number",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         idNumberTextField.font = UIFont.init(name: "Avenir Next", size: 14)
-        idNumberTextField.setDarkTextField(textfield: idNumberTextField)
+        idNumberTextField.setDarkTextField()
         idNumberTextField.text = myIndexCard.ID
         
         //switch
@@ -177,7 +177,7 @@ class EditCardInfoViewController: UIViewController, UIPickerViewDelegate, UIPick
         diveInstructor.attributedPlaceholder = NSAttributedString(string: "Dive Instructor",
                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         diveInstructor.font = UIFont.init(name: "Avenir Next", size: 14)
-        diveInstructor.setDarkTextField(textfield: diveInstructor)
+        diveInstructor.setDarkTextField()
         diveInstructor.text = myIndexCard.Instructor
         
         
@@ -190,7 +190,7 @@ class EditCardInfoViewController: UIViewController, UIPickerViewDelegate, UIPick
         diveCenter.attributedPlaceholder = NSAttributedString(string: "Dive Center",
                                                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         diveCenter.font = UIFont.init(name: "Avenir Next", size: 14)
-        diveCenter.setDarkTextField(textfield: diveCenter)
+        diveCenter.setDarkTextField()
         diveCenter.text = myIndexCard.DiveClub
         
         

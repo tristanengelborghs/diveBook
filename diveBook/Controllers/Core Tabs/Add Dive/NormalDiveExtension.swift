@@ -47,7 +47,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         dateTextField.bottomAnchor.constraint(equalTo: diveInTitle.topAnchor, constant: -20).isActive = true
         dateTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         dateTextField.font = UIFont.init(name: "Avenir Next", size: 16)
-        dateTextField.setDarkTextField(textfield: dateTextField)
+        dateTextField.setDarkTextField()
         formatter.timeStyle = .none
         formatter.dateStyle = .medium
         dateTextField.text = "\(formatter.string(from: currentDateTime))"
@@ -71,7 +71,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         diveIn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         diveIn.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: -10).isActive = true
         diveIn.font = UIFont.init(name: "Avenir Next", size: 16)
-        diveIn.setDarkTextField(textfield: diveIn)
+        diveIn.setDarkTextField()
         createDatePicker(picker: datePicker2, textField: diveIn)
         diveIn.inputView = datePicker2
         datePicker2.datePickerMode = .time
@@ -93,7 +93,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         diveTime.heightAnchor.constraint(equalToConstant: 40).isActive = true
         diveTime.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         diveTime.font = UIFont.init(name: "Avenir Next", size: 16)
-        diveTime.setDarkTextField(textfield: diveTime)
+        diveTime.setDarkTextField()
         diveTime.keyboardType = UIKeyboardType.decimalPad
         diveTime.attributedPlaceholder = NSAttributedString(string: "0 min",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -113,7 +113,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         maxDepth.heightAnchor.constraint(equalToConstant: 40).isActive = true
         maxDepth.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: -10).isActive = true
         maxDepth.font = UIFont.init(name: "Avenir Next", size: 16)
-        maxDepth.setDarkTextField(textfield: maxDepth)
+        maxDepth.setDarkTextField()
         maxDepth.keyboardType = UIKeyboardType.decimalPad
         maxDepth.attributedPlaceholder = NSAttributedString(string: "0 m",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -133,7 +133,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         avgDepth.heightAnchor.constraint(equalToConstant: 40).isActive = true
         avgDepth.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         avgDepth.font = UIFont.init(name: "Avenir Next", size: 16)
-        avgDepth.setDarkTextField(textfield: avgDepth)
+        avgDepth.setDarkTextField()
         avgDepth.keyboardType = UIKeyboardType.decimalPad
         avgDepth.attributedPlaceholder = NSAttributedString(string: "0 m",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -183,7 +183,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         safetyStop.heightAnchor.constraint(equalToConstant: 40).isActive = true
         safetyStop.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         safetyStop.font = UIFont.init(name: "Avenir Next", size: 16)
-        safetyStop.setDarkTextField(textfield: safetyStop)
+        safetyStop.setDarkTextField()
         safetyStop.keyboardType = UIKeyboardType.decimalPad
         safetyStop.attributedPlaceholder = NSAttributedString(string: "0 m",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -221,9 +221,10 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankSteelButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
         tankSteelButton.topAnchor.constraint(equalTo: tankVolumeTitle.bottomAnchor, constant: 45).isActive = true
         tankSteelButton.frame = CGRect(x: 100, y: 100, width: 130, height: 130)
-        tankSteelButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        tankSteelButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        tankSteelButton.setBackgroundImage(SelectedDot, for: .normal)
+        tankSteelButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        tankSteelButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        tankSteelButton.tintColor = .white
+        tankSteelButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
         tankSteelButton.addTarget(self, action: #selector(tankSteelButtonAction), for: .touchUpInside)
         
         // steel tank label
@@ -239,9 +240,10 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankAlButton.leadingAnchor.constraint(equalTo: tankSteelLabel.trailingAnchor, constant: 30).isActive = true
         tankAlButton.topAnchor.constraint(equalTo: tankVolumeTitle.bottomAnchor, constant: 45).isActive = true
         tankAlButton.frame = CGRect(x: 100, y: 100, width: 130, height: 130)
-        tankAlButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        tankAlButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        tankAlButton.setBackgroundImage(UnselectedDot, for: .normal)
+        tankAlButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
+        tankAlButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        tankAlButton.tintColor = .white
+        tankAlButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
         tankAlButton.addTarget(self, action: #selector(tankAllButtonAction), for: .touchUpInside)
         
         // alluminium tank label
@@ -291,7 +293,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         airIn.heightAnchor.constraint(equalToConstant: 40).isActive = true
         airIn.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         airIn.font = UIFont.init(name: "Avenir Next", size: 16)
-        airIn.setDarkTextField(textfield: airIn)
+        airIn.setDarkTextField()
         airIn.keyboardType = UIKeyboardType.decimalPad
         airIn.attributedPlaceholder = NSAttributedString(string: "0 bar",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -311,7 +313,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         SAC.heightAnchor.constraint(equalToConstant: 40).isActive = true
         SAC.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         SAC.font = UIFont.init(name: "Avenir Next", size: 16)
-        SAC.setDarkTextField(textfield: SAC)
+        SAC.setDarkTextField()
         SAC.keyboardType = UIKeyboardType.decimalPad
         SAC.attributedPlaceholder = NSAttributedString(string: "0 bar/min",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -331,7 +333,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         airOut.heightAnchor.constraint(equalToConstant: 40).isActive = true
         airOut.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         airOut.font = UIFont.init(name: "Avenir Next", size: 16)
-        airOut.setDarkTextField(textfield: airOut)
+        airOut.setDarkTextField()
         airOut.keyboardType = UIKeyboardType.decimalPad
         airOut.attributedPlaceholder = NSAttributedString(string: "0 bar",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -351,7 +353,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         nitrox.heightAnchor.constraint(equalToConstant: 40).isActive = true
         nitrox.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         nitrox.font = UIFont.init(name: "Avenir Next", size: 16)
-        nitrox.setDarkTextField(textfield: nitrox)
+        nitrox.setDarkTextField()
         nitrox.keyboardType = UIKeyboardType.decimalPad
         nitrox.attributedPlaceholder = NSAttributedString(string: "0 %",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -403,7 +405,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         entry.heightAnchor.constraint(equalToConstant: 40).isActive = true
         entry.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: -10).isActive = true
         entry.font = UIFont.init(name: "Avenir Next", size: 16)
-        entry.setDarkTextField(textfield: entry)
+        entry.setDarkTextField()
         setupPicker(textField: entry, picker: picker)
         entry.text = waterConditionsArray.type
         entry.attributedPlaceholder = NSAttributedString(string: "Select here...",
@@ -424,7 +426,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         airTemp.heightAnchor.constraint(equalToConstant: 40).isActive = true
         airTemp.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         airTemp.font = UIFont.init(name: "Avenir Next", size: 16)
-        airTemp.setDarkTextField(textfield: airTemp)
+        airTemp.setDarkTextField()
         airTemp.keyboardType = UIKeyboardType.decimalPad
         airTemp.attributedPlaceholder = NSAttributedString(string: "0 C°",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
@@ -459,6 +461,88 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         completion2.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
         completion2.tintColor = .white
         completion2.isHidden = true
+        
+        line.anchor(top: equipment.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 30, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 1))
+        line.backgroundColor = .systemGray2
+        
+        //memo title
+        memoTitle.anchorLabel(top: equipment.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 60, left: 45, bottom: 0, right: 45))
+        memoTitle.setTitle(name: "Memo")
+        
+        // memo textview
+        memo.anchorTextView(top: memoTitle.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 10, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 100))
+        memo.setDarkTextView()
+        
+        features.anchorLabel(top: memo.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 40, left: 45, bottom: 0, right: 45))
+        features.setTitle(name: "Select dive site features")
+        
+        
+        [CoralReef, Wreck, Wall, Muck, Cenote, BlueHole, Mines, Quarry, Ocean, Ruins, Lake, Channel, Altitude, Kelp
+         , River, Ice].forEach { scrollView.addSubview($0) }
+        
+        createRow(stack: row1)
+        row1.topAnchor.constraint(equalTo: features.bottomAnchor, constant: 15).isActive = true
+        addToRow(stack: row1, item: CoralReef, name: "Coral Reef")
+        addToRow(stack: row1, item: Cenote, name: "Cenote")
+        addToRow(stack: row1, item: BlueHole, name: "Blue Hole")
+        
+        createRow(stack: row2)
+        row2.topAnchor.constraint(equalTo: Cenote.bottomAnchor, constant: 10).isActive = true
+        addToRow(stack: row2, item: Wreck, name: "Wreck")
+        addToRow(stack: row2, item: Muck, name: "Muck")
+        addToRow(stack: row2, item: Mines, name: "Mines")
+        addToRow(stack: row2, item: Ice, name: "Ice")
+        
+        createRow(stack: row3)
+        row3.topAnchor.constraint(equalTo: Wreck.bottomAnchor, constant: 10).isActive = true
+        addToRow(stack: row3, item: Quarry, name: "Quarry")
+        addToRow(stack: row3, item: Ocean, name: "Ocean")
+        addToRow(stack: row3, item: Altitude, name: "Altitude")
+        
+        createRow(stack: row4)
+        row4.topAnchor.constraint(equalTo: Quarry.bottomAnchor, constant: 10).isActive = true
+        addToRow(stack: row4, item: Lake, name: "Lake")
+        addToRow(stack: row4, item: Channel, name: "Channel")
+        addToRow(stack: row4, item: Kelp, name: "Kelp")
+        
+        
+        purpose.anchorLabel(top: Lake.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 40, left: 45, bottom: 0, right: 45))
+        purpose.setTitle(name: "Select dive purpose")
+        
+        [FunDive, Training, Research, Technical, SearchRescue, Drift, Night, Photography, SkilPractice, Rebreather, Deep, ColdWater, SideMount].forEach { scrollView.addSubview($0) }
+        
+        createRow(stack: row5)
+        row5.topAnchor.constraint(equalTo: purpose.bottomAnchor, constant: 15).isActive = true
+        addToRow(stack: row5, item: FunDive, name: "Fun dive")
+        addToRow(stack: row5, item: Training, name: "Training")
+        addToRow(stack: row5, item: Research, name: "Research")
+        
+        createRow(stack: row6)
+        row6.topAnchor.constraint(equalTo: FunDive.bottomAnchor, constant: 10).isActive = true
+        addToRow(stack: row6, item: SkilPractice, name: "Skill practice")
+        addToRow(stack: row6, item: Drift, name: "Drift")
+        addToRow(stack: row6, item: Night, name: "Night")
+        
+        createRow(stack: row7)
+        row7.topAnchor.constraint(equalTo: SkilPractice.bottomAnchor, constant: 10).isActive = true
+        addToRow(stack: row7, item: Deep, name: "Deep")
+        addToRow(stack: row7, item: Photography, name: "Photography")
+        addToRow(stack: row7, item: Technical, name: "Technical")
+        
+        createRow(stack: row8)
+        row8.topAnchor.constraint(equalTo: Deep.bottomAnchor, constant: 10).isActive = true
+        addToRow(stack: row8, item: Rebreather, name: "Rebreather")
+        addToRow(stack: row8, item: SideMount, name: "Sidemount")
+        
+        //photosTitle
+        photogalleryTitle.setTitle(name: "Photos")
+        photogalleryTitle.anchorLabel(top: Rebreather.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 40, left: 45, bottom: 0, right: 45))
+        
+        // photos
+        photogallery.anchorButton(top: photogalleryTitle.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 10, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 60))
+        photogallery.backgroundColor = .systemGray5
+        photogallery.layer.cornerRadius = 5
+        photogallery.addTarget(self, action: #selector(photosAction), for: .touchUpInside)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -562,21 +646,26 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
     }
     
     @objc func tankSteelButtonAction() {
-        if tankSteelButton.currentBackgroundImage == UnselectedDot {
-            tankSteelButton.setBackgroundImage(SelectedDot, for: .normal)
-            tankAlButton.setBackgroundImage(UnselectedDot, for: .normal)
+        if tankSteelButton.currentBackgroundImage == UIImage(systemName: "circle") {
+            tankSteelButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
+            tankAlButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
         }
     }
     
     @objc func tankAllButtonAction() {
-        if tankAlButton.currentBackgroundImage == UnselectedDot {
-            tankAlButton.setBackgroundImage(SelectedDot, for: .normal)
-            tankSteelButton.setBackgroundImage(UnselectedDot, for: .normal)
+        if tankAlButton.currentBackgroundImage == UIImage(systemName: "circle") {
+            tankAlButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
+            tankSteelButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
         }
     }
     
     @objc func conditionsAction() {
         let vc = ConditionsViewController()
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func photosAction() {
+        let vc = PhotoGalleryViewController()
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -635,52 +724,62 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         entry.resignFirstResponder()
     }
     
+    func addToRow(stack: UIStackView, item: UIButton, name: String) {
+        stack.addArrangedSubview(item)
+        createEquipment(button: item, name: "\(name)")
+        item.addTarget(self, action: #selector(connected), for: .touchUpInside)
+    }
+    
+    func createRow(stack: UIStackView) {
+        stack.axis  = .horizontal
+        stack.alignment = .center
+        stack.spacing = 8
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(stack)
+        stack.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor, constant: 0).isActive = true
+    }
+    
+    func createEquipment(button: UIButton, name: String) {
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5,right: 15)
+        button.createRoundCorner(14)
+        button.titleLabel?.font =  UIFont(name: "Avenir Next", size: 13)
+        button.titleLabel?.alpha = 0.75
+        button.setTitle("\(name)", for: .normal)
+        button.titleLabel?.textAlignment = .center
+    }
+    
+    @objc func connected(sender: UIButton){
+        // create gradientlayer
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.name = "buttonLayer"
+        sender.layer.cornerRadius = sender.frame.size.height/2
+        sender.layer.masksToBounds = true
+        gradientLayer.frame = sender.bounds
+        gradientLayer.colors = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        
+        if (sender.titleLabel?.alpha == 0.75) {
+            sender.layer.borderWidth = 0
+            sender.titleLabel?.alpha = 1
+            sender.layer.insertSublayer(gradientLayer, at: 0)
+        } else {
+            for layer in sender.layer.sublayers! {
+                    if(layer.name == "buttonLayer"){
+                        layer.removeFromSuperlayer()
+                    }
+                }
+            sender.titleLabel?.alpha = 0.75
+            sender.layer.borderWidth = 1
+        }
+    }
+    
     func addSubviews() {
-        scrollView.addSubview(timeDateTitle)
-        scrollView.addSubview(maxDepth)
-        scrollView.addSubview(maxDepthTitle)
-        scrollView.addSubview(avgDepth)
-        scrollView.addSubview(avgDepthTitle)
-        scrollView.addSubview(diveInTitle)
-        scrollView.addSubview(diveIn)
-        scrollView.addSubview(diveTime)
-        scrollView.addSubview(diveTimeTitle)
-        scrollView.addSubview(ratingTitle)
-        scrollView.addSubview(rating)
-        scrollView.addSubview(ratingValue)
-        scrollView.addSubview(safetyStopTitle)
-        scrollView.addSubview(safetyStop)
-        scrollView.addSubview(tankVolume)
-        scrollView.addSubview(tankVolumeTitle)
-        scrollView.addSubview(tankVolumeValue)
-        scrollView.addSubview(tankAlLabel)
-        scrollView.addSubview(tankAlButton)
-        scrollView.addSubview(tankSteelLabel)
-        scrollView.addSubview(tankSteelButton)
-        scrollView.addSubview(coloredTankBackground)
+        [timeDateTitle, maxDepth, maxDepthTitle, avgDepth, avgDepthTitle, diveInTitle, diveIn, diveTime, diveTimeTitle, ratingTitle, rating, ratingValue, safetyStopTitle,safetyStop, tankVolume, tankVolumeTitle, tankVolumeValue, tankAlLabel, tankAlButton, tankSteelLabel, tankSteelButton, coloredTankBackground,airInTitle, airIn,barLabel,SAC,SACTitle,barLabel2, airOut, airOutTitle, barLabel3, nitrox, nitroxTitle ,barLabel4, conditionsTitle ,conditions, completion, entryTitle, entry, airTempTitle, airTemp, equipmentTitle, equipment, completion2, line, memoTitle, memo, features, purpose, photogallery, photogalleryTitle].forEach { scrollView.addSubview($0) }
+
         coloredTankBackground.addSubview(bottlePhoto)
-        scrollView.addSubview(airInTitle)
-        scrollView.addSubview(airIn)
-        scrollView.addSubview(barLabel)
-        scrollView.addSubview(SAC)
-        scrollView.addSubview(SACTitle)
-        scrollView.addSubview(barLabel2)
-        scrollView.addSubview(airOut)
-        scrollView.addSubview(airOutTitle)
-        scrollView.addSubview(barLabel3)
-        scrollView.addSubview(nitrox)
-        scrollView.addSubview(nitroxTitle)
-        scrollView.addSubview(barLabel4)
-        scrollView.addSubview(conditionsTitle)
-        scrollView.addSubview(conditions)
-        scrollView.addSubview(completion)
-        scrollView.addSubview(entryTitle)
-        scrollView.addSubview(entry)
-        scrollView.addSubview(airTempTitle)
-        scrollView.addSubview(airTemp)
-        scrollView.addSubview(equipmentTitle)
-        scrollView.addSubview(equipment)
-        scrollView.addSubview(completion2)
     }
 
 }
