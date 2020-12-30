@@ -273,6 +273,13 @@ extension UITableView {
 
 extension UIButton {
     
+    func setDarkButton() {
+        layer.cornerRadius = 5
+        backgroundColor = .systemGray5
+        contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5,right: 15)
+        
+    }
+    
     func anchorButton(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -301,6 +308,26 @@ extension UIButton {
         }
     }
 }
+
+extension UIImage {
+       // image with rounded corners
+       public func withRoundedCorners(radius: CGFloat? = nil) -> UIImage? {
+           let maxRadius = min(size.width, size.height) / 2
+           let cornerRadius: CGFloat
+           if let radius = radius, radius > 0 && radius <= maxRadius {
+               cornerRadius = radius
+           } else {
+               cornerRadius = maxRadius
+           }
+           UIGraphicsBeginImageContextWithOptions(size, false, scale)
+           let rect = CGRect(origin: .zero, size: size)
+           UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).addClip()
+           draw(in: rect)
+           let image = UIGraphicsGetImageFromCurrentImageContext()
+           UIGraphicsEndImageContext()
+           return image
+       }
+   }
 
 extension UITextView {
     

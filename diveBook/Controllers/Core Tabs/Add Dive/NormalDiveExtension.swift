@@ -543,6 +543,58 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         photogallery.backgroundColor = .systemGray5
         photogallery.layer.cornerRadius = 5
         photogallery.addTarget(self, action: #selector(photosAction), for: .touchUpInside)
+        setupCollectionView()
+        
+        line2.anchor(top: photogallery.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 40, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 1))
+        line2.backgroundColor = .systemGray2
+        
+        buddyTitle.translatesAutoresizingMaskIntoConstraints = false
+        buddyTitle.topAnchor.constraint(equalTo: line2.bottomAnchor, constant: 30).isActive = true
+        buddyTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
+        buddyTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        buddyTitle.text = "Buddy's"
+        buddyTitle.font = UIFont.init(name: "Avenir Next", size: 16)
+        buddyTitle.alpha = 0.75
+        
+        // Environmental conditions textfield
+        buddy.translatesAutoresizingMaskIntoConstraints = false
+        buddy.topAnchor.constraint(equalTo: buddyTitle.bottomAnchor, constant: 10).isActive = true
+        buddy.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 45).isActive = true
+        buddy.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        buddy.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        buddy.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
+        buddy.setTitle("select here...", for: .normal)
+        buddy.setTitleColor(UIColor.systemGray, for: .normal)
+        buddy.addTarget(self, action: #selector(buddyAction), for: .touchUpInside)
+        buddy.backgroundColor = .systemGray5
+        buddy.layer.cornerRadius = 5
+        buddy.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        buddy.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        
+        // confirmation icon
+        completion3.translatesAutoresizingMaskIntoConstraints = false
+        completion3.centerYAnchor.constraint(equalTo: buddy.centerYAnchor).isActive = true
+        completion3.trailingAnchor.constraint(equalTo: buddy.trailingAnchor, constant: -20).isActive = true
+        completion3.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        completion3.tintColor = .white
+        completion3.isHidden = true
+        
+    }
+    
+    func setupCollectionView() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 6
+        flowLayout.minimumInteritemSpacing = 1
+        flowLayout.itemSize = CGSize(width: 60, height: 60)
+        flowLayout.scrollDirection = .horizontal
+        myCollectionView = UICollectionView(frame: .init(x: 0, y: 0, width: self.view.frame.width - 90, height: 60), collectionViewLayout: flowLayout)
+        myCollectionView?.register(CustomPhotoGalleryCell.self, forCellWithReuseIdentifier: "MyCell")
+        myCollectionView?.backgroundColor = .systemGray6
+
+        myCollectionView?.dataSource = self
+        myCollectionView?.delegate = self
+ 
+        photogallery.addSubview(myCollectionView!)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -674,6 +726,11 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         self.present(vc, animated: true, completion: nil)
     }
     
+    @objc func buddyAction() {
+        let vc = BuddyViewController()
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     func setupPicker(textField: UITextField, picker: UIPickerView) {
         picker.selectRow(0, inComponent: 0, animated: true)
         picker.backgroundColor = UIColor.systemGray6
@@ -777,9 +834,51 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
     }
     
     func addSubviews() {
-        [timeDateTitle, maxDepth, maxDepthTitle, avgDepth, avgDepthTitle, diveInTitle, diveIn, diveTime, diveTimeTitle, ratingTitle, rating, ratingValue, safetyStopTitle,safetyStop, tankVolume, tankVolumeTitle, tankVolumeValue, tankAlLabel, tankAlButton, tankSteelLabel, tankSteelButton, coloredTankBackground,airInTitle, airIn,barLabel,SAC,SACTitle,barLabel2, airOut, airOutTitle, barLabel3, nitrox, nitroxTitle ,barLabel4, conditionsTitle ,conditions, completion, entryTitle, entry, airTempTitle, airTemp, equipmentTitle, equipment, completion2, line, memoTitle, memo, features, purpose, photogallery, photogalleryTitle].forEach { scrollView.addSubview($0) }
+        [timeDateTitle, maxDepth, maxDepthTitle, avgDepth, avgDepthTitle, diveInTitle, diveIn, diveTime, diveTimeTitle, ratingTitle, rating, ratingValue, safetyStopTitle,safetyStop, tankVolume, tankVolumeTitle, tankVolumeValue, tankAlLabel, tankAlButton, tankSteelLabel, tankSteelButton, coloredTankBackground,airInTitle, airIn,barLabel,SAC,SACTitle,barLabel2, airOut, airOutTitle, barLabel3, nitrox, nitroxTitle ,barLabel4, conditionsTitle ,conditions, completion, entryTitle, entry, airTempTitle, airTemp, equipmentTitle, equipment, completion2, line, memoTitle, memo, features, purpose, photogallery, photogalleryTitle, photogalleryAction, line2, buddy, buddyTitle, completion3].forEach { scrollView.addSubview($0) }
 
         coloredTankBackground.addSubview(bottlePhoto)
     }
 
+}
+
+extension NormalDiveViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photoDataArray.count + 1// How many cells to display
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! CustomPhotoGalleryCell
+        if indexPath.row != photoDataArray.count {
+            let finalImage = UIImage(data: photoDataArray[indexPath.row])
+            cell.image.image = finalImage
+        } else if indexPath.row == photoDataArray.count {
+            cell.image.image = .none
+            cell.image.backgroundColor = .systemGray5
+        }
+        return cell
+    }
+    
+}
+extension NormalDiveViewController: UICollectionViewDelegate {
+ 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        photosAction()
+    }
+}
+
+class CustomPhotoGalleryCell: UICollectionViewCell {
+    
+    var image = UIImageView()
+    
+    override init(frame: CGRect) {
+            super.init(frame: frame)
+        addSubview(image)
+        image.anchorImage(top: self.topAnchor, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor)
+        image.layer.cornerRadius = 5
+        image.layer.masksToBounds = true
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

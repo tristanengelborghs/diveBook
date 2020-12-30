@@ -12,8 +12,10 @@ import FirebaseFirestore
 
 var waterConditionsArray = waterConditionsStruct(type: "", maxTemp: "", minTemp: "", waves: "", visibility: "0m", current: "")
 var saveEquipmentArray = EquipmentStruct(Name: "", SuitType: "", SuitThickness: "", OneLayer: true, TwoLayers: false, Weight: "", Extra: [])
+var buddys: [BuddyStruct] = []
 var selectedCell: IndexPath?
 var selectedCellButton: IndexPath?
+var photoDataArray: [Data] = []
 
 class NormalDiveViewController: UIViewController {
     
@@ -91,6 +93,7 @@ class NormalDiveViewController: UIViewController {
     let row4 = UIStackView()
     let row5 = UIStackView()
     let line = UIView()
+    let line2 = UIView()
     let memo = UITextView()
     let memoTitle = UILabel()
     let features = UILabel()
@@ -135,6 +138,14 @@ class NormalDiveViewController: UIViewController {
     
     let photogalleryTitle = UILabel()
     let photogallery = UIButton()
+    var myCollectionView: UICollectionView?
+    var photoBack = Data()
+    var photoBackString: Data?
+    let photogalleryAction = UIButton()
+    
+    let buddyTitle = UILabel()
+    let buddy = UIButton()
+    let completion3 = UIButton(type: UIButton.ButtonType.custom) as UIButton
     
     let SelectedDot = UIImage(named: "SelectedDot") as UIImage?
     let UnselectedDot = UIImage(named: "UnselectedDot") as UIImage?

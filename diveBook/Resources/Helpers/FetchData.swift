@@ -155,4 +155,30 @@ class FetchData {
             callback(equipmentArray)
         }
     }
+    
+    func fetchBuddys(callback: @escaping([BuddyStruct]) -> Void) {
+
+        Firestore.firestore().collection("users").document(uid).collection("Settings").document("Buddys").collection("BuddyCollection").addSnapshotListener { (snapshot, err) in
+
+            var buddyArray: [BuddyStruct] = []
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                guard let snap = snapshot else { return }
+                for document in snap.documents {
+                    let data = document.data()
+
+                    let Name = data["Name"] as? String ?? ""
+                    let LastName = data["LastName"] as? String ?? ""
+                    let Cirtification = data["Cirtification"] as? String ?? ""
+
+                    let buddyInfo = BuddyStruct(Name: Name, LastName: LastName, Cirtification: Cirtification)
+                    
+                    buddyArray.append(buddyInfo)
+                }
+            }
+            callback(buddyArray)
+        }
+    }
 }

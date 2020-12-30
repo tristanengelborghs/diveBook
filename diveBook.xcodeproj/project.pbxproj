@@ -37,6 +37,8 @@
 		2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F126924F283A200666535 /* GoogleService-Info.plist */; };
 		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
 		2F58011B259530A300B88B0E /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */; };
+		2F58011E259B644400B88B0E /* BuddyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58011D259B644400B88B0E /* BuddyViewController.swift */; };
+		2F580121259B653400B88B0E /* BuddyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F580120259B653400B88B0E /* BuddyTableViewCell.swift */; };
 		2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */; };
 		2F63B352250CB35B00F4EEBD /* EditCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */; };
 		2FBBD8AF25587F1C007E7772 /* GradientBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */; };
@@ -85,6 +87,8 @@
 		2F4F126924F283A200666535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2F4F127424F2C2EC00666535 /* GradientColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColor.swift; sourceTree = "<group>"; };
 		2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
+		2F58011D259B644400B88B0E /* BuddyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyViewController.swift; sourceTree = "<group>"; };
+		2F580120259B653400B88B0E /* BuddyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyTableViewCell.swift; sourceTree = "<group>"; };
 		2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardInfoViewController.swift; sourceTree = "<group>"; };
 		2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBorderView.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */,
 				2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */,
 				2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */,
+				2F58011D259B644400B88B0E /* BuddyViewController.swift */,
+				2F580120259B653400B88B0E /* BuddyTableViewCell.swift */,
 			);
 			path = "Add Dive";
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				2F4F125924F2719700666535 /* AlbumViewController.swift in Sources */,
 				2F320BDF24F3F4D900BBEE13 /* Constants.swift in Sources */,
 				2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */,
+				2F58011E259B644400B88B0E /* BuddyViewController.swift in Sources */,
 				2FFFE44A258F6AA20054C300 /* EquipmentTableViewCell.swift in Sources */,
 				2F33C74024F69B0200752B45 /* CustomTableViewCell.swift in Sources */,
 				2FE9D4A5255EA6A9004819DC /* NormalDiveExtension.swift in Sources */,
@@ -488,6 +495,7 @@
 				2F4F125724F2717900666535 /* ProfileViewController.swift in Sources */,
 				2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */,
 				2F33C74424F911C400752B45 /* ShowDiveViewController.swift in Sources */,
+				2F580121259B653400B88B0E /* BuddyTableViewCell.swift in Sources */,
 				2F320BE224F3F78800BBEE13 /* FirstViewController.swift in Sources */,
 				2FFFAA83258CB4F10040C279 /* ConditionsViewController.swift in Sources */,
 				2FE50A9425017F9F0084B496 /* SplashViewController.swift in Sources */,

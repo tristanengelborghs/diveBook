@@ -46,3 +46,15 @@ struct EquipmentStruct {
     var Weight: String
     var Extra: [String]
 }
+
+struct BuddyStruct : Hashable  {
+    var Name: String
+    var LastName: String
+    var Cirtification: String
+}
+
+extension BuddyStruct: Equatable{}
+
+func ==(lhs: BuddyStruct, rhs: BuddyStruct) -> Bool {
+    return lhs.Name == rhs.Name && lhs.LastName == rhs.LastName
+}
