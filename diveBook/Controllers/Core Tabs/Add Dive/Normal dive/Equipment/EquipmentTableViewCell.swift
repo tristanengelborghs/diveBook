@@ -77,7 +77,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         selectionStyle = .none
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
-        stackView.spacing = 5
+        stackView.spacing = 0
         stackView.alignment = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(stackView)
@@ -87,11 +87,14 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         // configure top view
         topView.translatesAutoresizingMaskIntoConstraints = false
         topView.addSubview(wordLabel)
-        topView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        let constraint = topView.heightAnchor.constraint(equalToConstant: 50)
+        constraint.priority = UILayoutPriority(999)
+        constraint.isActive = true
+        
         
         wordLabel.translatesAutoresizingMaskIntoConstraints = false
         wordLabel.leftAnchor.constraint(equalTo: topView.leftAnchor, constant: 0).isActive = true
-        wordLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
+        wordLabel.centerYAnchor.constraint(equalTo: topView.centerYAnchor, constant: 0).isActive = true
         wordLabel.font = UIFont.init(name: "Avenir Next", size: 16)
         wordLabel.text = ""
         wordLabel.numberOfLines = 0
@@ -102,7 +105,7 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
        // editbutton.leadingAnchor.constraint(equalTo: wordLabel.trailingAnchor, constant: 20).isActive = true
         
         editbutton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60).isActive = true
-        editbutton.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
+        editbutton.centerYAnchor.constraint(equalTo: topView.centerYAnchor, constant: 0).isActive = true
         editbutton.setTitle("edit", for: .normal)
         editbutton.titleLabel?.font =  UIFont(name: "Avenir Next", size: 16)
         editbutton.titleLabel?.alpha = 0.75
@@ -112,8 +115,8 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         stackView.addSubview(checkButton)
         checkButton.translatesAutoresizingMaskIntoConstraints = false
         checkButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-        checkButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 14).isActive = true
-        checkButton.frame = CGRect(x: 100, y: 100, width: 130, height: 130)
+        checkButton.centerYAnchor.constraint(equalTo: topView.centerYAnchor, constant: 0).isActive = true
+        checkButton.frame = CGRect(x: 100, y: 100, width: 22, height: 22)
         checkButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
         checkButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
         checkButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
@@ -180,7 +183,9 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         oneLayerButton.tintColor = .white
         oneLayerButton.frame = CGRect(x: 100, y: 100, width: 130, height: 130)
         oneLayerButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
-        oneLayerButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        let constraint9 = oneLayerButton.heightAnchor.constraint(equalToConstant: 22)
+        constraint9.priority = UILayoutPriority(999)
+        constraint9.isActive = true
         oneLayerButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
         oneLayerButton.addTarget(self, action: #selector(oneLayerButtonAction), for: .touchUpInside)
         
@@ -199,7 +204,9 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         twoLayerButton.tintColor = .white
         twoLayerButton.frame = CGRect(x: 100, y: 100, width: 130, height: 130)
         twoLayerButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
-        twoLayerButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        let constraint8 = twoLayerButton.heightAnchor.constraint(equalToConstant: 22)
+        constraint8.priority = UILayoutPriority(999)
+        constraint8.isActive = true
         twoLayerButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
         twoLayerButton.addTarget(self, action: #selector(TwoLayerButtonAction), for: .touchUpInside)
         
@@ -232,25 +239,37 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         wheight.attributedPlaceholder = NSAttributedString(string: "0 kg",
                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
         multipleChoiceConfigure()
-        
-        
-        
-        
+
         // height anchors
-        topView.heightAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+        let constraint1 = topView.heightAnchor.constraint(greaterThanOrEqualToConstant: 30)
+        constraint1.priority = UILayoutPriority(999)
+        constraint1.isActive = true
         bottomView.heightAnchor.constraint(greaterThanOrEqualTo: bottomView.heightAnchor).isActive = true
-        suitType.heightAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
-        suitThick.heightAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
-        oneLayerLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
+        let constraint2 = suitType.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
+        constraint2.priority = UILayoutPriority(999)
+        constraint2.isActive = true
+        let constraint3 = suitThick.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
+        constraint3.priority = UILayoutPriority(999)
+        constraint3.isActive = true
+        let constraint4 = oneLayerLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 30)
+        constraint4.priority = UILayoutPriority(999)
+        constraint4.isActive = true
         twoLayerLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 30).isActive = true
-        wheight.heightAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
-        multipleChoiceView.heightAnchor.constraint(greaterThanOrEqualToConstant: 130).isActive = true
+        let constraint5 = wheight.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
+        constraint5.priority = UILayoutPriority(999)
+        constraint5.isActive = true
+        let constraint6 = multipleChoiceView.heightAnchor.constraint(greaterThanOrEqualToConstant: 130)
+        constraint6.priority = UILayoutPriority(999)
+        constraint6.isActive = true
+        
+        
+        
 
         // stackview constraints
         stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,constant: 0).isActive = true
         stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor,constant: 0).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,constant: 0).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.bottomAnchor,constant: 10).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor,constant: 0).isActive = true
 
     }
     
@@ -264,16 +283,25 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         common.append(dryGloves)
         common.append(buoy)
         common.append(torch)
+        
         bottomView.addSubview(multipleChoiceView)
-        bottomView.addSubview(hood)
-        bottomView.addSubview(hoodVest)
-        bottomView.addSubview(gloves)
-        bottomView.addSubview(reefHook)
-        bottomView.addSubview(compass)
-        bottomView.addSubview(knife)
+        multipleChoiceView.translatesAutoresizingMaskIntoConstraints = false
+        let constraint11 = multipleChoiceView.topAnchor.constraint(equalTo: wheight.bottomAnchor, constant: 25)
+        constraint11.priority = UILayoutPriority(999)
+        constraint11.isActive = true
+        multipleChoiceView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 0).isActive = true
+        multipleChoiceView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: 0).isActive = true
+        multipleChoiceView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0).isActive = true
+        
+        multipleChoiceView.addSubview(hood)
+        multipleChoiceView.addSubview(hoodVest)
+        multipleChoiceView.addSubview(gloves)
+        multipleChoiceView.addSubview(reefHook)
+        multipleChoiceView.addSubview(compass)
+        multipleChoiceView.addSubview(knife)
         
         createRow(stack: row3)
-        row3.topAnchor.constraint(equalTo: multipleChoiceView.topAnchor, constant: 0).isActive = true
+        row3.topAnchor.constraint(equalTo: wheight.bottomAnchor, constant: 25).isActive = true
         addToRow(stack: row3, item: reefHook, name: "Reefhook")
         addToRow(stack: row3, item: compass, name: "compass")
         addToRow(stack: row3, item: knife, name: "Knife")
@@ -289,12 +317,6 @@ class CustomCell: UITableViewCell, UIPickerViewDelegate, UIPickerViewDataSource,
         addToRow(stack: row2, item: dryGloves, name: "Dry gloves")
         addToRow(stack: row2, item: buoy, name: "Buoy")
         addToRow(stack: row2, item: torch, name: "Torch")
-
-        multipleChoiceView.translatesAutoresizingMaskIntoConstraints = false
-        multipleChoiceView.topAnchor.constraint(equalTo: wheight.bottomAnchor, constant: 25).isActive = true
-        multipleChoiceView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 0).isActive = true
-        multipleChoiceView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: 0).isActive = true
-        multipleChoiceView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 0).isActive = true
         
     }
     

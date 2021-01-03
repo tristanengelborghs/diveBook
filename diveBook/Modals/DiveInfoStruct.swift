@@ -47,6 +47,10 @@ struct EquipmentStruct {
     var Extra: [String]
 }
 
+struct SignatureStruct {
+    var Data: Data
+}
+
 struct BuddyStruct : Hashable  {
     var Name: String
     var LastName: String

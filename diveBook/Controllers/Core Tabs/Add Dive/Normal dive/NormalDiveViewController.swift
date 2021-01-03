@@ -16,6 +16,7 @@ var buddys: [BuddyStruct] = []
 var selectedCell: IndexPath?
 var selectedCellButton: IndexPath?
 var photoDataArray: [Data] = []
+var senderButton:UIButton?
 
 class NormalDiveViewController: UIViewController {
     
@@ -146,6 +147,8 @@ class NormalDiveViewController: UIViewController {
     let buddyTitle = UILabel()
     let buddy = UIButton()
     let completion3 = UIButton(type: UIButton.ButtonType.custom) as UIButton
+    let resortTitle = UILabel()
+    let resort = UITextField()
     
     let SelectedDot = UIImage(named: "SelectedDot") as UIImage?
     let UnselectedDot = UIImage(named: "UnselectedDot") as UIImage?
@@ -159,6 +162,30 @@ class NormalDiveViewController: UIViewController {
     private var borderWidth: CGFloat = 0
     private var gradientLayer = CAGradientLayer()
     private var backgroundView = UIView()
+    var myConstraint = NSLayoutConstraint()
+    var myConstraint2 = NSLayoutConstraint()
+    
+    let saveButton = UIButton()
+    
+    var tableView: UITableView = {
+        let tv = UITableView(frame: .zero)
+        tv.register(BuddyCertificationTableViewCell.self, forCellReuseIdentifier: "CustomCell")
+        tv.allowsSelection = true
+        tv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tv.preservesSuperviewLayoutMargins = false
+        tv.separatorInset = UIEdgeInsets.zero
+        tv.layoutMargins = UIEdgeInsets.zero
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.rowHeight = UITableView.automaticDimension
+        tv.estimatedRowHeight = 50
+        tv.showsVerticalScrollIndicator = false
+        tv.alwaysBounceVertical = true
+        tv.decelerationRate = .fast
+        tv.bounces = false
+        tv.separatorColor = UIColor.systemGray2
+        return tv
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,12 +196,12 @@ class NormalDiveViewController: UIViewController {
         setupScrollView()
         topContainer()
         middleTexFields()
-        
+        BottomTexFields()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //colorView.setGradientBackground(colorTop: topColor, colorBottom: bottomColor)
+        Utilities.styleFilledButtongradient(saveButton)
     }
     
     func setupScrollView() {
@@ -187,7 +214,7 @@ class NormalDiveViewController: UIViewController {
         scrollView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 3000).isActive = true
-        label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
+        //label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
         label.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 30).isActive = true
         label.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -30).isActive = true
 

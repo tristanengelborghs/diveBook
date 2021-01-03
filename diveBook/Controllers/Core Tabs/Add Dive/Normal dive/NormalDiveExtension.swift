@@ -36,7 +36,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         timeDateTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         timeDateTitle.text = "Date"
         timeDateTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        timeDateTitle.alpha = 0.75
+        //timeDateTitle.alpha = 0.75
         
         // date Textfield
         scrollView.addSubview(dateTextField)
@@ -62,7 +62,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         diveInTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         diveInTitle.text = "Time in"
         diveInTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        diveInTitle.alpha = 0.75
+        //diveInTitle.alpha = 0.75
         
         // dive time in textfield
         diveIn.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         diveTimeTitle.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -45).isActive = true
         diveTimeTitle.text = "Dive time"
         diveTimeTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        diveTimeTitle.alpha = 0.75
+        //diveTimeTitle.alpha = 0.75
         
         // dive time textfield
         diveTime.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +104,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         maxDepthTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         maxDepthTitle.text = "Max depth"
         maxDepthTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        maxDepthTitle.alpha = 0.75
+        //maxDepthTitle.alpha = 0.75
         
         // maximum depth textfield
         maxDepth.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +124,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         avgDepthTitle.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -45).isActive = true
         avgDepthTitle.text = "Avg. depth"
         avgDepthTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        avgDepthTitle.alpha = 0.75
+        //avgDepthTitle.alpha = 0.75
         
         // avarage depth textfield
         avgDepth.translatesAutoresizingMaskIntoConstraints = false
@@ -144,7 +144,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         ratingTitle.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -45).isActive = true
         ratingTitle.text = "Rating"
         ratingTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        ratingTitle.alpha = 0.75
+        //ratingTitle.alpha = 0.75
         
         // rating value
         ratingValue.translatesAutoresizingMaskIntoConstraints = false
@@ -174,7 +174,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         safetyStopTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         safetyStopTitle.text = "Safety Stop"
         safetyStopTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        safetyStopTitle.alpha = 0.75
+        //safetyStopTitle.alpha = 0.75
         
         // safety stop textfield
         safetyStop.translatesAutoresizingMaskIntoConstraints = false
@@ -193,7 +193,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankVolumeTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
         tankVolumeTitle.text = "Tank Volume"
         tankVolumeTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        tankVolumeTitle.alpha = 0.75
+        //tankVolumeTitle.alpha = 0.75
         
         // tank volume value
         tankVolumeValue.translatesAutoresizingMaskIntoConstraints = false
@@ -233,7 +233,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankSteelLabel.leadingAnchor.constraint(equalTo: tankSteelButton.trailingAnchor, constant: 15).isActive = true
         tankSteelLabel.text = "Steel tank"
         tankSteelLabel.font = UIFont.init(name: "Avenir Next", size: 16)
-        tankSteelLabel.alpha = 0.75
+        //tankSteelLabel.alpha = 0.75
         
         // alluminium tank button
         tankAlButton.translatesAutoresizingMaskIntoConstraints = false
@@ -252,7 +252,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         tankAlLabel.leadingAnchor.constraint(equalTo: tankAlButton.trailingAnchor, constant: 15).isActive = true
         tankAlLabel.text = "Aluminium tank"
         tankAlLabel.font = UIFont.init(name: "Avenir Next", size: 16)
-        tankAlLabel.alpha = 0.75
+        //tankAlLabel.alpha = 0.75
         
         // view behind bottle
         coloredTankBackground.translatesAutoresizingMaskIntoConstraints = false
@@ -284,7 +284,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         airInTitle.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         airInTitle.text = "Air in"
         airInTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        airInTitle.alpha = 0.75
+        //airInTitle.alpha = 0.75
         
         // air in textfield
         airIn.translatesAutoresizingMaskIntoConstraints = false
@@ -304,7 +304,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         SACTitle.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         SACTitle.text = "SAC"
         SACTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        SACTitle.alpha = 0.75
+        //SACTitle.alpha = 0.75
         
         // SAC textfield
         SAC.translatesAutoresizingMaskIntoConstraints = false
@@ -324,7 +324,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         airOutTitle.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         airOutTitle.text = "Air out"
         airOutTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        airOutTitle.alpha = 0.75
+        //airOutTitle.alpha = 0.75
         
         // air out textfield
         airOut.translatesAutoresizingMaskIntoConstraints = false
@@ -344,7 +344,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         nitroxTitle.trailingAnchor.constraint(equalTo: coloredTankBackground.leadingAnchor, constant: -30).isActive = true
         nitroxTitle.text = "Nitrox"
         nitroxTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        nitroxTitle.alpha = 0.75
+        //nitroxTitle.alpha = 0.75
         
         // nitrox textfield
         nitrox.translatesAutoresizingMaskIntoConstraints = false
@@ -364,7 +364,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         conditionsTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         conditionsTitle.text = "Water conditions"
         conditionsTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        conditionsTitle.alpha = 0.75
+        //conditionsTitle.alpha = 0.75
         
         // Environmental conditions textfield
         conditions.translatesAutoresizingMaskIntoConstraints = false
@@ -386,7 +386,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         completion.centerYAnchor.constraint(equalTo: conditions.centerYAnchor).isActive = true
         completion.trailingAnchor.constraint(equalTo: conditions.trailingAnchor, constant: -20).isActive = true
         completion.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-        completion.tintColor = .white
+        completion.tintColor = UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00)
         completion.isHidden = true
         
         // water entry title
@@ -396,7 +396,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         entryTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         entryTitle.text = "Water entry"
         entryTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        entryTitle.alpha = 0.75
+        //entryTitle.alpha = 0.75
         
         // water entry textfield
         entry.translatesAutoresizingMaskIntoConstraints = false
@@ -417,7 +417,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         airTempTitle.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -45).isActive = true
         airTempTitle.text = "Air temperature"
         airTempTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        airTempTitle.alpha = 0.75
+        //airTempTitle.alpha = 0.75
         
         // air temperature textfield
         airTemp.translatesAutoresizingMaskIntoConstraints = false
@@ -437,7 +437,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         equipmentTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         equipmentTitle.text = "Equipment"
         equipmentTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        equipmentTitle.alpha = 0.75
+        //equipmentTitle.alpha = 0.75
         
         // Environmental conditions textfield
         equipment.translatesAutoresizingMaskIntoConstraints = false
@@ -459,7 +459,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         completion2.centerYAnchor.constraint(equalTo: equipment.centerYAnchor).isActive = true
         completion2.trailingAnchor.constraint(equalTo: equipment.trailingAnchor, constant: -20).isActive = true
         completion2.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-        completion2.tintColor = .white
+        completion2.tintColor = UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00)
         completion2.isHidden = true
         
         line.anchor(top: equipment.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 30, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 1))
@@ -548,13 +548,33 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         line2.anchor(top: photogallery.bottomAnchor, leading: self.view.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 40, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: 1))
         line2.backgroundColor = .systemGray2
         
+        // safety stop Title
+        resortTitle.translatesAutoresizingMaskIntoConstraints = false
+        resortTitle.topAnchor.constraint(equalTo: line2.bottomAnchor, constant: 30).isActive = true
+        resortTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
+        resortTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        resortTitle.text = "Dive Resort"
+        resortTitle.font = UIFont.init(name: "Avenir Next", size: 16)
+        //safetyStopTitle.alpha = 0.75
+        
+        // safety stop textfield
+        resort.translatesAutoresizingMaskIntoConstraints = false
+        resort.topAnchor.constraint(equalTo: resortTitle.bottomAnchor, constant: 10).isActive = true
+        resort.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 45).isActive = true
+        resort.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        resort.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
+        resort.font = UIFont.init(name: "Avenir Next", size: 16)
+        resort.setDarkTextField()
+        resort.attributedPlaceholder = NSAttributedString(string: "Resort / Shop",
+                                                                     attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray])
+        
         buddyTitle.translatesAutoresizingMaskIntoConstraints = false
-        buddyTitle.topAnchor.constraint(equalTo: line2.bottomAnchor, constant: 30).isActive = true
+        buddyTitle.topAnchor.constraint(equalTo: resort.bottomAnchor, constant: 20).isActive = true
         buddyTitle.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 45).isActive = true
         buddyTitle.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -45).isActive = true
         buddyTitle.text = "Buddy's"
         buddyTitle.font = UIFont.init(name: "Avenir Next", size: 16)
-        buddyTitle.alpha = 0.75
+        buddyTitle.alpha = 1
         
         // Environmental conditions textfield
         buddy.translatesAutoresizingMaskIntoConstraints = false
@@ -576,8 +596,13 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         completion3.centerYAnchor.constraint(equalTo: buddy.centerYAnchor).isActive = true
         completion3.trailingAnchor.constraint(equalTo: buddy.trailingAnchor, constant: -20).isActive = true
         completion3.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-        completion3.tintColor = .white
+        completion3.tintColor = UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00)
         completion3.isHidden = true
+        
+        saveButton.anchorButton(top: nil, leading: self.view.leadingAnchor, bottom: scrollView.bottomAnchor, trailing: self.view.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 30, right: 45), size: .init(width: 0, height: 50))
+        saveButton.setTitle("Save Log", for: .normal)
+        saveButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
+        
         
     }
     
@@ -834,7 +859,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
     }
     
     func addSubviews() {
-        [timeDateTitle, maxDepth, maxDepthTitle, avgDepth, avgDepthTitle, diveInTitle, diveIn, diveTime, diveTimeTitle, ratingTitle, rating, ratingValue, safetyStopTitle,safetyStop, tankVolume, tankVolumeTitle, tankVolumeValue, tankAlLabel, tankAlButton, tankSteelLabel, tankSteelButton, coloredTankBackground,airInTitle, airIn,barLabel,SAC,SACTitle,barLabel2, airOut, airOutTitle, barLabel3, nitrox, nitroxTitle ,barLabel4, conditionsTitle ,conditions, completion, entryTitle, entry, airTempTitle, airTemp, equipmentTitle, equipment, completion2, line, memoTitle, memo, features, purpose, photogallery, photogalleryTitle, photogalleryAction, line2, buddy, buddyTitle, completion3].forEach { scrollView.addSubview($0) }
+        [timeDateTitle, maxDepth, maxDepthTitle, avgDepth, avgDepthTitle, diveInTitle, diveIn, diveTime, diveTimeTitle, ratingTitle, rating, ratingValue, safetyStopTitle,safetyStop, tankVolume, tankVolumeTitle, tankVolumeValue, tankAlLabel, tankAlButton, tankSteelLabel, tankSteelButton, coloredTankBackground,airInTitle, airIn,barLabel,SAC,SACTitle,barLabel2, airOut, airOutTitle, barLabel3, nitrox, nitroxTitle ,barLabel4, conditionsTitle ,conditions, completion, entryTitle, entry, airTempTitle, airTemp, equipmentTitle, equipment, completion2, line, memoTitle, memo, features, purpose, photogallery, photogalleryTitle, photogalleryAction, line2, buddy, buddyTitle, completion3, resortTitle, resort, saveButton].forEach { scrollView.addSubview($0) }
 
         coloredTankBackground.addSubview(bottlePhoto)
     }

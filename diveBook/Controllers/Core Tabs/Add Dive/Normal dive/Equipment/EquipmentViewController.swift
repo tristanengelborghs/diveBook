@@ -108,7 +108,7 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
             
             if (name != "" || suitType != "" || suitThickness != "" || weights != "" || extra != []) {
                 presenter.equipment.setTitleColor(.white, for: .normal)
-                presenter.equipment.setTitle("completed", for: .normal)
+                presenter.equipment.setTitle("\(cell.wordLabel.text ?? "")", for: .normal)
                 presenter.completion2.isHidden = false
             } else {
                 presenter.equipment.setTitleColor(.gray, for: .normal)

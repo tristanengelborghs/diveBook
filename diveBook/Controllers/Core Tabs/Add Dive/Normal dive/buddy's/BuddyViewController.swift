@@ -24,10 +24,9 @@ class BuddyViewController: UIViewController, buddyDelegate {
         tv.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tv.separatorStyle = .none
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.rowHeight = UITableView.automaticDimension
+        tv.rowHeight = 50
         tv.estimatedRowHeight = 50
         tv.showsVerticalScrollIndicator = false
-        tv.tableFooterView = UIView()
         tv.alwaysBounceVertical = true
         tv.decelerationRate = .fast
         tv.bounces = false
@@ -63,6 +62,29 @@ class BuddyViewController: UIViewController, buddyDelegate {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.anchorTableView(top: self.view.topAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: self.view.bottomAnchor, trailing: self.view.layoutMarginsGuide.trailingAnchor, padding: .init(top: 80, left: 20, bottom: 0, right: 20))
+        
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        customView.backgroundColor = .systemGray6
+        let button = UIButton()
+        customView.addSubview(button)
+        button.layer.borderWidth = 0
+        button.layer.borderColor = UIColor.systemGray4.cgColor
+        button.titleLabel?.font = UIFont.init(name: "Avenir Next Ultra Light", size: 35)
+        button.anchorButton(top: customView.topAnchor, leading: customView.leadingAnchor, bottom: customView.bottomAnchor, trailing: customView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        button.setTitle("+", for: .normal)
+        button.titleLabel?.textAlignment = .center
+        let line = UIView()
+        customView.addSubview(line)
+        line.anchor(top: customView.topAnchor, leading: customView.leadingAnchor, bottom: nil, trailing: customView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 1))
+        line.backgroundColor = .systemGray5
+        let line2 = UIView()
+        customView.addSubview(line2)
+        line2.anchor(top: nil, leading: customView.leadingAnchor, bottom: customView.bottomAnchor, trailing: customView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 1))
+        line2.backgroundColor = .systemGray5
+        
+
+        //Add that view in Table Footer View.
+        tableView.tableFooterView = customView
     }
         
     @objc func closeVC(sender: UIButton!) {
@@ -77,13 +99,18 @@ class BuddyViewController: UIViewController, buddyDelegate {
             buddys = Array(Set(selectedBuddyArray))
         
             if Array(Set(selectedBuddyArray)) != [] {
-                presenter.buddy.setTitleColor(.white, for: .normal)
-                presenter.buddy.setTitle("completed", for: .normal)
-                presenter.completion3.isHidden = false
+                presenter.buddy.setTitleColor(.gray, for: .normal)
+                presenter.buddy.setTitle("Add more", for: .normal)
+                presenter.completion3.isHidden = true
+                presenter.tableView.anchorTableView2(top: nil, leading: nil, bottom: nil, trailing: nil, size: .init(width: 0, height: 0), what: true)
+                presenter.myConstraint.isActive = false
+                presenter.view.layoutIfNeeded()
+                presenter.tableView.reloadData()
             } else {
                 presenter.buddy.setTitleColor(.gray, for: .normal)
                 presenter.buddy.setTitle("Select here...", for: .normal)
                 presenter.completion3.isHidden = true
+                presenter.tableView.reloadData()
             }
             
             print(Array(Set(selectedBuddyArray)))
@@ -167,7 +194,7 @@ extension BuddyViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 50
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -177,6 +204,12 @@ extension BuddyViewController: UITableViewDataSource, UITableViewDelegate {
 
 protocol buddyDelegate: class {
     func checkboxReload(indexPatch: UIButton)
+}
+
+extension Array where Element : Hashable {
+    var unique: [Element] {
+        return Array(Set(self))
+    }
 }
 
 

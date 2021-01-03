@@ -68,7 +68,7 @@ class Utilities {
         button.layer.cornerRadius = button.frame.size.height/2
         button.layer.masksToBounds = true
         gradientLayer.frame = button.bounds
-        gradientLayer.colors = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
+        gradientLayer.colors = [UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0) // Top left corner.
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         button.layer.insertSublayer(gradientLayer, at: 0)
@@ -205,7 +205,7 @@ extension UILabel {
     func setTitle(name: String) {
         text = name
         font = UIFont.init(name: "Avenir Next", size: 16)
-        alpha = 0.75
+        //alpha = 0.75
     }
 }
 
@@ -267,6 +267,34 @@ extension UITableView {
         
         if size.height != 0 {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+    }
+    
+    func anchorTableView2(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero, what: Bool) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let top = top {
+            topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
+        }
+        
+        if let leading = leading {
+            leadingAnchor.constraint(equalTo: leading, constant: padding.left).isActive = true
+        }
+        
+        if let bottom = bottom {
+            bottomAnchor.constraint(equalTo: bottom, constant: -padding.bottom).isActive = true
+        }
+        
+        if let trailing = trailing {
+            trailingAnchor.constraint(equalTo: trailing, constant: -padding.right).isActive = true
+        }
+        
+        if size.width != 0 {
+            widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        }
+        
+        if size.height != 0 {
+            heightAnchor.constraint(equalToConstant: size.height).isActive = what
         }
     }
 }

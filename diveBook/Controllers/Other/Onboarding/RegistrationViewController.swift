@@ -133,19 +133,19 @@ class RegistrationViewController: UIViewController {
                             }
                     }
                     
-                    db.collection("users").document("\(result!.user.uid)").collection("Cards").document("Primary").setData([
-                        "Organistation": "",
-                        "Name": "Add your license here",
-                        "Date": "",
-                        "ID": Int.self,
-                        "DiveClub": "",
-                        "Primary": true ]) { (error) in
-                            
-                            if error != nil {
-                                //there was an error
-                                self.showError("There was a problem saving user data")
-                            }
-                    }
+//                    db.collection("users").document("\(result!.user.uid)").collection("Cards").document("Primary").setData([
+//                        "Organistation": "",
+//                        "Name": "Add your license here",
+//                        "Date": "",
+//                        "ID": 0,
+//                        "DiveClub": "",
+//                        "Primary": true ]) { (error) in
+//                            
+//                            if error != nil {
+//                                //there was an error
+//                                self.showError("There was a problem saving user data")
+//                            }
+//                    }
                     
                     //transition to the home screen
                     self.performSegue(withIdentifier: "toHome", sender: self)

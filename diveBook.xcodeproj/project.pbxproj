@@ -41,6 +41,9 @@
 		2F580121259B653400B88B0E /* BuddyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F580120259B653400B88B0E /* BuddyTableViewCell.swift */; };
 		2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */; };
 		2F63B352250CB35B00F4EEBD /* EditCardInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */; };
+		2F699248259F8371003B60A6 /* NormalDIveExtension2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F699247259F8371003B60A6 /* NormalDIveExtension2ViewController.swift */; };
+		2F69924B259F8656003B60A6 /* BuddyCertificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F69924A259F8656003B60A6 /* BuddyCertificationTableViewCell.swift */; };
+		2F69925625A13387003B60A6 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F69925525A13387003B60A6 /* SignatureViewController.swift */; };
 		2FBBD8AF25587F1C007E7772 /* GradientBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */; };
 		2FBBD8B225588011007E7772 /* knConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBBD8B125588011007E7772 /* knConstraints.swift */; };
 		2FE50A9025013F520084B496 /* ShowCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */; };
@@ -91,6 +94,9 @@
 		2F580120259B653400B88B0E /* BuddyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyTableViewCell.swift; sourceTree = "<group>"; };
 		2F63B34F2509615F00F4EEBD /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		2F63B351250CB35B00F4EEBD /* EditCardInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardInfoViewController.swift; sourceTree = "<group>"; };
+		2F699247259F8371003B60A6 /* NormalDIveExtension2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalDIveExtension2ViewController.swift; sourceTree = "<group>"; };
+		2F69924A259F8656003B60A6 /* BuddyCertificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyCertificationTableViewCell.swift; sourceTree = "<group>"; };
+		2F69925525A13387003B60A6 /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		2FBBD8AE25587F1C007E7772 /* GradientBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBorderView.swift; sourceTree = "<group>"; };
 		2FBBD8B125588011007E7772 /* knConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = knConstraints.swift; sourceTree = "<group>"; };
 		2FE50A8F25013F520084B496 /* ShowCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardsViewController.swift; sourceTree = "<group>"; };
@@ -159,14 +165,9 @@
 			children = (
 				2F4F125A24F2722A00666535 /* AddDiveViewController.swift */,
 				2F33C74824F9237100752B45 /* CirtifiedDiveViewController.swift */,
-				2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */,
-				2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */,
-				2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */,
-				2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */,
-				2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */,
-				2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */,
-				2F58011D259B644400B88B0E /* BuddyViewController.swift */,
-				2F580120259B653400B88B0E /* BuddyTableViewCell.swift */,
+				2F69924F25A13231003B60A6 /* Tech Dive */,
+				2F69924E25A13204003B60A6 /* Quick dive */,
+				2F69924D25A131F2003B60A6 /* Normal dive */,
 			);
 			path = "Add Dive";
 			sourceTree = "<group>";
@@ -277,6 +278,70 @@
 				2FE50A9325017F9E0084B496 /* SplashViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		2F69924D25A131F2003B60A6 /* Normal dive */ = {
+			isa = PBXGroup;
+			children = (
+				2F33C74A24F9237F00752B45 /* NormalDiveViewController.swift */,
+				2FE9D4A4255EA6A9004819DC /* NormalDiveExtension.swift */,
+				2F699247259F8371003B60A6 /* NormalDIveExtension2ViewController.swift */,
+				2F69925025A13296003B60A6 /* Water conditions */,
+				2F69925125A132A7003B60A6 /* Equipment */,
+				2F69925325A132BF003B60A6 /* Photos */,
+				2F69925425A132E1003B60A6 /* buddy's */,
+			);
+			path = "Normal dive";
+			sourceTree = "<group>";
+		};
+		2F69924E25A13204003B60A6 /* Quick dive */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Quick dive";
+			sourceTree = "<group>";
+		};
+		2F69924F25A13231003B60A6 /* Tech Dive */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Tech Dive";
+			sourceTree = "<group>";
+		};
+		2F69925025A13296003B60A6 /* Water conditions */ = {
+			isa = PBXGroup;
+			children = (
+				2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */,
+			);
+			path = "Water conditions";
+			sourceTree = "<group>";
+		};
+		2F69925125A132A7003B60A6 /* Equipment */ = {
+			isa = PBXGroup;
+			children = (
+				2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */,
+				2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */,
+			);
+			path = Equipment;
+			sourceTree = "<group>";
+		};
+		2F69925325A132BF003B60A6 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		2F69925425A132E1003B60A6 /* buddy's */ = {
+			isa = PBXGroup;
+			children = (
+				2F58011D259B644400B88B0E /* BuddyViewController.swift */,
+				2F580120259B653400B88B0E /* BuddyTableViewCell.swift */,
+				2F69924A259F8656003B60A6 /* BuddyCertificationTableViewCell.swift */,
+				2F69925525A13387003B60A6 /* SignatureViewController.swift */,
+			);
+			path = "buddy's";
 			sourceTree = "<group>";
 		};
 		2FBBD892255863D8007E7772 /* Edit */ = {
@@ -480,6 +545,7 @@
 				2FFFE44A258F6AA20054C300 /* EquipmentTableViewCell.swift in Sources */,
 				2F33C74024F69B0200752B45 /* CustomTableViewCell.swift in Sources */,
 				2FE9D4A5255EA6A9004819DC /* NormalDiveExtension.swift in Sources */,
+				2F699248259F8371003B60A6 /* NormalDIveExtension2ViewController.swift in Sources */,
 				2F4F125B24F2722A00666535 /* AddDiveViewController.swift in Sources */,
 				2F320BE424F418DC00BBEE13 /* TabBarViewController.swift in Sources */,
 				2F33C74224F69FBA00752B45 /* DiveInfoStruct.swift in Sources */,
@@ -491,6 +557,7 @@
 				2F58011B259530A300B88B0E /* PhotoGalleryViewController.swift in Sources */,
 				2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */,
 				2F63B3502509615F00F4EEBD /* UPCarouselFlowLayout.swift in Sources */,
+				2F69925625A13387003B60A6 /* SignatureViewController.swift in Sources */,
 				2F4F126024F2727300666535 /* LoginViewController.swift in Sources */,
 				2F4F125724F2717900666535 /* ProfileViewController.swift in Sources */,
 				2F4F123C24F26FC200666535 /* AppDelegate.swift in Sources */,
@@ -511,6 +578,7 @@
 				2F4F126424F272E000666535 /* EditProfileViewController.swift in Sources */,
 				2FE50A962502DCFD0084B496 /* FetchData.swift in Sources */,
 				2F4F123E24F26FC200666535 /* SceneDelegate.swift in Sources */,
+				2F69924B259F8656003B60A6 /* BuddyCertificationTableViewCell.swift in Sources */,
 				2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */,
 				2FBBD8B225588011007E7772 /* knConstraints.swift in Sources */,
 			);
