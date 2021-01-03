@@ -142,8 +142,8 @@ class FetchData {
                     let Name = data["Name"] as? String ?? "Hello"
                     let SuitType = data["SuitType"] as? String ?? ""
                     let SuitThickness = data["SuitThickness"] as? String ?? ""
-                    let OneLayer = data["OneLayer"] as? Bool ?? true
-                    let TwoLayers = data["TwoLayers"] as? Bool ?? false
+                    let OneLayer = data["OneLayer"] as? String ?? "true"
+                    let TwoLayers = data["TwoLayers"] as? String ?? "false"
                     let Weight = data["Weight"] as? String ?? ""
                     let Extra = data["Extra"] as? [String] ?? []
 

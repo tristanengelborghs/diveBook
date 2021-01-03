@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 
 var waterConditionsArray = waterConditionsStruct(type: "", maxTemp: "", minTemp: "", waves: "", visibility: "0m", current: "")
-var saveEquipmentArray = EquipmentStruct(Name: "", SuitType: "", SuitThickness: "", OneLayer: true, TwoLayers: false, Weight: "", Extra: [])
+var saveEquipmentArray = EquipmentStruct(Name: "", SuitType: "", SuitThickness: "", OneLayer: "true", TwoLayers: "false", Weight: "", Extra: [])
 var buddys: [BuddyStruct] = []
 var selectedCell: IndexPath?
 var selectedCellButton: IndexPath?
@@ -19,6 +19,8 @@ var photoDataArray: [Data] = []
 var senderButton:UIButton?
 
 class NormalDiveViewController: UIViewController {
+    
+    let uid = Auth.auth().currentUser!.uid
     
     let currentDateTime = Date()
     let formatter = DateFormatter()
@@ -86,6 +88,8 @@ class NormalDiveViewController: UIViewController {
     let airTemp = UITextField()
     let equipmentTitle = UILabel()
     let equipment = UIButton()
+    var featuresArray = [UIButton]()
+    var purposesArray = [UIButton]()
     let completion2 = UIButton(type: UIButton.ButtonType.custom) as UIButton
     
     let row1 = UIStackView()
@@ -266,6 +270,7 @@ class NormalDiveViewController: UIViewController {
         diveNr.font = UIFont.init(name: "Avenir Light", size: 22)
         diveNr.textAlignment = .center
         diveNr.alpha = 0.75
+        diveNr.text = "143"
         diveNr.attributedPlaceholder = NSAttributedString(string: "143",
                                                                        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
@@ -318,8 +323,115 @@ class NormalDiveViewController: UIViewController {
     }
     
     @objc func saveButtonActions() {
-        print("\(waterConditionsArray)")
-        print("hello")
+        
+        let DiveNr = diveNr.text ?? ""
+        let Location = location.text ?? ""
+        let DivePoint = divePoint.text ?? ""
+        let Date = dateTextField.text ?? ""
+        let TimeIn = diveIn.text ?? ""
+        let DiveTime = diveTime.text ?? ""
+        let MaxDepth = maxDepth.text ?? ""
+        let AvgDepth = avgDepth.text ?? ""
+        let Rating = ratingValue.text ?? ""
+        let SafetyStop = safetyStop.text ?? ""
+        let TankVolume = tankVolumeValue.text ?? ""
+        var SteelTank: Bool = true
+        var AlTank: Bool = true
+        if tankSteelButton.currentBackgroundImage == UIImage(systemName: "circle") {
+            SteelTank = false
+            AlTank = true
+        }
+        let AirIn = airIn.text ?? ""
+        let Sac = SAC.text ?? ""
+        let AirOut = airOut.text ?? ""
+        let Nitrox = nitrox.text ?? ""
+        let WaterConditions = ["Type": waterConditionsArray.type, "MaxTemp": waterConditionsArray.maxTemp, "MinTemp": waterConditionsArray.minTemp, "Waves": waterConditionsArray.waves, "Visibility": waterConditionsArray.visibility, "Current": waterConditionsArray.current] as [String : String]
+        
+        let Equipment = ["Name": saveEquipmentArray.Name, "SuitType": saveEquipmentArray.SuitType, "SuitThickness": saveEquipmentArray.SuitThickness, "OneLayer": saveEquipmentArray.OneLayer, "TwoLayers": saveEquipmentArray.TwoLayers, "Weight": saveEquipmentArray.Weight, "Extra": saveEquipmentArray.Extra] as [String : String]
+        
+        let Memo = memo.text ?? ""
+        
+        var activeFeatures: [String] = []
+        for button in featuresArray {
+            if (button.titleLabel?.alpha == 1) {
+                let title = button.titleLabel?.text
+                activeFeatures.append(title!)
+            }
+        }
+        
+        var activePurposes: [String] = []
+        for button in purposesArray {
+            if (button.titleLabel?.alpha == 1) {
+                let title = button.titleLabel?.text
+                activePurposes.append(title!)
+            }
+        }
+        
+        //let Photos = photoDataArray
+        let DiveResort = resort.text ?? ""
+        let Buddys = buddys
+        
+        Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document(DiveNr).setData([
+            "DiveNr": DiveNr,
+            "Location": Location,
+            "DivePoint": DivePoint,
+            "Date": Date,
+            "TimeIn": TimeIn,
+            "DiveTime": DiveTime,
+            "MaxDepth": MaxDepth,
+            "AvgDepth": AvgDepth,
+            "Rating": Rating,
+            "SafetyStop": SafetyStop,
+            "TankVolume": TankVolume,
+            "SteelTank": SteelTank,
+            "AlTank": AlTank,
+            "AirIn": AirIn,
+            "SAC": Sac,
+            "AirOut": AirOut,
+            "Nitrox": Nitrox,
+            "WaterConditions": WaterConditions as Any,
+            "Equipment": Equipment as Any,
+            "Memo": Memo,
+            "ActiveFeatures": activeFeatures,
+            "ActivePurposes": activePurposes,
+            //"Photos": Photos,
+            "DiveResort": DiveResort,
+            "Buddy's": Buddys
+            
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
+
+extension String {
+    var bool: Bool? {
+        switch self.lowercased() {
+        case "true", "t", "yes", "y", "1":
+            return true
+        case "false", "f", "no", "n", "0":
+            return false
+        default:
+            return nil
+        }
+    }
+}
+
+extension Bool {
+    var string: String {
+        switch self {
+        case true:
+            return "true"
+        case false:
+            return "false"
+        }
+    }
+}
+
 

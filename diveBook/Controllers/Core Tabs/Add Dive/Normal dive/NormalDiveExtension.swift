@@ -482,28 +482,28 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         
         createRow(stack: row1)
         row1.topAnchor.constraint(equalTo: features.bottomAnchor, constant: 15).isActive = true
-        addToRow(stack: row1, item: CoralReef, name: "Coral Reef")
-        addToRow(stack: row1, item: Cenote, name: "Cenote")
-        addToRow(stack: row1, item: BlueHole, name: "Blue Hole")
+        addToRow(stack: row1, item: CoralReef, name: "Coral Reef", section: "1")
+        addToRow(stack: row1, item: Cenote, name: "Cenote", section: "1")
+        addToRow(stack: row1, item: BlueHole, name: "Blue Hole", section: "1")
         
         createRow(stack: row2)
         row2.topAnchor.constraint(equalTo: Cenote.bottomAnchor, constant: 10).isActive = true
-        addToRow(stack: row2, item: Wreck, name: "Wreck")
-        addToRow(stack: row2, item: Muck, name: "Muck")
-        addToRow(stack: row2, item: Mines, name: "Mines")
-        addToRow(stack: row2, item: Ice, name: "Ice")
+        addToRow(stack: row2, item: Wreck, name: "Wreck", section: "1")
+        addToRow(stack: row2, item: Muck, name: "Muck", section: "1")
+        addToRow(stack: row2, item: Mines, name: "Mines", section: "1")
+        addToRow(stack: row2, item: Ice, name: "Ice", section: "1")
         
         createRow(stack: row3)
         row3.topAnchor.constraint(equalTo: Wreck.bottomAnchor, constant: 10).isActive = true
-        addToRow(stack: row3, item: Quarry, name: "Quarry")
-        addToRow(stack: row3, item: Ocean, name: "Ocean")
-        addToRow(stack: row3, item: Altitude, name: "Altitude")
+        addToRow(stack: row3, item: Quarry, name: "Quarry", section: "1")
+        addToRow(stack: row3, item: Ocean, name: "Ocean", section: "1")
+        addToRow(stack: row3, item: Altitude, name: "Altitude", section: "1")
         
         createRow(stack: row4)
         row4.topAnchor.constraint(equalTo: Quarry.bottomAnchor, constant: 10).isActive = true
-        addToRow(stack: row4, item: Lake, name: "Lake")
-        addToRow(stack: row4, item: Channel, name: "Channel")
-        addToRow(stack: row4, item: Kelp, name: "Kelp")
+        addToRow(stack: row4, item: Lake, name: "Lake", section: "1")
+        addToRow(stack: row4, item: Channel, name: "Channel", section: "1")
+        addToRow(stack: row4, item: Kelp, name: "Kelp", section: "1")
         
         
         purpose.anchorLabel(top: Lake.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: self.view.trailingAnchor, padding: .init(top: 40, left: 45, bottom: 0, right: 45))
@@ -513,26 +513,26 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         
         createRow(stack: row5)
         row5.topAnchor.constraint(equalTo: purpose.bottomAnchor, constant: 15).isActive = true
-        addToRow(stack: row5, item: FunDive, name: "Fun dive")
-        addToRow(stack: row5, item: Training, name: "Training")
-        addToRow(stack: row5, item: Research, name: "Research")
+        addToRow(stack: row5, item: FunDive, name: "Fun dive", section: "2")
+        addToRow(stack: row5, item: Training, name: "Training", section: "2")
+        addToRow(stack: row5, item: Research, name: "Research", section: "2")
         
         createRow(stack: row6)
         row6.topAnchor.constraint(equalTo: FunDive.bottomAnchor, constant: 10).isActive = true
-        addToRow(stack: row6, item: SkilPractice, name: "Skill practice")
-        addToRow(stack: row6, item: Drift, name: "Drift")
-        addToRow(stack: row6, item: Night, name: "Night")
+        addToRow(stack: row6, item: SkilPractice, name: "Skill practice", section: "2")
+        addToRow(stack: row6, item: Drift, name: "Drift", section: "2")
+        addToRow(stack: row6, item: Night, name: "Night", section: "2")
         
         createRow(stack: row7)
         row7.topAnchor.constraint(equalTo: SkilPractice.bottomAnchor, constant: 10).isActive = true
-        addToRow(stack: row7, item: Deep, name: "Deep")
-        addToRow(stack: row7, item: Photography, name: "Photography")
-        addToRow(stack: row7, item: Technical, name: "Technical")
+        addToRow(stack: row7, item: Deep, name: "Deep", section: "2")
+        addToRow(stack: row7, item: Photography, name: "Photography", section: "2")
+        addToRow(stack: row7, item: Technical, name: "Technical", section: "2")
         
         createRow(stack: row8)
         row8.topAnchor.constraint(equalTo: Deep.bottomAnchor, constant: 10).isActive = true
-        addToRow(stack: row8, item: Rebreather, name: "Rebreather")
-        addToRow(stack: row8, item: SideMount, name: "Sidemount")
+        addToRow(stack: row8, item: Rebreather, name: "Rebreather", section: "2")
+        addToRow(stack: row8, item: SideMount, name: "Sidemount", section: "2")
         
         //photosTitle
         photogalleryTitle.setTitle(name: "Photos")
@@ -806,9 +806,9 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         entry.resignFirstResponder()
     }
     
-    func addToRow(stack: UIStackView, item: UIButton, name: String) {
+    func addToRow(stack: UIStackView, item: UIButton, name: String, section: String) {
         stack.addArrangedSubview(item)
-        createEquipment(button: item, name: "\(name)")
+        createEquipment(button: item, name: "\(name)", section: section)
         item.addTarget(self, action: #selector(connected), for: .touchUpInside)
     }
     
@@ -821,7 +821,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         stack.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor, constant: 0).isActive = true
     }
     
-    func createEquipment(button: UIButton, name: String) {
+    func createEquipment(button: UIButton, name: String, section: String) {
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5,right: 15)
@@ -830,6 +830,11 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         button.titleLabel?.alpha = 0.75
         button.setTitle("\(name)", for: .normal)
         button.titleLabel?.textAlignment = .center
+        if section == "1" {
+            featuresArray.append(button)
+        } else if section == "2" {
+            purposesArray.append(button)
+        }
     }
     
     @objc func connected(sender: UIButton){
