@@ -100,8 +100,8 @@ class EquipmentViewController: UIViewController, DailySpeakingLessonDelegate {
             saveEquipmentArray.Name = name
             saveEquipmentArray.SuitType = suitType
             saveEquipmentArray.SuitThickness = suitThickness
-            saveEquipmentArray.OneLayer = oneLayer.string
-            saveEquipmentArray.TwoLayers = twoLayers.string
+            saveEquipmentArray.OneLayer = oneLayer
+            saveEquipmentArray.TwoLayers = twoLayers
             saveEquipmentArray.Weight = weights
             saveEquipmentArray.Extra = extra
 
@@ -156,7 +156,7 @@ extension EquipmentViewController: UITableViewDataSource, UITableViewDelegate {
         cell.suitType.text = equipmentArray[indexPath.row].SuitType
         cell.suitThick.text = equipmentArray[indexPath.row].SuitThickness
         
-        if equipmentArray[indexPath.row].TwoLayers == "true" {
+        if equipmentArray[indexPath.row].TwoLayers == true {
             cell.oneLayerButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
             cell.twoLayerButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
         }

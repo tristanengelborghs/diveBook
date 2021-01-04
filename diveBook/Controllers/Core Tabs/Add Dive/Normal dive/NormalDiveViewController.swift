@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 
 var waterConditionsArray = waterConditionsStruct(type: "", maxTemp: "", minTemp: "", waves: "", visibility: "0m", current: "")
-var saveEquipmentArray = EquipmentStruct(Name: "", SuitType: "", SuitThickness: "", OneLayer: "true", TwoLayers: "false", Weight: "", Extra: [])
+var saveEquipmentArray = EquipmentStruct(Name: "", SuitType: "", SuitThickness: "", OneLayer: true, TwoLayers: false, Weight: "", Extra: [])
 var buddys: [BuddyStruct] = []
 var selectedCell: IndexPath?
 var selectedCellButton: IndexPath?
@@ -161,7 +161,6 @@ class NormalDiveViewController: UIViewController {
     var colors: [UIColor] = [UIColor(red: 0.07, green: 0.63, blue: 0.63, alpha: 1.00), UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00)]
     var startPoint = CGPoint.zero
     var endPoint = CGPoint(x: 1, y: 1)
-    let label = UILabel()
     private var cornerRadius: CGFloat = 0
     private var borderWidth: CGFloat = 0
     private var gradientLayer = CAGradientLayer()
@@ -215,15 +214,6 @@ class NormalDiveViewController: UIViewController {
         scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        scrollView.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 3000).isActive = true
-        //label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
-        label.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 30).isActive = true
-        label.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -30).isActive = true
-
-        label.text = "hello"
-        label.tintColor = .white
     }
     
     // navigation bar
@@ -251,6 +241,7 @@ class NormalDiveViewController: UIViewController {
         arrowButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         arrowButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 47).isActive = true
         arrowButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        arrowButton.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
         arrowButton.tintColor = .white
         
         let saveButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
@@ -324,7 +315,7 @@ class NormalDiveViewController: UIViewController {
     
     @objc func saveButtonActions() {
         
-        let DiveNr = diveNr.text ?? ""
+        let DiveNr = Int(diveNr.text!) ?? 0
         let Location = location.text ?? ""
         let DivePoint = divePoint.text ?? ""
         let Date = dateTextField.text ?? ""
@@ -347,7 +338,14 @@ class NormalDiveViewController: UIViewController {
         let Nitrox = nitrox.text ?? ""
         let WaterConditions = ["Type": waterConditionsArray.type, "MaxTemp": waterConditionsArray.maxTemp, "MinTemp": waterConditionsArray.minTemp, "Waves": waterConditionsArray.waves, "Visibility": waterConditionsArray.visibility, "Current": waterConditionsArray.current] as [String : String]
         
-        let Equipment = ["Name": saveEquipmentArray.Name, "SuitType": saveEquipmentArray.SuitType, "SuitThickness": saveEquipmentArray.SuitThickness, "OneLayer": saveEquipmentArray.OneLayer, "TwoLayers": saveEquipmentArray.TwoLayers, "Weight": saveEquipmentArray.Weight, "Extra": saveEquipmentArray.Extra] as [String : String]
+        let Equipment = ["Name": saveEquipmentArray.Name, "SuitType": saveEquipmentArray.SuitType, "SuitThickness": saveEquipmentArray.SuitThickness, "OneLayer": saveEquipmentArray.OneLayer, "TwoLayers": saveEquipmentArray.TwoLayers, "Weight": saveEquipmentArray.Weight, "Extra": saveEquipmentArray.Extra] as [String : Any]
+        
+        
+        //var Buddys: [[String: String]] = []
+//
+//        for items in buddys {
+//            Buddys.append(["Name": items.Name, "LastName": items.LastName, "Cirtification": items.Cirtification])
+//        }
         
         let Memo = memo.text ?? ""
         
@@ -367,11 +365,10 @@ class NormalDiveViewController: UIViewController {
             }
         }
         
-        //let Photos = photoDataArray
+        let Photos = photoDataArray
         let DiveResort = resort.text ?? ""
-        let Buddys = buddys
         
-        Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document(DiveNr).setData([
+        Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document("\(DiveNr)").setData([
             "DiveNr": DiveNr,
             "Location": Location,
             "DivePoint": DivePoint,
@@ -394,9 +391,8 @@ class NormalDiveViewController: UIViewController {
             "Memo": Memo,
             "ActiveFeatures": activeFeatures,
             "ActivePurposes": activePurposes,
-            //"Photos": Photos,
+            "Photos": Photos,
             "DiveResort": DiveResort,
-            "Buddy's": Buddys
             
         ]) { err in
             if let err = err {
@@ -406,6 +402,26 @@ class NormalDiveViewController: UIViewController {
             }
         }
         
+        for item in buddys {
+    
+            Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document("\(DiveNr)").collection("Buddy's").document("\(item.Name)" + " \(item.LastName)").setData([
+                "Name": item.Name,
+                "LastName": item.LastName,
+                "Cirtification": item.Cirtification,
+                
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func closeAction() {
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -91,7 +91,7 @@ class FetchData {
                     let diveNr = data["DiveNr"] as? Int ?? 0
                     let date = data["Date"] as? String ?? ""
                     let diveTime = data["DiveTime"] as? Int ?? 0
-                    let startTime = data["StartTime"] as? String ?? ""
+                    let startTime = data["TimeIn"] as? String ?? ""
                     let depth = data["Depth"] as? Int ?? 0
                     print(location)
                     
@@ -108,7 +108,7 @@ class FetchData {
     func fetchDiveNr(callback: @escaping(Int) -> Void) {
         
         Firestore.firestore().collection("users").document(uid).collection("DivesCollection")
-            .order(by: "DiveNr", descending: true).limit(to: 1).getDocuments() { (querySnapshot, err) in
+            .order(by: "DiveNr", descending: true).limit(to: 1).addSnapshotListener() { (querySnapshot, err) in
                 
                 var diveNr: Int = 0
                 
@@ -142,8 +142,8 @@ class FetchData {
                     let Name = data["Name"] as? String ?? "Hello"
                     let SuitType = data["SuitType"] as? String ?? ""
                     let SuitThickness = data["SuitThickness"] as? String ?? ""
-                    let OneLayer = data["OneLayer"] as? String ?? "true"
-                    let TwoLayers = data["TwoLayers"] as? String ?? "false"
+                    let OneLayer = data["OneLayer"] as? Bool ?? true
+                    let TwoLayers = data["TwoLayers"] as? Bool ?? false
                     let Weight = data["Weight"] as? String ?? ""
                     let Extra = data["Extra"] as? [String] ?? []
 

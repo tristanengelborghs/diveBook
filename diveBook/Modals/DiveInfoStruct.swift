@@ -41,8 +41,8 @@ struct EquipmentStruct {
     var Name: String
     var SuitType: String
     var SuitThickness: String
-    var OneLayer: String
-    var TwoLayers: String
+    var OneLayer: Bool
+    var TwoLayers: Bool
     var Weight: String
     var Extra: [String]
 }
