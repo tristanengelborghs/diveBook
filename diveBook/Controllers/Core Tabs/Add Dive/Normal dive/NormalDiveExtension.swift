@@ -27,7 +27,11 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         airOut.delegate = self
         SAC.delegate = self
         nitrox.delegate = self
-        airTemp.delegate = self
+        airTemp.delegate = self        
+        resort.delegate = self
+        entry.delegate = self
+        dateTextField.delegate = self
+        diveIn.delegate = self
         
         // date Title
         timeDateTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -602,6 +606,7 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         saveButton.anchorButton(top: nil, leading: self.view.leadingAnchor, bottom: scrollView.bottomAnchor, trailing: self.view.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 30, right: 45), size: .init(width: 0, height: 50))
         saveButton.setTitle("Save Log", for: .normal)
         saveButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
+        saveButton.addTarget(self, action: #selector(saveButtonActions), for: .touchUpInside)
         
         
     }
@@ -623,6 +628,9 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        currentTextField = textField
+        
         if (textField == diveTime) {
             textField.text = textField.text?.replacingOccurrences(of: " min", with: "")
         } else if (textField == maxDepth || textField == avgDepth || textField == safetyStop) {
@@ -702,19 +710,20 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
         
     }
     
-    @objc func doneDatePicker() {
-        let formatterDate = DateFormatter()
-        formatterDate.dateStyle = .medium
-        formatterDate.timeStyle = .none
-        
-        let formatterTime = DateFormatter()
-        formatterTime.dateStyle = .none
-        formatterTime.timeStyle = .short
-        
-        dateTextField.text = formatterDate.string(from: datePicker.date)
-        diveIn.text = formatterTime.string(from: datePicker2.date)
-        dateTextField.resignFirstResponder()
-        diveIn.resignFirstResponder()
+    @objc func doneDatePicker(sender: UITextField!) {
+        if currentTextField == dateTextField {
+            let formatterDate = DateFormatter()
+            formatterDate.dateStyle = .medium
+            formatterDate.timeStyle = .none
+            dateTextField.text = formatterDate.string(from: datePicker.date)
+            dateTextField.resignFirstResponder()
+        } else {
+            let formatterTime = DateFormatter()
+            formatterTime.dateStyle = .none
+            formatterTime.timeStyle = .short
+            diveIn.text = formatterTime.string(from: datePicker2.date)
+            diveIn.resignFirstResponder()
+        }
     }
     
     @objc func cancelDatePicker() {
@@ -737,21 +746,33 @@ extension NormalDiveViewController: UITextFieldDelegate,  UIPickerViewDelegate, 
     }
     
     @objc func conditionsAction() {
+        if let currentTextField = currentTextField {
+            currentTextField.resignFirstResponder()
+        }
         let vc = ConditionsViewController()
         self.present(vc, animated: true, completion: nil)
     }
     
     @objc func photosAction() {
+        if let currentTextField = currentTextField {
+            currentTextField.resignFirstResponder()
+        }
         let vc = PhotoGalleryViewController()
         self.present(vc, animated: true, completion: nil)
     }
     
     @objc func equipmentAction() {
+        if let currentTextField = currentTextField {
+            currentTextField.resignFirstResponder()
+        }
         let vc = EquipmentViewController()
         self.present(vc, animated: true, completion: nil)
     }
     
     @objc func buddyAction() {
+        if let currentTextField = currentTextField {
+            currentTextField.resignFirstResponder()
+        }
         let vc = BuddyViewController()
         self.present(vc, animated: true, completion: nil)
     }

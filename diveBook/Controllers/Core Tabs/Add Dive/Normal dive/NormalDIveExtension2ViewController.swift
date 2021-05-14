@@ -41,6 +41,7 @@ extension NormalDiveViewController {
         myConstraint2.isActive = true
     }
     
+    
 }
 
 extension NormalDiveViewController: UITableViewDataSource, UITableViewDelegate {
@@ -61,6 +62,7 @@ extension NormalDiveViewController: UITableViewDataSource, UITableViewDelegate {
             if SignatureindexPath == indexPath {
                 cell.signature.isHidden = true
                 cell.completion.isHidden = false
+                
             }
         }
         
@@ -77,6 +79,16 @@ extension NormalDiveViewController: UITableViewDataSource, UITableViewDelegate {
     @objc func signatureTapped(sender: UIButton!) {
         indexSignature = NSIndexPath(row: sender.tag, section: 0)
         senderButton = sender
+        
+        let buttonPostion = sender.convert(sender.bounds.origin, to: tableView)
+            if let indexPath = tableView.indexPathForRow(at: buttonPostion) {
+                buttonName = "\(buddys[indexPath.row].Name)"
+        }
+        
+        if let currentTextField = currentTextField {
+            currentTextField.resignFirstResponder()
+        }
+        
         let vc = SignatureViewController()
         self.present(vc, animated: true, completion: {
             vc.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false

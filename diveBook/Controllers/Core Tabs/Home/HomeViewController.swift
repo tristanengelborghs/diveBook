@@ -40,6 +40,8 @@ class HomeViewController: UIViewController {
         slidingTabController.build() // build
 
     }
+    
+    
 
     
     

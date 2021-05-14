@@ -10,11 +10,12 @@ import UIKit
 
 struct DiveInfoStruct {
     var location: String
+    var divePoint: String
     var diveNr: Int
     var date: String
-    var diveTime: Int
+    var diveTime: String
     var startTime: String
-    var depth: Int
+    var depth: String
 }
 
 struct CardInfoStruct {
@@ -55,6 +56,7 @@ struct BuddyStruct : Hashable  {
     var Name: String
     var LastName: String
     var Cirtification: String
+    var signatureData: Data
 }
 
 extension BuddyStruct: Equatable{}

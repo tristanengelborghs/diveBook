@@ -62,13 +62,21 @@ class Utilities {
         
     }
     
+    static func darkButton(_ button:UIButton) {
+        
+        button.layer.cornerRadius = button.frame.size.height/2
+        button.backgroundColor = .systemGray5
+        button.layer.masksToBounds = true
+       
+    }
+    
     static func styleFilledButtongradient(_ button:UIButton) {
         
         let gradientLayer = CAGradientLayer()
         button.layer.cornerRadius = button.frame.size.height/2
         button.layer.masksToBounds = true
         gradientLayer.frame = button.bounds
-        gradientLayer.colors = [UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.25, blue: 0.57, alpha: 1.00).cgColor ]
+        gradientLayer.colors = [UIColor(red: 0.07, green: 0.58, blue: 0.58, alpha: 1.00).cgColor,UIColor(red: 0.07, green: 0.15, blue: 0.45, alpha: 1.00).cgColor ]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0) // Top left corner.
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         button.layer.insertSublayer(gradientLayer, at: 0)

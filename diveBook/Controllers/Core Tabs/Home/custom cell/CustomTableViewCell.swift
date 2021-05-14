@@ -44,12 +44,14 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func set(dive: DiveInfoStruct) {
-        locationLabel.text = dive.location
+        locationLabel.text = dive.divePoint + ", " + dive.location
         dateLabel.text = dive.date
         DiveNrLabel.text = String("\(dive.diveNr)")
-        diveTime.text = String("\(dive.diveTime)") + " min"
-        startTime.text = dive.startTime
-        depth.text = String("\(dive.depth)") + " m"
+        diveTime.text = dive.diveTime
+        var starting = dive.startTime.replacingOccurrences(of: "AM", with: "am", options: NSString.CompareOptions.literal, range: nil)
+        starting = starting.replacingOccurrences(of: "PM", with: "pm", options: NSString.CompareOptions.literal, range: nil)
+        startTime.text = starting
+        depth.text = String("\(dive.depth)")
     }
     
     func configureBackgroundView() {

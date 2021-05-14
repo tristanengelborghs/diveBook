@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-var myIndex = DiveInfoStruct(location: "", diveNr: 0, date: "", diveTime: 0, startTime: "", depth: 0)
+var myIndex = DiveInfoStruct(location: "", divePoint: "", diveNr: 0, date: "", diveTime: "", startTime: "", depth: "")
 
 class SimpleItemViewControllerOne: UIViewController{
     

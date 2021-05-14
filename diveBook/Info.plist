@@ -62,5 +62,12 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow acces to uploud photos.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please allow to see current location.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

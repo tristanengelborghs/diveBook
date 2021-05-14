@@ -12,14 +12,14 @@ var indexSignature: NSIndexPath = NSIndexPath()
 var SignatureArray: [Data] = []
 
 class SignatureViewController: UIViewController {
-
+    
     
     // Interface Links
     var signatureView = Canvas()
     let clearButton = UIButton()
     var signatureImage = Data()
     var signatureString: Data?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
@@ -27,7 +27,7 @@ class SignatureViewController: UIViewController {
         setupViews()
         signatureView.setStrokeColor(color: .black)
     }
-
+    
     func setupViews(){
         view.addSubview(signatureView)
         signatureView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +55,7 @@ class SignatureViewController: UIViewController {
         clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
         
     }
-
+    
     @objc func clearButtonTapped(_ sender: UIButton) {
         signatureView.clear()
     }
@@ -63,7 +63,7 @@ class SignatureViewController: UIViewController {
     @objc func closeVC(sender: UIButton!) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     @objc func saveSignature(sender: UIButton!) {
         let image = UIGraphicsImageRenderer(bounds: view.bounds).image { _ in
             view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
@@ -75,8 +75,11 @@ class SignatureViewController: UIViewController {
         
         let finalImage = UIImage(data: imageData)
         signatureImage = resize(image: finalImage!)!
-        SignatureArray.append(signatureImage)
         
+        if let index = buddys.firstIndex(where: { $0.Name == buttonName }) {
+            buddys[index].signatureData = signatureImage
+        }
+    
         if let presenter = presentingViewController as? NormalDiveViewController {
             presenter.tableView.reloadData()
         }
@@ -85,36 +88,36 @@ class SignatureViewController: UIViewController {
     
     func resize(image:UIImage) -> Data? {
         if let imageData = image.pngData(){ //if there is an image start the checks and possible compression
-       let size = imageData.count / 1024
-           if size > 1024 { //if the image data size is > 1024
-           let compressionValue = CGFloat(1024 / size) //get the compression value needed in order to bring the image down to 1024
-            return image.jpegData(compressionQuality: compressionValue) //return the compressed image data
-           }
-           else{ //if your image <= 1024 nothing needs to be done and return it as is
-             return imageData
-           }
-       }
-       else{ //if it cant get image data return nothing
-           return nil
-       }
-   }
+            let size = imageData.count / 1024
+            if size > 1024 { //if the image data size is > 1024
+                let compressionValue = CGFloat(1024 / size) //get the compression value needed in order to bring the image down to 1024
+                return image.jpegData(compressionQuality: compressionValue) //return the compressed image data
+            }
+            else{ //if your image <= 1024 nothing needs to be done and return it as is
+                return imageData
+            }
+        }
+        else{ //if it cant get image data return nothing
+            return nil
+        }
+    }
     
     func setupNavBar() {
-            let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
-            navBar.isTranslucent = false
-            navBar.barTintColor = UIColor.systemGray5
-            navBar.shadowImage = UIImage()
-            view.addSubview(navBar)
-            
-            let navItem = UINavigationItem(title: "Add Signature")
-            let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: #selector(saveSignature))
-            let backItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(closeVC))
-            saveItem.tintColor = .white
-            
-            
-            navItem.rightBarButtonItem = saveItem
-            navItem.leftBarButtonItem = backItem
-            navBar.setItems([navItem], animated: false)
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        navBar.isTranslucent = false
+        navBar.barTintColor = UIColor.systemGray5
+        navBar.shadowImage = UIImage()
+        view.addSubview(navBar)
+        
+        let navItem = UINavigationItem(title: "Add Signature")
+        let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: #selector(saveSignature))
+        let backItem = UIBarButtonItem(barButtonSystemItem: .close, target: nil, action: #selector(closeVC))
+        saveItem.tintColor = .white
+        
+        
+        navItem.rightBarButtonItem = saveItem
+        navItem.leftBarButtonItem = backItem
+        navBar.setItems([navItem], animated: false)
     }
     
 }
@@ -126,36 +129,36 @@ struct Line {
 }
 
 class Canvas: UIView {
-
+    
     // public function
     fileprivate var strokeColor = UIColor.black
     fileprivate var strokeWidth: Float = 3
-
+    
     func setStrokeWidth(width: Float) {
         self.strokeWidth = width
     }
-
+    
     func setStrokeColor(color: UIColor) {
         self.strokeColor = color
     }
-
+    
     func undo() {
         _ = lines.popLast()
         setNeedsDisplay()
     }
-
+    
     func clear() {
         lines.removeAll()
         setNeedsDisplay()
     }
-
+    
     fileprivate var lines = [Line]()
-
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-
+        
         guard let context = UIGraphicsGetCurrentContext() else { return }
-
+        
         lines.forEach { (line) in
             context.setStrokeColor(line.color.cgColor)
             context.setLineWidth(CGFloat(line.strokeWidth))
@@ -170,11 +173,11 @@ class Canvas: UIView {
             context.strokePath()
         }
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         lines.append(Line.init(strokeWidth: strokeWidth, color: UIColor(red: 0.07, green: 0.52, blue: 0.63, alpha: 1.00), points: []))
     }
-
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let point = touches.first?.location(in: self) else { return }
         guard var lastLine = lines.popLast() else { return }

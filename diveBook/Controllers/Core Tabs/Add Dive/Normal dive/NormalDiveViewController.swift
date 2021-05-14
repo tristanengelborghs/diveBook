@@ -17,6 +17,7 @@ var selectedCell: IndexPath?
 var selectedCellButton: IndexPath?
 var photoDataArray: [Data] = []
 var senderButton:UIButton?
+var buttonName:String?
 
 class NormalDiveViewController: UIViewController {
     
@@ -167,8 +168,10 @@ class NormalDiveViewController: UIViewController {
     private var backgroundView = UIView()
     var myConstraint = NSLayoutConstraint()
     var myConstraint2 = NSLayoutConstraint()
-    
+
     let saveButton = UIButton()
+    var currentTextField: UITextField?
+    var wichTextfield: UITextField?
     
     var tableView: UITableView = {
         let tv = UITableView(frame: .zero)
@@ -189,11 +192,15 @@ class NormalDiveViewController: UIViewController {
         return tv
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(scrollView)
         self.view.backgroundColor = .systemGray6
+        
+        FetchData.sharedInstance.fetchDiveNr { (diveNr) in
+            let diveNr = diveNr
+            self.diveNr.text = "\(diveNr + 1)"
+        }
         
         setupNavbar()
         setupScrollView()
@@ -260,10 +267,9 @@ class NormalDiveViewController: UIViewController {
         diveNr.widthAnchor.constraint(equalToConstant: 100).isActive = true
         diveNr.font = UIFont.init(name: "Avenir Light", size: 22)
         diveNr.textAlignment = .center
-        diveNr.alpha = 0.75
-        diveNr.text = "143"
-        diveNr.attributedPlaceholder = NSAttributedString(string: "143",
-                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        diveNr.keyboardType = UIKeyboardType.decimalPad
+        diveNr.attributedPlaceholder = NSAttributedString(string: "Nr",
+                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.75)])
     }
     
     func topContainer() {
@@ -294,7 +300,7 @@ class NormalDiveViewController: UIViewController {
         location.font = UIFont.init(name: "Avenir Next", size: 16)
         location.setBottomBorderText(withColor: UIColor.white)
         location.attributedPlaceholder = NSAttributedString(string: "Location",
-                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         // name of dive point textfield
         divePoint.translatesAutoresizingMaskIntoConstraints = false
         divePoint.bottomAnchor.constraint(equalTo: topGradientView.bottomAnchor, constant: -40).isActive = true
@@ -304,110 +310,115 @@ class NormalDiveViewController: UIViewController {
         divePoint.font = UIFont.init(name: "Avenir Next", size: 16)
         divePoint.setBottomBorderText(withColor: UIColor.white)
         divePoint.attributedPlaceholder = NSAttributedString(string: "Dive Point",
-                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         // set shadow of blue top view
         topGradientView.layer.shadowColor = UIColor.black.cgColor
         topGradientView.layer.shadowOpacity = 0.7
         topGradientView.layer.shadowOffset = .zero
         topGradientView.layer.shadowRadius = 20
-
+        
+    }
+    
+    func validateFields() -> String? {
+        
+        // Check that all fields are filled in
+        if  diveNr.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return "Please enter dive number."
+        } else {
+            if  Int(diveNr.text!) == nil {
+                return "Please enter valid number."
+            }
+        }
+        return nil
+    }
+    
+    func showError(_ message:String) {
+        let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
     }
     
     @objc func saveButtonActions() {
         
-        let DiveNr = Int(diveNr.text!) ?? 0
-        let Location = location.text ?? ""
-        let DivePoint = divePoint.text ?? ""
-        let Date = dateTextField.text ?? ""
-        let TimeIn = diveIn.text ?? ""
-        let DiveTime = diveTime.text ?? ""
-        let MaxDepth = maxDepth.text ?? ""
-        let AvgDepth = avgDepth.text ?? ""
-        let Rating = ratingValue.text ?? ""
-        let SafetyStop = safetyStop.text ?? ""
-        let TankVolume = tankVolumeValue.text ?? ""
-        var SteelTank: Bool = true
-        var AlTank: Bool = true
-        if tankSteelButton.currentBackgroundImage == UIImage(systemName: "circle") {
-            SteelTank = false
-            AlTank = true
+        let error = validateFields()
+        
+        if error != nil {
+            showError(error!)
         }
-        let AirIn = airIn.text ?? ""
-        let Sac = SAC.text ?? ""
-        let AirOut = airOut.text ?? ""
-        let Nitrox = nitrox.text ?? ""
-        let WaterConditions = ["Type": waterConditionsArray.type, "MaxTemp": waterConditionsArray.maxTemp, "MinTemp": waterConditionsArray.minTemp, "Waves": waterConditionsArray.waves, "Visibility": waterConditionsArray.visibility, "Current": waterConditionsArray.current] as [String : String]
-        
-        let Equipment = ["Name": saveEquipmentArray.Name, "SuitType": saveEquipmentArray.SuitType, "SuitThickness": saveEquipmentArray.SuitThickness, "OneLayer": saveEquipmentArray.OneLayer, "TwoLayers": saveEquipmentArray.TwoLayers, "Weight": saveEquipmentArray.Weight, "Extra": saveEquipmentArray.Extra] as [String : Any]
-        
-        
-        //var Buddys: [[String: String]] = []
-//
-//        for items in buddys {
-//            Buddys.append(["Name": items.Name, "LastName": items.LastName, "Cirtification": items.Cirtification])
-//        }
-        
-        let Memo = memo.text ?? ""
-        
-        var activeFeatures: [String] = []
-        for button in featuresArray {
-            if (button.titleLabel?.alpha == 1) {
-                let title = button.titleLabel?.text
-                activeFeatures.append(title!)
-            }
-        }
-        
-        var activePurposes: [String] = []
-        for button in purposesArray {
-            if (button.titleLabel?.alpha == 1) {
-                let title = button.titleLabel?.text
-                activePurposes.append(title!)
-            }
-        }
-        
-        let Photos = photoDataArray
-        let DiveResort = resort.text ?? ""
-        
-        Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document("\(DiveNr)").setData([
-            "DiveNr": DiveNr,
-            "Location": Location,
-            "DivePoint": DivePoint,
-            "Date": Date,
-            "TimeIn": TimeIn,
-            "DiveTime": DiveTime,
-            "MaxDepth": MaxDepth,
-            "AvgDepth": AvgDepth,
-            "Rating": Rating,
-            "SafetyStop": SafetyStop,
-            "TankVolume": TankVolume,
-            "SteelTank": SteelTank,
-            "AlTank": AlTank,
-            "AirIn": AirIn,
-            "SAC": Sac,
-            "AirOut": AirOut,
-            "Nitrox": Nitrox,
-            "WaterConditions": WaterConditions as Any,
-            "Equipment": Equipment as Any,
-            "Memo": Memo,
-            "ActiveFeatures": activeFeatures,
-            "ActivePurposes": activePurposes,
-            "Photos": Photos,
-            "DiveResort": DiveResort,
+        else {
             
-        ]) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
+            let DiveNr = Int(diveNr.text!) ?? 0
+            let Location = location.text ?? ""
+            let DivePoint = divePoint.text ?? ""
+            let Date = dateTextField.text ?? ""
+            let TimeIn = diveIn.text ?? ""
+            let DiveTime = diveTime.text ?? ""
+            let MaxDepth = maxDepth.text ?? ""
+            let AvgDepth = avgDepth.text ?? ""
+            let Rating = ratingValue.text ?? ""
+            let SafetyStop = safetyStop.text ?? ""
+            let TankVolume = tankVolumeValue.text ?? ""
+            var SteelTank: Bool = true
+            var AlTank: Bool = true
+            if tankSteelButton.currentBackgroundImage == UIImage(systemName: "circle") {
+                SteelTank = false
+                AlTank = true
             }
-        }
-        
-        for item in buddys {
-    
-            Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document("\(DiveNr)").collection("Buddy's").document("\(item.Name)" + " \(item.LastName)").setData([
-                "Name": item.Name,
-                "LastName": item.LastName,
-                "Cirtification": item.Cirtification,
+            let AirIn = airIn.text ?? ""
+            let Sac = SAC.text ?? ""
+            let AirOut = airOut.text ?? ""
+            let Nitrox = nitrox.text ?? ""
+            let WaterConditions = ["Type": waterConditionsArray.type, "MaxTemp": waterConditionsArray.maxTemp, "MinTemp": waterConditionsArray.minTemp, "Waves": waterConditionsArray.waves, "Visibility": waterConditionsArray.visibility, "Current": waterConditionsArray.current] as [String : String]
+            
+            let Equipment = ["Name": saveEquipmentArray.Name, "SuitType": saveEquipmentArray.SuitType, "SuitThickness": saveEquipmentArray.SuitThickness, "OneLayer": saveEquipmentArray.OneLayer, "TwoLayers": saveEquipmentArray.TwoLayers, "Weight": saveEquipmentArray.Weight, "Extra": saveEquipmentArray.Extra] as [String : Any]
+            let Memo = memo.text ?? ""
+            
+            var activeFeatures: [String] = []
+            for button in featuresArray {
+                if (button.titleLabel?.alpha == 1) {
+                    let title = button.titleLabel?.text
+                    activeFeatures.append(title!)
+                }
+            }
+            
+            var activePurposes: [String] = []
+            for button in purposesArray {
+                if (button.titleLabel?.alpha == 1) {
+                    let title = button.titleLabel?.text
+                    activePurposes.append(title!)
+                }
+            }
+            
+            let Photos = photoDataArray
+            let DiveResort = resort.text ?? ""
+            
+            Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document("\(DiveNr)").setData([
+                "DiveNr": DiveNr,
+                "Location": Location,
+                "DivePoint": DivePoint,
+                "Date": Date,
+                "TimeIn": TimeIn,
+                "DiveTime": DiveTime,
+                "MaxDepth": MaxDepth,
+                "AvgDepth": AvgDepth,
+                "Rating": Rating,
+                "SafetyStop": SafetyStop,
+                "TankVolume": TankVolume,
+                "SteelTank": SteelTank,
+                "AlTank": AlTank,
+                "AirIn": AirIn,
+                "SAC": Sac,
+                "AirOut": AirOut,
+                "Nitrox": Nitrox,
+                "WaterConditions": WaterConditions as Any,
+                "Equipment": Equipment as Any,
+                "Memo": Memo,
+                "ActiveFeatures": activeFeatures,
+                "ActivePurposes": activePurposes,
+                "Photos": Photos,
+                "DiveResort": DiveResort,
                 
             ]) { err in
                 if let err = err {
@@ -416,9 +427,27 @@ class NormalDiveViewController: UIViewController {
                     print("Document successfully written!")
                 }
             }
+            
+            for item in buddys {
+                
+                Firestore.firestore().collection("users").document(uid).collection("DivesCollection").document("\(DiveNr)").collection("Buddy's").document("\(item.Name)" + " \(item.LastName)").setData([
+                    "Name": item.Name,
+                    "LastName": item.LastName,
+                    "Cirtification": item.Cirtification,
+                    "Signature": item.signatureData
+                    
+                ]) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
+                }
+            }
+            
+            
+            self.dismiss(animated: true, completion: nil)
         }
-        
-        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func closeAction() {

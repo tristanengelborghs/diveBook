@@ -97,6 +97,7 @@ class BuddyViewController: UIViewController, buddyDelegate {
         if let presenter = presentingViewController as? NormalDiveViewController {
 
             buddys = Array(Set(selectedBuddyArray))
+            print(buddys)
         
             if Array(Set(selectedBuddyArray)) != [] {
                 presenter.buddy.setTitleColor(.gray, for: .normal)
@@ -112,10 +113,7 @@ class BuddyViewController: UIViewController, buddyDelegate {
                 presenter.completion3.isHidden = true
                 presenter.tableView.reloadData()
             }
-            
-            print(Array(Set(selectedBuddyArray)))
         }
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -153,7 +151,7 @@ extension BuddyViewController: UITableViewDataSource, UITableViewDelegate {
         cell.wordLabel.text = "\(buddyArray[indexPath.row].Name)" + " \(buddyArray[indexPath.row].LastName)"
         
         if firstTime {
-            if  buddys.contains(BuddyStruct(Name: "\(buddyArray[indexPath.row].Name)", LastName: "\(buddyArray[indexPath.row].LastName)", Cirtification: "\(buddyArray[indexPath.row].Cirtification)")) {
+            if  buddys.contains(BuddyStruct(Name: "\(buddyArray[indexPath.row].Name)", LastName: "\(buddyArray[indexPath.row].LastName)", Cirtification: "\(buddyArray[indexPath.row].Cirtification)", signatureData: buddyArray[indexPath.row].signatureData)) {
                 cell.checkButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             }
         }
@@ -166,7 +164,7 @@ extension BuddyViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             } else {
                 cell.checkButton.setBackgroundImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-                let info = BuddyStruct(Name: "\(buddyArray[indexPath.row].Name)", LastName: "\(buddyArray[indexPath.row].LastName)", Cirtification: "\(buddyArray[indexPath.row].Cirtification)")
+                let info = BuddyStruct(Name: "\(buddyArray[indexPath.row].Name)", LastName: "\(buddyArray[indexPath.row].LastName)", Cirtification: "\(buddyArray[indexPath.row].Cirtification)", signatureData: buddyArray[indexPath.row].signatureData)
                 selectedBuddyArray.append(info)
             }
         }

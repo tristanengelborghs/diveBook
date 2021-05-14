@@ -36,6 +36,7 @@
 		2F4F126824F2731B00666535 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F126724F2731B00666535 /* SettingsViewController.swift */; };
 		2F4F126A24F283A200666535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F4F126924F283A200666535 /* GoogleService-Info.plist */; };
 		2F4F127524F2C2EC00666535 /* GradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4F127424F2C2EC00666535 /* GradientColor.swift */; };
+		2F50E487264C2CCE00E64B0D /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */; };
 		2F58011B259530A300B88B0E /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58011A259530A300B88B0E /* PhotoGalleryViewController.swift */; };
 		2F58011E259B644400B88B0E /* BuddyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F58011D259B644400B88B0E /* BuddyViewController.swift */; };
 		2F580121259B653400B88B0E /* BuddyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F580120259B653400B88B0E /* BuddyTableViewCell.swift */; };
@@ -54,7 +55,6 @@
 		2FFFAA83258CB4F10040C279 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFFAA82258CB4F10040C279 /* ConditionsViewController.swift */; };
 		2FFFE447258F5BA50054C300 /* EquipmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFFE446258F5BA50054C300 /* EquipmentViewController.swift */; };
 		2FFFE44A258F6AA20054C300 /* EquipmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFFE449258F6AA20054C300 /* EquipmentTableViewCell.swift */; };
-		AF0B6AE2D7925620500F065B /* Pods_diveBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847647F8210BB7DA52B5EB30 /* Pods_diveBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,7 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF0B6AE2D7925620500F065B /* Pods_diveBook.framework in Frameworks */,
+				2F50E487264C2CCE00E64B0D /* Pods_diveBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,8 +338,8 @@
 			children = (
 				2F58011D259B644400B88B0E /* BuddyViewController.swift */,
 				2F580120259B653400B88B0E /* BuddyTableViewCell.swift */,
-				2F69924A259F8656003B60A6 /* BuddyCertificationTableViewCell.swift */,
 				2F69925525A13387003B60A6 /* SignatureViewController.swift */,
+				2F69924A259F8656003B60A6 /* BuddyCertificationTableViewCell.swift */,
 			);
 			path = "buddy's";
 			sourceTree = "<group>";
@@ -643,6 +643,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -704,6 +705,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -715,6 +717,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

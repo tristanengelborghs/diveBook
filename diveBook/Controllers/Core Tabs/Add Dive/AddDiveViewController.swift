@@ -14,6 +14,7 @@ class AddDiveViewController: UIViewController {
     
     let certifiedButton = UIButton()
     let uncertifiedButton = UIButton()
+    let technicalButton = UIButton()
     let divesNrLabel = UILabel()
     let divesLabel = UILabel()
     let descriptionLablel = UILabel()
@@ -37,10 +38,12 @@ class AddDiveViewController: UIViewController {
         super.viewDidLayoutSubviews()
         Utilities.styleFilledButtongradient(uncertifiedButton)
         Utilities.styleHollowButtongradient(certifiedButton)
+        Utilities.styleFilledButtongradient(technicalButton)
     }
     
     func setupLayout() {
         view.addSubview(shark)
+        view.addSubview(technicalButton)
         view.addSubview(certifiedButton)
         view.addSubview(uncertifiedButton)
         view.addSubview(divesLabel)
@@ -60,17 +63,30 @@ class AddDiveViewController: UIViewController {
         shark.clipsToBounds = true
         shark.image =  UIImage(named:"Shark")!
         shark.alpha = 0.4
+        
+        
+        technicalButton.translatesAutoresizingMaskIntoConstraints = false
+        technicalButton.setTitleColor(.white, for: .normal)
+        technicalButton.translatesAutoresizingMaskIntoConstraints = false
+        technicalButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        technicalButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -height! - 30).isActive = true
+        technicalButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
+        technicalButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
+        technicalButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        technicalButton.setTitle("Certified Dive", for: .normal)
+        technicalButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
+        technicalButton.addTarget(self, action: #selector(uncertifiedPressed), for: .touchUpInside)
 
         
         uncertifiedButton.translatesAutoresizingMaskIntoConstraints = false
         uncertifiedButton.setTitleColor(.white, for: .normal)
         uncertifiedButton.translatesAutoresizingMaskIntoConstraints = false
         uncertifiedButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        uncertifiedButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -height! - 30).isActive = true
+        uncertifiedButton.bottomAnchor.constraint(equalTo: technicalButton.topAnchor, constant: -20).isActive = true
         uncertifiedButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         uncertifiedButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
         uncertifiedButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        uncertifiedButton.setTitle("Uncertified Dive", for: .normal)
+        uncertifiedButton.setTitle("Quick Log", for: .normal)
         uncertifiedButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
         uncertifiedButton.addTarget(self, action: #selector(uncertifiedPressed), for: .touchUpInside)
         
@@ -83,7 +99,7 @@ class AddDiveViewController: UIViewController {
         certifiedButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         certifiedButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
         certifiedButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        certifiedButton.setTitle("Certified Dive", for: .normal)
+        certifiedButton.setTitle("Technical Dive", for: .normal)
         certifiedButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
         certifiedButton.addTarget(self, action: #selector(certifiedPressed), for: .touchUpInside)
  

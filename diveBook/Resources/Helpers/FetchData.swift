@@ -87,15 +87,16 @@ class FetchData {
                 for document in snap.documents {
                     let data = document.data()
                     
-                    let location = data["Location"] as? String ?? "No Location"
+                    let location = data["Location"] as? String ?? ""
+                    let divePoint = data["DivePoint"] as? String ?? ""
                     let diveNr = data["DiveNr"] as? Int ?? 0
                     let date = data["Date"] as? String ?? ""
-                    let diveTime = data["DiveTime"] as? Int ?? 0
+                    let diveTime = data["DiveTime"] as? String ?? ""
                     let startTime = data["TimeIn"] as? String ?? ""
-                    let depth = data["Depth"] as? Int ?? 0
+                    let depth = data["MaxDepth"] as? String ?? ""
                     print(location)
                     
-                    let newDive = DiveInfoStruct(location: location, diveNr: diveNr, date: date, diveTime: diveTime, startTime: startTime, depth: depth)
+                    let newDive = DiveInfoStruct(location: location, divePoint: divePoint, diveNr: diveNr, date: date, diveTime: diveTime, startTime: startTime, depth: depth)
                     
                     dives.append(newDive)
                     
@@ -172,8 +173,9 @@ class FetchData {
                     let Name = data["Name"] as? String ?? ""
                     let LastName = data["LastName"] as? String ?? ""
                     let Cirtification = data["Cirtification"] as? String ?? ""
+                    let Signature = data["Signature"] as? Data ?? Data.init()
 
-                    let buddyInfo = BuddyStruct(Name: Name, LastName: LastName, Cirtification: Cirtification)
+                    let buddyInfo = BuddyStruct(Name: Name, LastName: LastName, Cirtification: Cirtification, signatureData: Signature)
                     
                     buddyArray.append(buddyInfo)
                 }
