@@ -7,6 +7,8 @@
 //
 import FirebaseAuth
 import UIKit
+import Firebase
+
 
 class HomeViewController: UIViewController {
 
@@ -16,7 +18,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .red
     }
     
     private func setupUI(){

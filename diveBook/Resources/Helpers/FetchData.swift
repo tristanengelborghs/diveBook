@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
+import CoreLocation
 
 class FetchData {
     
@@ -182,5 +183,59 @@ class FetchData {
             }
             callback(buddyArray)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation], callback: @escaping([diveSite]) -> Void) {
+        if let location = locations.first {
+            manager.stopUpdatingLocation()
+            let userLatitude = Float(location.coordinate.latitude)
+            let userLongtitude = Float(location.coordinate.longitude)
+            
+            
+        }
+    }
+    
+    func getData(from url: String, callback: @escaping([diveSite]) -> Void) {
+        
+        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { data, response, error in
+            
+            guard let data = data, error == nil else {
+                print("something went wrong")
+                return
+            }
+            
+            let str = String(decoding: data, as: UTF8.self)
+            let resultString = str.replacingOccurrences(of: "�", with: "")
+            let resultData = Data(resultString.utf8)
+            
+            
+            
+            var result: Response?
+            do {
+                result = try JSONDecoder().decode(Response.self, from: resultData)
+            }
+            catch {
+                print("failed to convert \(error.localizedDescription)")
+            }
+            
+            guard let json = result else {
+                return
+            }
+            
+            
+            let pinLocations = Response(request: json.request, sites: json.sites, version: json.version, loc: json.loc, result: json.result)
+            
+            var diveSites: [diveSite] = []
+            
+            for (loc) in pinLocations.sites! {
+                diveSites.append(diveSite(currents: loc.currents, distance: loc.distance, hazards: loc.hazards, lat: loc.lat, name: loc.name, water: loc.water, marinelife: loc.marinelife, description: loc.description, maxdepth: loc.maxdepth, mindepth: loc.mindepth, predive: loc.predive, id: loc.id, equipment: loc.equipment, lng: loc.lng))
+               
+            }
+            callback(diveSites)
+            
+        })
+
+        task.resume()
+        
     }
 }

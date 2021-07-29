@@ -10,10 +10,12 @@ import UIKit
 import FirebaseAuth
 import MapKit
 import CoreLocation
+import FloatingPanel
 
 
-class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-
+class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, FloatingPanelControllerDelegate, SearchViewControllerDelegate {
+    
+    let fpc = FloatingPanelController()
     var userLatitude: Float = 0
     var userLongtitude: Float = 0
     var mapView = MKMapView()
@@ -23,15 +25,36 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapviewConstraints()
         mapView.reloadInputViews()
-        
-        
+        floatingSetup()
+
     }
+    
+    func FloatingPanelViewController2(_ vc: SearchViewController) {
+        fpc.move(to: .full, animated: true)
+    }
+    
+    func floatingSetup() {
+        let searchVC = SearchViewController()
+        searchVC.delegate = self
+        fpc.delegate = self
+        fpc.set(contentViewController: searchVC)
+        fpc.addPanel(toParent: self)
+        
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = 8.0
+        appearance.backgroundColor = .clear
+        fpc.surfaceView.appearance = appearance
+        
+        fpc.move(to: .tip, animated: false)
+    }
+    
     
     func mapviewConstraints() {
         view.addSubview(mapView)
-        mapView.anchorMap(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        mapView.frame = view.bounds
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,8 +63,7 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        
-        
+
     }
     
     
@@ -51,12 +73,11 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
             userLatitude = Float(location.coordinate.latitude)
             userLongtitude = Float(location.coordinate.longitude)
             
-            let url = "http://api.divesites.com/?mode=sites&lat=\(userLatitude)&lng=\(userLongtitude)&dist=1000"
+            let url = "http://api.divesites.com/?mode=sites&lat=\(userLatitude)&lng=\(userLongtitude)&dist=50"
             getData(from: url)
             mapView.setNeedsLayout()
             mapView.layoutIfNeeded()
             render(location)
-            
             
         }
     }
@@ -71,16 +92,12 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
         
-        
     }
     
     //API
-
-        
     private func getData(from url: String) {
         
-        
-        let task = URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { [self]data, response, error in
+        URLSession.shared.dataTask(with: URL(string: url)!, completionHandler: { [self]data, response, error in
             
             
             let str = String(decoding: data!, as: UTF8.self)
@@ -88,10 +105,7 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
             let resultString = str.replacingOccurrences(of: "�", with: "")
             let resultData = Data(resultString.utf8)
             
-            guard let data = data, error == nil else {
-                print("something went wrong")
-                return
-            }
+            
             
             var result: Response?
             do {
@@ -108,41 +122,31 @@ class ExploreViewController: UIViewController, CLLocationManagerDelegate, MKMapV
             
             pinLocations = Response(request: json.request, sites: json.sites, version: json.version, loc: json.loc, result: json.result)
         
-        print(self.pinLocations)
-        
-        for (divesSites) in self.pinLocations.sites! {
+            for (divesSites) in self.pinLocations.sites! {
             
-            let coordinate = CLLocationCoordinate2D(latitude: Double(divesSites.lat!)!, longitude: Double(divesSites.lng!)!)
+                let coordinate = CLLocationCoordinate2D(latitude: Double(divesSites.lat!)!, longitude: Double(divesSites.lng!)!)
             
-            let pin = MKPointAnnotation()
-            pin.coordinate = coordinate
-            pin.title = divesSites.name
+                let pin = MKPointAnnotation()
+                pin.coordinate = coordinate
+                pin.title = divesSites.name
             
-            DispatchQueue.main.async {
+                DispatchQueue.main.async {
                         self.mapView.addAnnotation(pin)
+                }
             }
-            
-            print(coordinate)
-            
-        }
-        
-        })
-        
-       task.resume()
-    
-        
+        }).resume()
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation{
             return nil;
-        }else{
+        } else {
             let pinIdent = "Pin";
             var pinView: MKPinAnnotationView;
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: pinIdent) as? MKPinAnnotationView {
                 dequeuedView.annotation = annotation;
                 pinView = dequeuedView;
-            }else{
+            } else {
                 pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: pinIdent);
 
             }

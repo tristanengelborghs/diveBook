@@ -13,11 +13,12 @@ class UISimpleSlidingTabController: UIViewController {
     private let collectionHeader = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     private let collectionPage = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
+    private let gradientView = UIView()
     private let collectionNamePage = UIView.init()
     let image = UIImage(named: "profielFoto.png") as UIImage?
     private let imageButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
     private let arrowButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
-    let backgroundColor = UIColor.systemGray6
+    let backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
     private let nameLabel = type(of: UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))).init()
     private let horizontalBar = UIView.init()
     private let collectionHeaderIdentifier = "COLLECTION_HEADER_IDENTIFIER"
@@ -31,6 +32,8 @@ class UISimpleSlidingTabController: UIViewController {
     private var tabStyle = SlidingTabStyle.fixed
     private let heightHeader = 57
     var flag = false
+    var colors = [UIColor(red: 0.04, green: 0.52, blue: 0.52, alpha: 1.00), UIColor(red: 0.03, green: 0.33, blue: 0.60, alpha: 1.00)]
+    
    
     
     func viewDidAppear() {
@@ -40,7 +43,18 @@ class UISimpleSlidingTabController: UIViewController {
          self.collectionPage.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
         self.collectionPage.reloadData()
          
-       }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colors[0].cgColor, colors[1].cgColor]
+        gradientLayer.startPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = gradientView.bounds
+
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+    }
     
     func addItem(item: UIViewController, title: String){
         items.append(item)
@@ -80,6 +94,7 @@ class UISimpleSlidingTabController: UIViewController {
     }
     
     func build(){
+        view.addSubview(gradientView)
         view.addSubview(collectionNamePage)
         view.addSubview(collectionHeader)
         view.addSubview(horizontalBar)
@@ -92,7 +107,22 @@ class UISimpleSlidingTabController: UIViewController {
         configureMenuBar()
         configureHorizontalBar()
         configurCollectionPage()
+        
+        
+        let height = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        gradientView.heightAnchor.constraint(equalToConstant: height + 250).isActive = true
+        gradientView.backgroundColor = .blue
+    
+        
+        
     }
+    
+    
     
     func configureNamePage() {
         let statusBarHeight: CGFloat
@@ -108,7 +138,7 @@ class UISimpleSlidingTabController: UIViewController {
         collectionNamePage.heightAnchor.constraint(equalToConstant: 40).isActive = true
         collectionNamePage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionNamePage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionNamePage.backgroundColor = backgroundColor
+        //.backgroundColor = backgroundColor
 
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.centerYAnchor.constraint(equalTo: collectionNamePage.centerYAnchor).isActive = true
@@ -146,7 +176,7 @@ class UISimpleSlidingTabController: UIViewController {
         (collectionHeader.collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection = .horizontal
         collectionHeader.showsHorizontalScrollIndicator = false
         collectionHeader.isScrollEnabled = false
-        collectionHeader.backgroundColor = UIColor(red: 0.19, green: 0.44, blue: 0.61, alpha: 1.00)
+        //collectionHeader.backgroundColor = UIColor(red: 0.19, green: 0.44, blue: 0.61, alpha: 1.00)
         collectionHeader.register(HeaderCell.self, forCellWithReuseIdentifier: collectionHeaderIdentifier)
         collectionHeader.delegate = self
         collectionHeader.dataSource = self
@@ -170,18 +200,18 @@ class UISimpleSlidingTabController: UIViewController {
         collectionPage.dataSource = self
         collectionPage.contentOffset.x = 0
         collectionPage.reloadData()
-        collectionPage.backgroundColor = backgroundColor
+        //collectionPage.backgroundColor = backgroundColor
     }
     
     func configureHorizontalBar() {
-        horizontalBar.backgroundColor = UIColor(red: 0.19, green: 0.55, blue: 0.65, alpha: 1.00)
+        horizontalBar.backgroundColor = UIColor.white
         horizontalBar.translatesAutoresizingMaskIntoConstraints = false
         self.view.layoutSubviews()
         horizontalBarLeftAnchorConstraint = horizontalBar.leftAnchor.constraint(equalTo: view.leftAnchor)
         horizontalBarLeftAnchorConstraint?.isActive = true
         horizontalBar.bottomAnchor.constraint(equalTo: collectionHeader.bottomAnchor).isActive = true
         horizontalBar.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/2).isActive = true
-        horizontalBar.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        horizontalBar.heightAnchor.constraint(equalToConstant: 1.5).isActive = true
     }
     
     private class HeaderCell: UICollectionViewCell {
@@ -205,7 +235,7 @@ class UISimpleSlidingTabController: UIViewController {
         }
         
         func select(didSelect: Bool, activeColor: UIColor, inActiveColor: UIColor){
-            indicator.backgroundColor = activeColor
+            //indicator.backgroundColor = activeColor
             
             if didSelect {
                 indicator.isHidden = false
@@ -218,7 +248,7 @@ class UISimpleSlidingTabController: UIViewController {
             self.addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
             label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-            label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor,constant: -3).isActive = true
             label.font = UIFont.init(name: "Avenir Next", size: 16)
         }
     }
@@ -288,7 +318,7 @@ extension UISimpleSlidingTabController: UICollectionViewDataSource{
                 didSelect = true
             }
             
-            cell.select(didSelect: didSelect, activeColor: colorHeaderActive, inActiveColor: colorHeaderInActive)
+            cell.select(didSelect: didSelect, activeColor: colorHeaderActive, inActiveColor: backgroundColor)
             return cell
         }
         let statusBarHeight: CGFloat

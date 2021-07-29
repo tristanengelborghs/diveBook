@@ -9,9 +9,16 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FloatingPanel
 
-class AddDiveViewController: UIViewController {
+class AddDiveViewController: UIViewController, FloatingPanelControllerDelegate, CirtifiedDiveViewControllerDelegate  {
     
+    func CirtifiedDiveViewController(_ vc: CirtifiedDiveViewController) {
+        fpc.move(to: .hidden, animated: true)
+    }
+    
+    
+    let fpc = FloatingPanelController()
     let certifiedButton = UIButton()
     let uncertifiedButton = UIButton()
     let technicalButton = UIButton()
@@ -31,12 +38,34 @@ class AddDiveViewController: UIViewController {
             self.divesNrLabel.text = "\(diveNr + 1)"
         }
         setupLayout()
-        
+        floatingSetup()
     }
+    
+    func floatingSetup() {
+        let searchVC = diveBook.CirtifiedDiveViewController()
+        searchVC.delegate = self
+        fpc.delegate = self
+        fpc.set(contentViewController: searchVC)
+        fpc.addPanel(toParent: self)
+        
+        
+        fpc.layout = MyFloatingPanelLayout()
+        
+        let appearance = SurfaceAppearance()
+        appearance.cornerRadius = 30
+        appearance.backgroundColor = .black
+        fpc.surfaceView.appearance = appearance
+        
+        fpc.move(to: .hidden, animated: false)
+    }
+    
+    func floatingPanel(_ vc: FloatingPanelController, behaviorFor newCollection: UITraitCollection) -> FloatingPanelBehavior? {
+            return FloatingPanelStocksBehavior()
+        }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        Utilities.styleFilledButtongradient(uncertifiedButton)
+        Utilities.styleHollowButtongradient(uncertifiedButton)
         Utilities.styleHollowButtongradient(certifiedButton)
         Utilities.styleFilledButtongradient(technicalButton)
     }
@@ -75,7 +104,7 @@ class AddDiveViewController: UIViewController {
         technicalButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         technicalButton.setTitle("Certified Dive", for: .normal)
         technicalButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
-        technicalButton.addTarget(self, action: #selector(uncertifiedPressed), for: .touchUpInside)
+        technicalButton.addTarget(self, action: #selector(certifiedPressed), for: .touchUpInside)
 
         
         uncertifiedButton.translatesAutoresizingMaskIntoConstraints = false
@@ -88,9 +117,9 @@ class AddDiveViewController: UIViewController {
         uncertifiedButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         uncertifiedButton.setTitle("Quick Log", for: .normal)
         uncertifiedButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
-        uncertifiedButton.addTarget(self, action: #selector(uncertifiedPressed), for: .touchUpInside)
+        uncertifiedButton.addTarget(self, action: #selector(quickPressed), for: .touchUpInside)
         
-        certifiedButton.translatesAutoresizingMaskIntoConstraints = false
+        /*certifiedButton.translatesAutoresizingMaskIntoConstraints = false
         certifiedButton.backgroundColor = .systemGray6
         certifiedButton.setTitleColor(.white, for: .normal)
         certifiedButton.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +130,7 @@ class AddDiveViewController: UIViewController {
         certifiedButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         certifiedButton.setTitle("Technical Dive", for: .normal)
         certifiedButton.titleLabel?.font = UIFont.init(name: "Avenir Next", size: 16)
-        certifiedButton.addTarget(self, action: #selector(certifiedPressed), for: .touchUpInside)
+        certifiedButton.addTarget(self, action: #selector(certifiedPressed), for: .touchUpInside)*/
  
         divesLabel.translatesAutoresizingMaskIntoConstraints = false
         divesLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -141,21 +170,43 @@ class AddDiveViewController: UIViewController {
         
     }
     
-    @objc func uncertifiedPressed(sender: UIButton!){
+    @objc func certifiedPressed(sender: UIButton!){
         let vc = NormalDiveViewController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
     
-    @objc func certifiedPressed(){
-        let vc = CirtifiedDiveViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+    @objc func quickPressed(){
+        fpc.move(to: .half, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            fpc.removeFromParent()
+    }
+}
+
+class FloatingPanelStocksBehavior: FloatingPanelBehavior {
+    var velocityThreshold: CGFloat {
+        return 1000
+    }
+
+    func interactionAnimator(to targetPosition: FloatingPanelPosition, with velocity: CGVector) -> UIViewPropertyAnimator {
+        let springTiming = UISpringTimingParameters(dampingRatio: 100, initialVelocity: velocity)
+        return UIViewPropertyAnimator(duration: 0.5, timingParameters: springTiming)
+    }
+}
+
+class FloatingPanelLayoutWithCustomState: FloatingPanelBottomLayout {
+    override var anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] {
+        return [
+            .half: FloatingPanelLayoutAnchor(fractionalInset: 0.5, edge: .bottom, referenceGuide: .safeArea),
+        ]
     }
 }
 

@@ -14,7 +14,7 @@ var myIndex = DiveInfoStruct(location: "", divePoint: "", diveNr: 0, date: "", d
 
 class SimpleItemViewControllerOne: UIViewController{
     
-    let backgroundColor = UIColor.systemGray6
+    let backgroundColor = UIColor.secondarySystemBackground
     var tableView = UITableView()
     let headerCard = UIButton.init()
     let headerLabel = UILabel.init()
@@ -50,7 +50,7 @@ class SimpleItemViewControllerOne: UIViewController{
     func configureHeader() {
         let labelHeight = Utilities.requiredHeight(font:"Avenir Next", labelText: "Logged Dives", size: 17.0) + 45
         let headerHeight = (((view.frame.size.width) - 60) * (7/20)) + labelHeight
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: headerHeight))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: headerHeight + 10))
         
         header.addSubview(headerCard)
         header.addSubview(organistationLabel)
@@ -66,15 +66,18 @@ class SimpleItemViewControllerOne: UIViewController{
         tableView.tableHeaderView = header
         
         headerCard.backgroundColor = backgroundColor
-        headerCard.layer.cornerRadius = 15
-        headerCard.layer.borderWidth = 1
-        headerCard.layer.borderColor = UIColor.label.cgColor
+        headerCard.layer.cornerRadius = 10
+        headerCard.layer.borderWidth = 0.8
+        headerCard.layer.borderColor = UIColor.systemGray3.cgColor
         headerCard.translatesAutoresizingMaskIntoConstraints = false
         headerCard.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
-        headerCard.topAnchor.constraint(equalTo: header.topAnchor, constant: 20).isActive = true
+        headerCard.topAnchor.constraint(equalTo: header.topAnchor, constant: 27).isActive = true
         headerCard.widthAnchor.constraint(equalToConstant: (view.frame.size.width) - 60).isActive = true
         headerCard.heightAnchor.constraint(equalTo: headerCard.widthAnchor, multiplier: 7/20).isActive = true
         headerCard.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        headerCard.layer.shadowOpacity = 0.3
+        headerCard.layer.shadowOffset = .zero
+        headerCard.layer.shadowRadius = 10
         
         organistationLabel.translatesAutoresizingMaskIntoConstraints = false
         organistationLabel.font = UIFont.init(name: "AvenirNext-medium", size: 14)
@@ -115,7 +118,7 @@ class SimpleItemViewControllerOne: UIViewController{
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        headerCard.layer.borderColor = UIColor.label.cgColor
+        headerCard.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
     
